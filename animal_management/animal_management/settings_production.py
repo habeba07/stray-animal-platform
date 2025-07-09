@@ -15,15 +15,14 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+# Database configuration with DATABASE_URL priority
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
     DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-
 else:
-
-    # Production database (Supabase PostgreSQL)
+    # Fallback to individual database variables
     DATABASES = {
         'default': {
             'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -33,14 +32,30 @@ else:
             'HOST': os.environ.get('DB_HOST'),
             'PORT': os.environ.get('DB_PORT', '5432'),
             'OPTIONS': {
-                'sslmode': 'require',  # Required for Supabase
+                'sslmode': 'require',
             },
         }
     }
 
-# Static files for production
+# WhiteNoise Middleware Configuration (IMPORTANT: Order matters!)
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add WhiteNoise early
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Static files configuration for production
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = '/app/staticfiles'
+
+# WhiteNoise static files storage
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Security settings
 SECURE_SSL_REDIRECT = False  # Render handles SSL
