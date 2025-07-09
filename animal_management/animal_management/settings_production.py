@@ -3,8 +3,24 @@ from .settings import *
 import os
 import dj_database_url 
 
-# Production mode
-DEBUG = False
+SECRET_KEY = os.environ.get('SECRET_KEY', '-sm0i3-y#yzn5^pd(@-j$ewldzsrjzjoike78g3#t&@sv*2ypy')
+
+DEBUG = True  # Change from False to True temporarily
+
+# Also add detailed logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
 # Allowed hosts for production
 ALLOWED_HOSTS = [

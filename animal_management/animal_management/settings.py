@@ -57,7 +57,7 @@ print(f"Using GDAL library path: {GDAL_LIBRARY_PATH}")
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-your-secret-key-here'
+SECRET_KEY = '-sm0i3-y#yzn5^pd(@-j$ewldzsrjzjoike78g3#t&@sv*2ypy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
