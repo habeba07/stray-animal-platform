@@ -1,6 +1,7 @@
 # animal_management/settings_production.py
 from .settings import *
 import os
+import dj_database_url 
 
 # Production mode
 DEBUG = False
