@@ -1,4 +1,4 @@
-# Core Django packages (your existing ones)
+# Core Django packages
 Django>=4.2,<5.0
 psycopg2-binary>=2.9.0
 djangorestframework>=3.14.0
@@ -9,25 +9,30 @@ Pillow>=10.0.0
 pymongo>=4.3.0
 geopy>=2.3.0
 
-# NEW: Modern Django Admin Interface
+# Django Admin Interface
 django-admin-interface>=0.26.0
 django-colorfield>=0.10.0
 
-# NEW: Basic ML and Analytics packages
+# ML and Analytics packages
 scikit-learn>=1.3.0
 pandas>=2.0.0
 numpy>=1.24.0
 
-# NEW: Performance improvements
+# Performance improvements
 redis>=4.5.0
 django-redis>=5.2.0
 celery>=5.3.0
 
-# NEW: Security enhancements
+# Security enhancements
 cryptography>=41.0.0
 django-ratelimit>=4.0.0
 
-# Everything else stays the same for nowchannels[daphne]==4.0.0
+# WebSocket support
+channels[daphne]==4.0.0
 channels-redis==4.1.0
 daphne==4.0.0
+
+# Production deployment
 dj-database-url
+whitenoise>=6.5.0
+gunicorn
