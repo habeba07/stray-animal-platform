@@ -93,8 +93,15 @@ def import_data_simple(request):
         return JsonResponse({'success': False, 'message': 'Import only available in production'})
     
     try:
-        # Clear existing data first
-        call_command('clear_production', '--confirm')
+        # Run migrations first to create tables
+        call_command('migrate')
+        
+        # Clear existing data (only if tables exist)
+        try:
+            call_command('clear_production', '--confirm')
+        except Exception as e:
+            # If clear fails, tables probably don't exist - that's okay
+            pass
         
         # Look for export data
         export_dirs = glob.glob('data_export_*')
