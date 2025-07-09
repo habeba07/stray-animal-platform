@@ -84,24 +84,19 @@ def setup_production_simple(request):
 
 @csrf_exempt
 @require_http_methods(["POST"])
-def import_data_simple(request):
-    """Import data only - no admin user creation"""
+def import_core_data(request):
+    """Import core data in optimized chunks"""
     from django.conf import settings
     import glob
+    import json
+    import os  # Add this line
     
     if settings.DEBUG:
         return JsonResponse({'success': False, 'message': 'Import only available in production'})
     
     try:
-        # Run migrations first to create tables
+        # Run migrations first
         call_command('migrate')
-        
-        # Clear existing data (only if tables exist)
-        try:
-            call_command('clear_production', '--confirm')
-        except Exception as e:
-            # If clear fails, tables probably don't exist - that's okay
-            pass
         
         # Look for export data
         export_dirs = glob.glob('data_export_*')
@@ -110,18 +105,34 @@ def import_data_simple(request):
         
         export_dir = sorted(export_dirs)[-1]
         
-        # Import the data
-        call_command('transfer_to_production', '--mode=import', f'--file={export_dir}', '--confirm')
+        # Import core models in order
+        core_files = [
+            'users_User.json',
+            'animals_Animal.json',
+            'reports_Report.json',
+            'adoptions_AdoptionMatch.json',
+            'donations_Donation.json',
+        ]
         
-        from animals.models import Animal
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
+        imported_counts = {}
+        
+        from django.core import serializers
+        
+        for filename in core_files:
+            filepath = f"{export_dir}/{filename}"
+            if os.path.exists(filepath):
+                with open(filepath, 'r') as f:
+                    objects = serializers.deserialize('json', f.read())
+                    count = 0
+                    for obj in objects:
+                        obj.save()
+                        count += 1
+                    imported_counts[filename] = count
         
         return JsonResponse({
             'success': True,
-            'message': 'Data imported successfully!',
-            'animals': Animal.objects.count(),
-            'users': User.objects.count()
+            'message': 'Core data imported successfully!',
+            'imported': imported_counts
         })
         
     except Exception as e:

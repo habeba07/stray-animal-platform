@@ -141,6 +141,7 @@ urlpatterns = [
     path('api/login/', login_view, name='api_login'),
     path('api/setup-production-simple/', setup_production_simple, name='setup_production_simple'),
     path('api/import-data-simple/', import_data_simple, name='import_data_simple'), 
+    path('api/import-core-data/', import_core_data, name='import_core_data'),
     path('api/dashboard/', include('dashboard.urls')),
     path('api/health/', include('health.urls')),
     path('api/resources/', include('resources.urls')),
