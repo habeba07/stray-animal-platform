@@ -21,6 +21,7 @@ LOGGING = {
             'level': 'ERROR',
         },
     },
+}
 
 # Allowed hosts for production
 ALLOWED_HOSTS = [
