@@ -18,7 +18,7 @@ class AnimalViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
 
-        if self.action in ['list', 'retrieve', 'adoptable']:
+        if self.action in ['list', 'retrieve', 'adoptable', 'setup_production']:
             return [permissions.AllowAny()] 
         elif self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [permissions.IsAuthenticated()]  # You can add custom permissions here later
