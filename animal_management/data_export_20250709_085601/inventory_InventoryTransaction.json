@@ -1,0 +1,17 @@
+[
+{
+  "model": "inventory.inventorytransaction",
+  "pk": 1,
+  "fields": {
+    "item": 8,
+    "transaction_type": "MEDICAL_USE",
+    "quantity": "1.00",
+    "transaction_date": "2025-07-06T05:07:04.177Z",
+    "notes": "Medical treatment for Pet_996",
+    "related_animal": 1017,
+    "related_health_record": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T05:07:04.177Z"
+  }
+}
+]

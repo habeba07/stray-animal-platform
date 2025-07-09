@@ -1,0 +1,107 @@
+[
+{
+  "model": "community.reward",
+  "pk": 9,
+  "fields": {
+    "name": "Digital Certificate of Appreciation",
+    "description": "Personalized digital certificate recognizing your contribution to animal welfare.",
+    "reward_type": "RECOGNITION",
+    "points_required": 30,
+    "quantity_available": -1,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.990Z",
+    "updated_at": "2025-07-07T20:52:19.990Z"
+  }
+},
+{
+  "model": "community.reward",
+  "pk": 10,
+  "fields": {
+    "name": "Pet Store Discount Coupon",
+    "description": "15% off coupon for participating pet stores. Valid for 6 months.",
+    "reward_type": "DISCOUNT",
+    "points_required": 50,
+    "quantity_available": 20,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.991Z",
+    "updated_at": "2025-07-07T20:52:19.991Z"
+  }
+},
+{
+  "model": "community.reward",
+  "pk": 11,
+  "fields": {
+    "name": "PAW Rescue T-Shirt",
+    "description": "High-quality cotton t-shirt with PAW Rescue logo. Available in multiple sizes.",
+    "reward_type": "PHYSICAL",
+    "points_required": 65,
+    "quantity_available": 15,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.992Z",
+    "updated_at": "2025-07-07T20:52:19.992Z"
+  }
+},
+{
+  "model": "community.reward",
+  "pk": 12,
+  "fields": {
+    "name": "VIP Shelter Tour",
+    "description": "Behind-the-scenes tour of our animal shelter facilities with a veterinarian guide.",
+    "reward_type": "SERVICE",
+    "points_required": 75,
+    "quantity_available": 10,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.993Z",
+    "updated_at": "2025-07-07T20:52:19.993Z"
+  }
+},
+{
+  "model": "community.reward",
+  "pk": 13,
+  "fields": {
+    "name": "Animal Care Workshop",
+    "description": "Half-day workshop on animal care basics, including first aid and nutrition.",
+    "reward_type": "SERVICE",
+    "points_required": 100,
+    "quantity_available": 8,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.994Z",
+    "updated_at": "2025-07-07T20:52:19.994Z"
+  }
+},
+{
+  "model": "community.reward",
+  "pk": 14,
+  "fields": {
+    "name": "Golden Volunteer Badge",
+    "description": "Special recognition badge for dedicated volunteers. Unlocks exclusive forum access.",
+    "reward_type": "PRIVILEGE",
+    "points_required": 150,
+    "quantity_available": 5,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.995Z",
+    "updated_at": "2025-07-07T20:52:19.995Z"
+  }
+},
+{
+  "model": "community.reward",
+  "pk": 8,
+  "fields": {
+    "name": "PAW Rescue Sticker Pack",
+    "description": "Adorable sticker pack featuring rescued animals. Perfect for decorating your laptop or notebook!",
+    "reward_type": "PHYSICAL",
+    "points_required": 25,
+    "quantity_available": 49,
+    "image_url": null,
+    "is_active": true,
+    "created_at": "2025-07-07T20:52:19.983Z",
+    "updated_at": "2025-07-07T21:02:07.153Z"
+  }
+}
+]

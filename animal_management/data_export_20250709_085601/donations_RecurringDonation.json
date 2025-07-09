@@ -1,0 +1,48 @@
+[
+{
+  "model": "donations.recurringdonation",
+  "pk": 2,
+  "fields": {
+    "donor": 51,
+    "campaign": 2,
+    "amount": "25.00",
+    "frequency": "MONTHLY",
+    "payment_method": "CREDIT_CARD",
+    "status": "ACTIVE",
+    "start_date": "2025-07-08T10:33:07.078Z",
+    "next_payment_date": "2025-08-08T10:34:28.913Z",
+    "end_date": null,
+    "total_donated": "25.00",
+    "successful_payments": 1,
+    "failed_payments": 0,
+    "last_payment_date": "2025-07-08T10:34:28.913Z",
+    "is_anonymous": false,
+    "message": "",
+    "created_at": "2025-07-08T10:33:07.078Z",
+    "updated_at": "2025-07-08T10:34:28.923Z"
+  }
+},
+{
+  "model": "donations.recurringdonation",
+  "pk": 1,
+  "fields": {
+    "donor": 51,
+    "campaign": 2,
+    "amount": "25.00",
+    "frequency": "MONTHLY",
+    "payment_method": "CREDIT_CARD",
+    "status": "CANCELLED",
+    "start_date": "2025-07-08T02:19:43.269Z",
+    "next_payment_date": "2025-08-08T02:19:43.269Z",
+    "end_date": null,
+    "total_donated": "0.00",
+    "successful_payments": 0,
+    "failed_payments": 0,
+    "last_payment_date": null,
+    "is_anonymous": false,
+    "message": "Monthly support for emergency medical care",
+    "created_at": "2025-07-08T02:19:43.269Z",
+    "updated_at": "2025-07-08T04:52:23.574Z"
+  }
+}
+]

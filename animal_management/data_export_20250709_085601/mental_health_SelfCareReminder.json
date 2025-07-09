@@ -1,0 +1,16 @@
+[
+{
+  "model": "mental_health.selfcarereminder",
+  "pk": 1,
+  "fields": {
+    "user": 27,
+    "title": "Take a 5 minute break",
+    "message": "Step outside and take 5 deep breaths",
+    "frequency": "DAILY",
+    "time_of_day": "09:00:00",
+    "is_active": true,
+    "last_sent": null,
+    "created_at": "2025-06-30T05:48:01.169Z"
+  }
+}
+]

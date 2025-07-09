@@ -1,0 +1,54 @@
+[
+{
+  "model": "mental_health.stresslogentry",
+  "pk": 1,
+  "fields": {
+    "user": 27,
+    "date": "2025-06-30",
+    "stress_level": 3,
+    "notes": "",
+    "factors": [],
+    "created_at": "2025-06-30T05:08:56.475Z"
+  }
+},
+{
+  "model": "mental_health.stresslogentry",
+  "pk": 2,
+  "fields": {
+    "user": 27,
+    "date": "2025-06-30",
+    "stress_level": 4,
+    "notes": "",
+    "factors": [
+      "crisis_level_stress"
+    ],
+    "created_at": "2025-06-30T05:49:19.702Z"
+  }
+},
+{
+  "model": "mental_health.stresslogentry",
+  "pk": 3,
+  "fields": {
+    "user": 27,
+    "date": "2025-06-30",
+    "stress_level": 5,
+    "notes": "",
+    "factors": [
+      "crisis_level_stress"
+    ],
+    "created_at": "2025-06-30T05:49:31.605Z"
+  }
+},
+{
+  "model": "mental_health.stresslogentry",
+  "pk": 4,
+  "fields": {
+    "user": 27,
+    "date": "2025-06-30",
+    "stress_level": 1,
+    "notes": "",
+    "factors": [],
+    "created_at": "2025-06-30T05:49:58.769Z"
+  }
+}
+]

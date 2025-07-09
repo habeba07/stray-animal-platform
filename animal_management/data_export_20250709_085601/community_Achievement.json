@@ -1,0 +1,173 @@
+[
+{
+  "model": "community.achievement",
+  "pk": 1,
+  "fields": {
+    "name": "First Responder",
+    "description": "Complete your first animal rescue",
+    "category": "RESCUE",
+    "icon": "emergency_rescue",
+    "criteria": {
+      "type": "rescue_count",
+      "count": 1
+    },
+    "points_reward": 50,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.066Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 2,
+  "fields": {
+    "name": "Rescue Hero",
+    "description": "Complete 10 animal rescues",
+    "category": "RESCUE",
+    "icon": "volunteer_activism",
+    "criteria": {
+      "type": "rescue_count",
+      "count": 10
+    },
+    "points_reward": 200,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.087Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 3,
+  "fields": {
+    "name": "Lightning Response",
+    "description": "Maintain average response time under 15 minutes",
+    "category": "RESCUE",
+    "icon": "flash_on",
+    "criteria": {
+      "type": "rescue_response_time",
+      "max_minutes": 15
+    },
+    "points_reward": 150,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.089Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 4,
+  "fields": {
+    "name": "Emergency Expert",
+    "description": "Complete 5 emergency rescues",
+    "category": "RESCUE",
+    "icon": "local_hospital",
+    "criteria": {
+      "type": "emergency_rescues",
+      "count": 5
+    },
+    "points_reward": 300,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.090Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 5,
+  "fields": {
+    "name": "Certified Rescuer",
+    "description": "Earn your first rescue certification",
+    "category": "TRAINING",
+    "icon": "verified",
+    "criteria": {
+      "type": "certification_count",
+      "count": 1
+    },
+    "points_reward": 100,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.091Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 6,
+  "fields": {
+    "name": "Training Graduate",
+    "description": "Complete 3 training modules",
+    "category": "TRAINING",
+    "icon": "school",
+    "criteria": {
+      "type": "training_completion",
+      "count": 3
+    },
+    "points_reward": 75,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.093Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 7,
+  "fields": {
+    "name": "Rescue Master",
+    "description": "Complete 25 rescues with excellent rating",
+    "category": "RESCUE",
+    "icon": "stars",
+    "criteria": {
+      "type": "rescue_count",
+      "count": 25
+    },
+    "points_reward": 500,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.094Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 8,
+  "fields": {
+    "name": "Community Guardian",
+    "description": "Earn 1000 points from rescue activities",
+    "category": "RESCUE",
+    "icon": "shield",
+    "criteria": {
+      "type": "points_earned",
+      "points": 1000
+    },
+    "points_reward": 100,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.095Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 9,
+  "fields": {
+    "name": "Quick Learner",
+    "description": "Complete a training module with 90%+ score",
+    "category": "TRAINING",
+    "icon": "psychology",
+    "criteria": {
+      "type": "training_completion",
+      "count": 1,
+      "min_score": 90
+    },
+    "points_reward": 50,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.097Z"
+  }
+},
+{
+  "model": "community.achievement",
+  "pk": 10,
+  "fields": {
+    "name": "Dedication Award",
+    "description": "Complete rescues for 30 consecutive days",
+    "category": "RESCUE",
+    "icon": "event_available",
+    "criteria": {
+      "days": 30,
+      "type": "rescue_streak"
+    },
+    "points_reward": 400,
+    "is_active": true,
+    "created_at": "2025-07-02T02:21:09.098Z"
+  }
+}
+]

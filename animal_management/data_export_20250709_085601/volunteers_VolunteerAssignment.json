@@ -1,0 +1,16 @@
+[
+{
+  "model": "volunteers.volunteerassignment",
+  "pk": 1,
+  "fields": {
+    "volunteer": 30,
+    "opportunity": 1,
+    "status": "ASSIGNED",
+    "hours_logged": null,
+    "notes": null,
+    "assigned_at": "2025-07-02T16:08:26.916Z",
+    "confirmed_at": null,
+    "completed_at": null
+  }
+}
+]

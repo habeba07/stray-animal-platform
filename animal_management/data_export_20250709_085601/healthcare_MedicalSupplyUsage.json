@@ -1,0 +1,14 @@
+[
+{
+  "model": "healthcare.medicalsupplyusage",
+  "pk": 1,
+  "fields": {
+    "medical_record": 8,
+    "inventory_item": 8,
+    "quantity_used": "1.00",
+    "notes": null,
+    "inventory_consumed": true,
+    "created_at": "2025-07-06T05:07:04.169Z"
+  }
+}
+]

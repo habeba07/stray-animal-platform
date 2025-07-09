@@ -1,0 +1,117 @@
+[
+{
+  "model": "donations.successstory",
+  "pk": 15,
+  "fields": {
+    "title": "Feral to Family: Shadow's Transformation",
+    "animal": 5,
+    "story_text": "Shadow was a feral cat who had never known human kindness. Through patient care, medical treatment, and socialization funded by donations, Shadow learned to trust and love. He now purrs contentedly in his forever home.",
+    "before_photo": "https://images.unsplash.com/photo-1583512603806-077998240c7a?w=400&h=300&fit=crop&crop=face",
+    "after_photo": "https://images.unsplash.com/photo-1583512603806-077998240c7a?w=400&h=300&fit=crop&crop=face",
+    "rescue_date": "2025-03-11T14:03:39.102Z",
+    "adoption_date": "2025-08-08T14:03:39.102Z",
+    "total_cost": "180.00",
+    "days_in_care": 150,
+    "is_featured": false,
+    "created_at": "2025-05-24T14:03:39.102Z",
+    "created_by": null,
+    "enabled_by_donations": [
+      147,
+      148,
+      149
+    ]
+  }
+},
+{
+  "model": "donations.successstory",
+  "pk": 14,
+  "fields": {
+    "title": "Senior Love: Bella's Happy Ending",
+    "animal": 4,
+    "story_text": "Bella, a 8-year-old dog, was surrendered when her family could no longer care for her. Many thought she was too old to find a home, but after receiving medical care and lots of love, she found a family who cherishes her golden years.",
+    "before_photo": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=300&fit=crop&crop=face",
+    "after_photo": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=300&fit=crop&crop=face",
+    "rescue_date": "2025-01-30T14:03:39.098Z",
+    "adoption_date": "2025-03-16T14:03:39.098Z",
+    "total_cost": "275.00",
+    "days_in_care": 45,
+    "is_featured": false,
+    "created_at": "2025-05-24T14:03:39.099Z",
+    "created_by": null,
+    "enabled_by_donations": [
+      147,
+      148,
+      149
+    ]
+  }
+},
+{
+  "model": "donations.successstory",
+  "pk": 13,
+  "fields": {
+    "title": "Tiny Fighter: Max's Triumphant Tale",
+    "animal": 3,
+    "story_text": "Max was just a puppy when he was abandoned, weak and sick. Our medical team worked around the clock, funded by donations, to nurse him back to health. Now Max is a energetic, loving companion who brings joy to his adoptive family every day.",
+    "before_photo": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=300&fit=crop&crop=face",
+    "after_photo": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=300&fit=crop&crop=face",
+    "rescue_date": "2025-04-24T14:03:39.095Z",
+    "adoption_date": "2025-06-23T14:03:39.095Z",
+    "total_cost": "320.00",
+    "days_in_care": 60,
+    "is_featured": true,
+    "created_at": "2025-05-24T14:03:39.096Z",
+    "created_by": null,
+    "enabled_by_donations": [
+      147,
+      149,
+      150
+    ]
+  }
+},
+{
+  "model": "donations.successstory",
+  "pk": 12,
+  "fields": {
+    "title": "Miracle Recovery: Luna's Second Chance",
+    "animal": 2,
+    "story_text": "Luna arrived at our shelter in critical condition after being hit by a car. The veterinary bills were enormous, but thanks to the generosity of our donors, we could afford the life-saving surgery she needed. Today, Luna is healthy, happy, and playing in her new backyard!",
+    "before_photo": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=300&fit=crop&crop=face",
+    "after_photo": "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=400&h=300&fit=crop&crop=face",
+    "rescue_date": "2025-02-17T14:03:39.092Z",
+    "adoption_date": "2025-06-17T14:03:39.092Z",
+    "total_cost": "850.00",
+    "days_in_care": 120,
+    "is_featured": true,
+    "created_at": "2025-05-24T14:03:39.092Z",
+    "created_by": null,
+    "enabled_by_donations": [
+      147,
+      148,
+      149
+    ]
+  }
+},
+{
+  "model": "donations.successstory",
+  "pk": 11,
+  "fields": {
+    "title": "From Street to Sweet Home: Buddy's Journey",
+    "animal": 1,
+    "story_text": "Buddy was found injured on the streets, scared and malnourished. Thanks to donations from amazing supporters, we were able to provide him with emergency medical care, nutritious food, and a warm shelter. After 3 months of love and care, Buddy found his forever family and is now living his best life!",
+    "before_photo": "https://images.unsplash.com/photo-1551717743-49959800b1f6?w=400&h=300&fit=crop&crop=face",
+    "after_photo": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=300&fit=crop&crop=face",
+    "rescue_date": "2025-02-18T14:03:39.064Z",
+    "adoption_date": "2025-05-19T14:03:39.064Z",
+    "total_cost": "450.00",
+    "days_in_care": 90,
+    "is_featured": true,
+    "created_at": "2025-05-24T14:03:39.065Z",
+    "created_by": null,
+    "enabled_by_donations": [
+      148,
+      149,
+      150
+    ]
+  }
+}
+]

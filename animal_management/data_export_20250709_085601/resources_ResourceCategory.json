@@ -1,0 +1,112 @@
+[
+{
+  "model": "resources.resourcecategory",
+  "pk": 3,
+  "fields": {
+    "name": "Adoption Tips",
+    "slug": "adoption-tips",
+    "description": "Guides for successful animal adoption",
+    "icon": "favorite",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 7,
+  "fields": {
+    "name": "Best Practices",
+    "slug": "best-practices",
+    "description": "Proven intervention strategies and operational excellence",
+    "icon": "star",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 4,
+  "fields": {
+    "name": "Health & Nutrition",
+    "slug": "health-nutrition",
+    "description": "Information about animal health and nutrition",
+    "icon": "local_hospital",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 6,
+  "fields": {
+    "name": "Legal Frameworks",
+    "slug": "legal-frameworks",
+    "description": "Regulatory compliance and enforcement procedures",
+    "icon": "gavel",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 1,
+  "fields": {
+    "name": "Pet Care Basics",
+    "slug": "pet-care-basics",
+    "description": "Essential knowledge for new pet owners",
+    "icon": "pets",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 5,
+  "fields": {
+    "name": "Policy Implementation",
+    "slug": "policy-implementation",
+    "description": "Municipal guidelines for implementing stray animal policies",
+    "icon": "policy",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 9,
+  "fields": {
+    "name": "Research Studies",
+    "slug": "research-studies",
+    "description": "Data-driven insights and ROI analysis for municipal planning",
+    "icon": "assessment",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 8,
+  "fields": {
+    "name": "Strategic Planning",
+    "slug": "strategic-planning",
+    "description": "Territory management and resource allocation frameworks",
+    "icon": "map",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 2,
+  "fields": {
+    "name": "Stray Animal Safety",
+    "slug": "stray-animal-safety",
+    "description": "How to safely approach and help stray animals",
+    "icon": "warning",
+    "order": 0
+  }
+},
+{
+  "model": "resources.resourcecategory",
+  "pk": 10,
+  "fields": {
+    "name": "Emergency Rescue Training",
+    "slug": "rescue-training",
+    "description": "Professional training modules for animal rescue operations",
+    "icon": "school",
+    "order": 1
+  }
+}
+]

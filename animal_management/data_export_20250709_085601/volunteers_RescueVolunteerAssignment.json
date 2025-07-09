@@ -1,0 +1,242 @@
+[
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 14,
+  "fields": {
+    "volunteer": 54,
+    "report": 3,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T22:20:55.954Z",
+    "accepted_at": "2025-07-08T22:20:55.970Z",
+    "completed_at": "2025-07-08T22:21:16.870Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "On the way!",
+    "completion_notes": "Done!"
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 13,
+  "fields": {
+    "volunteer": 54,
+    "report": 4,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T22:00:17.791Z",
+    "accepted_at": "2025-07-08T22:00:17.807Z",
+    "completed_at": "2025-07-08T22:00:25.663Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "testing",
+    "completion_notes": "done"
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 11,
+  "fields": {
+    "volunteer": 54,
+    "report": 18,
+    "assignment_type": "PRIMARY",
+    "status": "ACCEPTED",
+    "assigned_at": "2025-07-08T21:56:37.148Z",
+    "accepted_at": "2025-07-08T21:56:37.165Z",
+    "completed_at": null,
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "testing acceptance",
+    "completion_notes": null
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 10,
+  "fields": {
+    "volunteer": 54,
+    "report": 19,
+    "assignment_type": "PRIMARY",
+    "status": "ACCEPTED",
+    "assigned_at": "2025-07-08T21:39:27.904Z",
+    "accepted_at": "2025-07-08T21:39:27.930Z",
+    "completed_at": null,
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "On the way!",
+    "completion_notes": null
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 9,
+  "fields": {
+    "volunteer": 54,
+    "report": 20,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T21:27:48.941Z",
+    "accepted_at": "2025-07-08T21:27:48.967Z",
+    "completed_at": "2025-07-08T21:30:44.579Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "On the Way!",
+    "completion_notes": "Done!"
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 8,
+  "fields": {
+    "volunteer": 54,
+    "report": 9,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T21:23:32.295Z",
+    "accepted_at": "2025-07-08T21:23:32.321Z",
+    "completed_at": "2025-07-08T21:24:05.544Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "On the way!",
+    "completion_notes": "Done!"
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 7,
+  "fields": {
+    "volunteer": 54,
+    "report": 12,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T21:19:21.343Z",
+    "accepted_at": "2025-07-08T21:19:21.369Z",
+    "completed_at": "2025-07-08T21:19:30.004Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "On the way!",
+    "completion_notes": "Done!"
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 6,
+  "fields": {
+    "volunteer": 54,
+    "report": 5,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T21:14:03.930Z",
+    "accepted_at": "2025-07-08T21:14:03.956Z",
+    "completed_at": "2025-07-08T21:14:33.319Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "On the way!",
+    "completion_notes": "Done!"
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 4,
+  "fields": {
+    "volunteer": 54,
+    "report": 8,
+    "assignment_type": "PRIMARY",
+    "status": "ACCEPTED",
+    "assigned_at": "2025-07-08T16:04:39.592Z",
+    "accepted_at": "2025-07-08T16:04:39.610Z",
+    "completed_at": null,
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "Responding immediately, have first aid kit",
+    "completion_notes": null
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 3,
+  "fields": {
+    "volunteer": 54,
+    "report": 11,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-08T15:43:23.701Z",
+    "accepted_at": "2025-07-08T15:43:23.722Z",
+    "completed_at": "2025-07-08T16:07:23.616Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "Responding immediately, have first aid kit",
+    "completion_notes": "Found injured dog at Main Street intersection. Animal was bleeding from leg wound but conscious and responsive. Successfully transported to nearby veterinary clinic. Dog appeared to be a medium-sized mixed breed, approximately 2-3 years old. Owner contacted and met us at clinic."
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 2,
+  "fields": {
+    "volunteer": 30,
+    "report": 5,
+    "assignment_type": "PRIMARY",
+    "status": "ACCEPTED",
+    "assigned_at": "2025-07-04T00:37:44.080Z",
+    "accepted_at": "2025-07-04T00:37:44.108Z",
+    "completed_at": null,
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "Accepting emergency rescue from dashboard",
+    "completion_notes": null
+  }
+},
+{
+  "model": "volunteers.rescuevolunteerassignment",
+  "pk": 1,
+  "fields": {
+    "volunteer": 30,
+    "report": 6,
+    "assignment_type": "PRIMARY",
+    "status": "COMPLETED",
+    "assigned_at": "2025-07-02T07:07:44.290Z",
+    "accepted_at": "2025-07-02T07:07:44.310Z",
+    "completed_at": "2025-07-02T07:23:26.676Z",
+    "estimated_arrival": null,
+    "current_location": null,
+    "location_updates": [],
+    "response_time_minutes": 0,
+    "travel_distance_km": null,
+    "volunteer_notes": "Rescue successful! Dog safely transported to veterinary care. Minor injuries treated, animal is stable and recovering.",
+    "completion_notes": null
+  }
+}
+]

@@ -1,0 +1,136 @@
+[
+{
+  "model": "volunteers.volunteerprofile",
+  "pk": 1,
+  "fields": {
+    "user": 23,
+    "skills": [
+      "Animal Handling"
+    ],
+    "interests": [
+      "Dog Care"
+    ],
+    "availability": "WEEKENDS",
+    "experience_level": "INTERMEDIATE",
+    "has_animal_handling": true,
+    "has_transportation": true,
+    "preferred_animals": [],
+    "bio": "Passionate about animal welfare, available weekends",
+    "emergency_contact": "John Doe - 555-1234",
+    "total_hours": 0.0,
+    "created_at": "2025-06-25T17:25:19.736Z",
+    "updated_at": "2025-06-25T17:25:19.736Z",
+    "max_rescue_distance_km": 10,
+    "available_for_emergency": false,
+    "rescue_experience_level": "NONE",
+    "gps_tracking_consent": false,
+    "last_location_update": null,
+    "emergency_contact_phone": null,
+    "preferred_contact_method": "APP",
+    "total_rescues_completed": 0,
+    "average_response_time_minutes": null
+  }
+},
+{
+  "model": "volunteers.volunteerprofile",
+  "pk": 2,
+  "fields": {
+    "user": 31,
+    "skills": [],
+    "interests": [],
+    "availability": "FLEXIBLE",
+    "experience_level": "INTERMEDIATE",
+    "has_animal_handling": true,
+    "has_transportation": true,
+    "preferred_animals": [],
+    "bio": null,
+    "emergency_contact": null,
+    "total_hours": 0.0,
+    "created_at": "2025-07-02T02:29:47.885Z",
+    "updated_at": "2025-07-02T02:29:47.885Z",
+    "max_rescue_distance_km": 10,
+    "available_for_emergency": true,
+    "rescue_experience_level": "NONE",
+    "gps_tracking_consent": true,
+    "last_location_update": null,
+    "emergency_contact_phone": null,
+    "preferred_contact_method": "APP",
+    "total_rescues_completed": 0,
+    "average_response_time_minutes": null
+  }
+},
+{
+  "model": "volunteers.volunteerprofile",
+  "pk": 3,
+  "fields": {
+    "user": 30,
+    "skills": [
+      "Animal Handling",
+      "First Aid",
+      "Transportation",
+      "Customer Service"
+    ],
+    "interests": [
+      "Dog Care",
+      "Wildlife"
+    ],
+    "availability": "FLEXIBLE",
+    "experience_level": "INTERMEDIATE",
+    "has_animal_handling": true,
+    "has_transportation": true,
+    "preferred_animals": [],
+    "bio": "",
+    "emergency_contact": "Emergency: 555-0123",
+    "total_hours": 0.0,
+    "created_at": "2025-07-02T02:50:44.066Z",
+    "updated_at": "2025-07-02T16:07:51.631Z",
+    "max_rescue_distance_km": 10,
+    "available_for_emergency": true,
+    "rescue_experience_level": "NONE",
+    "gps_tracking_consent": true,
+    "last_location_update": null,
+    "emergency_contact_phone": "",
+    "preferred_contact_method": "APP",
+    "total_rescues_completed": 0,
+    "average_response_time_minutes": null
+  }
+},
+{
+  "model": "volunteers.volunteerprofile",
+  "pk": 4,
+  "fields": {
+    "user": 54,
+    "skills": [
+      "ANIMAL_HANDLING",
+      "First Aid",
+      "Dog Walking"
+    ],
+    "interests": [
+      "Dog Care",
+      "Emergency Response"
+    ],
+    "availability": "FLEXIBLE",
+    "experience_level": "INTERMEDIATE",
+    "has_animal_handling": false,
+    "has_transportation": true,
+    "preferred_animals": [
+      "Dogs",
+      "Cats"
+    ],
+    "bio": "Experienced with animal rescue, available for emergency calls, skilled in basic first aid",
+    "emergency_contact": "Name: Jane Doe, Relationship: Spouse, Phone: 555-987-6543",
+    "total_hours": 0.0,
+    "created_at": "2025-07-08T11:39:32.928Z",
+    "updated_at": "2025-07-08T15:27:05.366Z",
+    "max_rescue_distance_km": 10,
+    "available_for_emergency": true,
+    "rescue_experience_level": "INTERMEDIATE",
+    "gps_tracking_consent": true,
+    "last_location_update": null,
+    "emergency_contact_phone": "555-123-4567",
+    "preferred_contact_method": "APP",
+    "total_rescues_completed": 7,
+    "average_response_time_minutes": 0.0
+  }
+}
+]

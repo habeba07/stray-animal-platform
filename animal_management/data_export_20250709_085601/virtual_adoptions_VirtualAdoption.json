@@ -1,0 +1,42 @@
+[
+{
+  "model": "virtual_adoptions.virtualadoption",
+  "pk": 2,
+  "fields": {
+    "sponsor": 1,
+    "animal": 9,
+    "amount": "50.00",
+    "period": "MONTHLY",
+    "status": "ACTIVE",
+    "start_date": "2025-06-08",
+    "next_payment_date": "2025-07-01",
+    "end_date": null,
+    "is_gift": false,
+    "gift_recipient_name": "",
+    "gift_recipient_email": "",
+    "gift_message": "",
+    "created_at": "2025-06-08T04:53:26.237Z",
+    "updated_at": "2025-06-08T04:53:26.237Z"
+  }
+},
+{
+  "model": "virtual_adoptions.virtualadoption",
+  "pk": 1,
+  "fields": {
+    "sponsor": 1,
+    "animal": 1,
+    "amount": "50.00",
+    "period": "MONTHLY",
+    "status": "CANCELLED",
+    "start_date": "2025-05-22",
+    "next_payment_date": "2025-06-01",
+    "end_date": "2025-06-26",
+    "is_gift": false,
+    "gift_recipient_name": "",
+    "gift_recipient_email": "",
+    "gift_message": "",
+    "created_at": "2025-05-22T15:41:56.452Z",
+    "updated_at": "2025-06-26T13:57:04.767Z"
+  }
+}
+]

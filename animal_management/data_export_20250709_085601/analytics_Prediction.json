@@ -1,0 +1,38 @@
+[
+{
+  "model": "analytics.prediction",
+  "pk": 2,
+  "fields": {
+    "model": 1,
+    "prediction_date": "2025-06-25T22:24:24.785Z",
+    "target_date": "2025-07-02T22:24:24.785Z",
+    "predicted_value": 5.1,
+    "actual_value": null,
+    "confidence_level": "MEDIUM",
+    "confidence_score": 78.2,
+    "prediction_context": {},
+    "seasonal_factors": {},
+    "prediction_error": null,
+    "is_validated": false,
+    "created_at": "2025-06-25T22:24:24.786Z"
+  }
+},
+{
+  "model": "analytics.prediction",
+  "pk": 1,
+  "fields": {
+    "model": 1,
+    "prediction_date": "2025-06-25T22:24:06.623Z",
+    "target_date": "2025-06-26T22:24:06.623Z",
+    "predicted_value": 3.2,
+    "actual_value": null,
+    "confidence_level": "HIGH",
+    "confidence_score": 87.5,
+    "prediction_context": {},
+    "seasonal_factors": {},
+    "prediction_error": null,
+    "is_validated": false,
+    "created_at": "2025-06-25T22:24:06.630Z"
+  }
+}
+]

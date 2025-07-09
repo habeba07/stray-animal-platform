@@ -1,0 +1,57 @@
+[
+{
+  "model": "mental_health.resourcecategory",
+  "pk": 1,
+  "fields": {
+    "name": "Staff Wellness",
+    "description": "General wellness resources for shelter staff",
+    "icon": "favorite",
+    "order": 1,
+    "created_at": "2025-06-30T01:09:40.865Z"
+  }
+},
+{
+  "model": "mental_health.resourcecategory",
+  "pk": 2,
+  "fields": {
+    "name": "Stress Management",
+    "description": "Techniques for managing work-related stress",
+    "icon": "psychology",
+    "order": 2,
+    "created_at": "2025-06-30T01:12:51.412Z"
+  }
+},
+{
+  "model": "mental_health.resourcecategory",
+  "pk": 3,
+  "fields": {
+    "name": "Self-Care",
+    "description": "Personal care and wellness practices",
+    "icon": "spa",
+    "order": 3,
+    "created_at": "2025-06-30T01:14:04.858Z"
+  }
+},
+{
+  "model": "mental_health.resourcecategory",
+  "pk": 4,
+  "fields": {
+    "name": "Professional Support",
+    "description": "Getting professional help and counseling",
+    "icon": "support_agent",
+    "order": 4,
+    "created_at": "2025-06-30T01:15:31.738Z"
+  }
+},
+{
+  "model": "mental_health.resourcecategory",
+  "pk": 5,
+  "fields": {
+    "name": "Burnout Prevention",
+    "description": "Preventing and recovering from workplace burnout",
+    "icon": "local_fire_department",
+    "order": 5,
+    "created_at": "2025-06-30T01:17:58.931Z"
+  }
+}
+]

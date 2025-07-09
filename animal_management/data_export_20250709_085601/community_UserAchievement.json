@@ -1,0 +1,38 @@
+[
+{
+  "model": "community.userachievement",
+  "pk": 4,
+  "fields": {
+    "user": 54,
+    "achievement": 4,
+    "earned_at": "2025-07-08T21:24:05.608Z"
+  }
+},
+{
+  "model": "community.userachievement",
+  "pk": 3,
+  "fields": {
+    "user": 54,
+    "achievement": 8,
+    "earned_at": "2025-07-08T21:19:30.088Z"
+  }
+},
+{
+  "model": "community.userachievement",
+  "pk": 2,
+  "fields": {
+    "user": 54,
+    "achievement": 1,
+    "earned_at": "2025-07-08T16:07:23.658Z"
+  }
+},
+{
+  "model": "community.userachievement",
+  "pk": 1,
+  "fields": {
+    "user": 30,
+    "achievement": 1,
+    "earned_at": "2025-07-03T19:43:37.504Z"
+  }
+}
+]

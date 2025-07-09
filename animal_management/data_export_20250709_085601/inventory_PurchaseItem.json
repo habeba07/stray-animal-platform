@@ -1,0 +1,35 @@
+[
+{
+  "model": "inventory.purchaseitem",
+  "pk": 1,
+  "fields": {
+    "purchase": 1,
+    "item": 2,
+    "quantity": "20.00",
+    "unit_price": "10.00",
+    "notes": null
+  }
+},
+{
+  "model": "inventory.purchaseitem",
+  "pk": 2,
+  "fields": {
+    "purchase": 2,
+    "item": 2,
+    "quantity": "27.00",
+    "unit_price": "10.00",
+    "notes": null
+  }
+},
+{
+  "model": "inventory.purchaseitem",
+  "pk": 3,
+  "fields": {
+    "purchase": 3,
+    "item": 4,
+    "quantity": "5.00",
+    "unit_price": "15.00",
+    "notes": null
+  }
+}
+]

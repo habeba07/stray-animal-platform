@@ -1,0 +1,490 @@
+[
+{
+  "model": "resources.quizquestion",
+  "pk": 18,
+  "fields": {
+    "module": 6,
+    "question_text": "What is a universal warning sign in animal body language?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 1,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Slow blinking",
+        "Ears pinned back",
+        "Tail wagging",
+        "Relaxed posture"
+      ]
+    },
+    "explanation": "Ears pinned back is a universal warning sign across many species indicating stress or potential aggression.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 6,
+  "fields": {
+    "module": 3,
+    "question_text": "What should be your FIRST priority when approaching an animal rescue situation?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 1,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Catching the animal quickly",
+        "Human safety assessment",
+        "Taking photos for documentation",
+        "Calling for backup"
+      ]
+    },
+    "explanation": "Human safety must always be the first priority. You cannot help animals if you become injured.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 22,
+  "fields": {
+    "module": 7,
+    "question_text": "In the Incident Command System, what is the top priority?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 1,
+    "question_data": {
+      "correct": 2,
+      "options": [
+        "Animal welfare",
+        "Media relations",
+        "Human safety",
+        "Cost control"
+      ]
+    },
+    "explanation": "Human safety is always the top priority in ICS - you cannot help animals if humans are injured.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 10,
+  "fields": {
+    "module": 4,
+    "question_text": "What does the \"A\" in ABC assessment stand for?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 1,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Assessment",
+        "Airway",
+        "Animal",
+        "Alert"
+      ]
+    },
+    "explanation": "ABC stands for Airway, Breathing, Circulation - the primary assessment priorities.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 14,
+  "fields": {
+    "module": 5,
+    "question_text": "What is the primary instinct of prey animals like horses in emergency situations?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 1,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Fight response",
+        "Flight response",
+        "Freeze response",
+        "Feed response"
+      ]
+    },
+    "explanation": "Horses and other prey animals have a strong flight response as their primary survival instinct.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 1,
+  "fields": {
+    "module": 1,
+    "question_text": "How often should you take a young puppy outside for potty breaks?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 1,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Every 4-6 hours",
+        "Every 1-2 hours",
+        "Only when they whine",
+        "Once in the morning and evening"
+      ]
+    },
+    "explanation": "Young puppies have small bladders and need frequent potty breaks, typically every 1-2 hours.",
+    "points": 10
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 7,
+  "fields": {
+    "module": 3,
+    "question_text": "Which animal stress response involves hiding or running away?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 2,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Fight response",
+        "Flight response",
+        "Freeze response",
+        "Faint response"
+      ]
+    },
+    "explanation": "Flight response is when animals try to escape or hide from perceived threats.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 11,
+  "fields": {
+    "module": 4,
+    "question_text": "For external bleeding, what is the first step?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 2,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Call veterinarian",
+        "Apply direct pressure",
+        "Clean the wound",
+        "Give pain medication"
+      ]
+    },
+    "explanation": "Direct pressure with clean cloth is the immediate first step to control bleeding.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 2,
+  "fields": {
+    "module": 1,
+    "question_text": "Positive reinforcement means rewarding good behavior immediately.",
+    "question_type": "TRUE_FALSE",
+    "order": 2,
+    "question_data": {
+      "correct": true
+    },
+    "explanation": "Yes! Immediate rewards help puppies understand which behaviors are desired.",
+    "points": 10
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 19,
+  "fields": {
+    "module": 6,
+    "question_text": "Panting in dogs always means they are hot.",
+    "question_type": "TRUE_FALSE",
+    "order": 2,
+    "question_data": {
+      "correct": false,
+      "options": []
+    },
+    "explanation": "Dogs also pant when stressed, anxious, or in pain - not just when hot.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 15,
+  "fields": {
+    "module": 5,
+    "question_text": "Large animal rescue always requires specialized equipment.",
+    "question_type": "TRUE_FALSE",
+    "order": 2,
+    "question_data": {
+      "correct": true,
+      "options": []
+    },
+    "explanation": "Due to size and weight (500-2000+ lbs), large animals require specialized equipment for safe rescue.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 23,
+  "fields": {
+    "module": 7,
+    "question_text": "What is the recommended span of control in ICS?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 2,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "1-3 subordinates",
+        "3-7 subordinates",
+        "5-10 subordinates",
+        "10-15 subordinates"
+      ]
+    },
+    "explanation": "3-7 subordinates per supervisor is the manageable span of control recommended in ICS.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 24,
+  "fields": {
+    "module": 7,
+    "question_text": "All media communications should come from a single designated spokesperson.",
+    "question_type": "TRUE_FALSE",
+    "order": 3,
+    "question_data": {
+      "correct": true,
+      "options": []
+    },
+    "explanation": "Single spokesperson prevents conflicting information and maintains message control during emergencies.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 8,
+  "fields": {
+    "module": 3,
+    "question_text": "You should make direct eye contact with a scared animal to show you're not a threat.",
+    "question_type": "TRUE_FALSE",
+    "order": 3,
+    "question_data": {
+      "correct": false,
+      "options": []
+    },
+    "explanation": "Direct eye contact can be perceived as threatening. Avoid initial eye contact and let the animal observe you first.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 3,
+  "fields": {
+    "module": 1,
+    "question_text": "What is the most important factor in puppy training?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 3,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Expensive training equipment",
+        "Consistency and patience",
+        "Loud voice commands",
+        "Training only on weekends"
+      ]
+    },
+    "explanation": "Consistency and patience are key to successful puppy training. Regular, gentle practice works best.",
+    "points": 10
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 16,
+  "fields": {
+    "module": 5,
+    "question_text": "Who should be the Incident Commander in a large animal rescue?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 3,
+    "question_data": {
+      "correct": 2,
+      "options": [
+        "The animal owner",
+        "Most experienced animal handler",
+        "Emergency services personnel",
+        "Veterinarian"
+      ]
+    },
+    "explanation": "Emergency services personnel should be Incident Commander for overall coordination and scene safety.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 20,
+  "fields": {
+    "module": 6,
+    "question_text": "When approaching a fearful animal, you should:",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 3,
+    "question_data": {
+      "correct": 2,
+      "options": [
+        "Move quickly to catch them",
+        "Make direct eye contact",
+        "Always provide an escape route",
+        "Use loud commands"
+      ]
+    },
+    "explanation": "Never corner a fearful animal - always provide an escape route to reduce panic and defensive behavior.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 12,
+  "fields": {
+    "module": 4,
+    "question_text": "Pale or white gums can indicate shock in an animal.",
+    "question_type": "TRUE_FALSE",
+    "order": 3,
+    "question_data": {
+      "correct": true,
+      "options": []
+    },
+    "explanation": "Pale or white gums indicate poor circulation and are a key sign of shock.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 25,
+  "fields": {
+    "module": 7,
+    "question_text": "During multi-day operations, what is a critical management concern?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 4,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Animal feeding schedules",
+        "Personnel fatigue",
+        "Equipment color coding",
+        "Social media posting"
+      ]
+    },
+    "explanation": "Personnel fatigue leads to mistakes and injuries, making it a critical safety concern in extended operations.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 4,
+  "fields": {
+    "module": 1,
+    "question_text": "When should you start socializing your puppy?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 4,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "After 6 months old",
+        "Between 3-14 weeks old",
+        "Only after all vaccinations are complete",
+        "When they are 1 year old"
+      ]
+    },
+    "explanation": "The critical socialization period is 3-14 weeks. Controlled socialization can begin even before all vaccines are complete.",
+    "points": 10
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 9,
+  "fields": {
+    "module": 3,
+    "question_text": "What protective equipment is most essential for animal rescue?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 4,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Camera for documentation",
+        "Bite-resistant gloves",
+        "Smartphone for GPS",
+        "Water and food"
+      ]
+    },
+    "explanation": "Bite-resistant gloves protect against bites and scratches, which are common injury sources in animal rescue.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 13,
+  "fields": {
+    "module": 4,
+    "question_text": "What should you do if you find an embedded object in a wound?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 4,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Remove it immediately",
+        "Leave it in place",
+        "Push it deeper",
+        "Cut around it"
+      ]
+    },
+    "explanation": "Never remove embedded objects as they may be preventing further bleeding. Stabilize and transport.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 17,
+  "fields": {
+    "module": 5,
+    "question_text": "In water rescue situations for large animals, what is a major risk?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 4,
+    "question_data": {
+      "correct": 1,
+      "options": [
+        "Dehydration",
+        "Hypothermia",
+        "Sunburn",
+        "Overeating"
+      ]
+    },
+    "explanation": "Hypothermia is a major risk in water rescues due to large body mass losing heat rapidly in cold water.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 21,
+  "fields": {
+    "module": 6,
+    "question_text": "Which is a sign of chronic stress in animals?",
+    "question_type": "MULTIPLE_CHOICE",
+    "order": 4,
+    "question_data": {
+      "correct": 2,
+      "options": [
+        "Single episode of panting",
+        "One-time hiding behavior",
+        "Repetitive pacing",
+        "Normal sleeping"
+      ]
+    },
+    "explanation": "Repetitive behaviors like pacing indicate chronic stress and ongoing psychological distress.",
+    "points": 1
+  }
+},
+{
+  "model": "resources.quizquestion",
+  "pk": 5,
+  "fields": {
+    "module": 1,
+    "question_text": "If your puppy has an accident inside, you should rub their nose in it to teach them.",
+    "question_type": "TRUE_FALSE",
+    "order": 5,
+    "question_data": {
+      "correct": false
+    },
+    "explanation": "Never punish accidents! Simply clean up and increase supervision. Punishment can make training harder.",
+    "points": 10
+  }
+}
+]

@@ -1,0 +1,4888 @@
+[
+{
+  "model": "notifications.notification",
+  "pk": 350,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.926Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 349,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.925Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 348,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.925Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 347,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.924Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 346,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.924Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 345,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.923Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 344,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.923Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 343,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.922Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 342,
+  "fields": {
+    "recipient": 22,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Dog rescue has been completed by volunteer1.",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:21:16.919Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 341,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: routine Dog rescue",
+    "related_object_id": 82,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T22:21:16.911Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 340,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:56.001Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 339,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:56.001Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 338,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:56.001Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 337,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:56.000Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 336,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:56.000Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 335,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:55.999Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 334,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:55.999Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 333,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Dog rescue in Near the park entrance",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:55.998Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 332,
+  "fields": {
+    "recipient": 22,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 14,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:20:55.995Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 331,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.717Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 330,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.716Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 329,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.716Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 328,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.715Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 327,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.715Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 326,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.714Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 325,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.714Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 324,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.713Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 323,
+  "fields": {
+    "recipient": 22,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Cat rescue has been completed by volunteer1.",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:25.711Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 322,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: Cat rescue",
+    "related_object_id": 80,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T22:00:25.703Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 321,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.836Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 320,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.836Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 319,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.836Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 318,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.835Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 317,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.835Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 316,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.834Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 315,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.834Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 314,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Cat rescue in APU",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.832Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 313,
+  "fields": {
+    "recipient": 22,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 13,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T22:00:17.829Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 312,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.607Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 311,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.607Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 310,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.606Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 309,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.606Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 308,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.605Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 307,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.605Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 306,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.604Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 305,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Animal rescue - SUCCESS",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.604Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 304,
+  "fields": {
+    "recipient": 36,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Animal rescue has been completed by volunteer1.",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:58:03.601Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 303,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: Animal rescue",
+    "related_object_id": 78,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:58:03.592Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 302,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.953Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 301,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.952Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 300,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.952Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 299,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.951Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 298,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.951Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 297,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.950Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 296,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.950Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 295,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted Animal rescue in near park",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.949Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 294,
+  "fields": {
+    "recipient": 36,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 12,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:57:46.946Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 292,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.672Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 291,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.671Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 290,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.671Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 289,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.670Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 288,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.670Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 287,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.669Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 286,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.668Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 285,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.667Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 284,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Cat rescue has been completed by volunteer1.",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:30:44.664Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 283,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: Cat rescue",
+    "related_object_id": 74,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:30:44.660Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 282,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: Cat rescue",
+    "related_object_id": 73,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:30:44.642Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 281,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.018Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 280,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.017Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 279,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.017Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 278,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.016Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 277,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.015Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 276,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.015Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 275,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.014Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 274,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in near university",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.013Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 273,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 9,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:27:49.007Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 272,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.648Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 271,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.648Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 270,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.647Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 269,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.647Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 268,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.646Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 267,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.646Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 266,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.644Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 265,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.643Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 264,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Cat rescue has been completed by volunteer1.",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:24:05.642Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 263,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: ⚠️ HIGH PRIORITY Cat rescue",
+    "related_object_id": 71,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:24:05.637Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 262,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: ⚠️ HIGH PRIORITY Cat rescue",
+    "related_object_id": 69,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:24:05.621Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 261,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🏆 Achievement Unlocked!",
+    "message": "You earned: Emergency Expert",
+    "related_object_id": 4,
+    "related_object_type": "achievement",
+    "is_read": true,
+    "created_at": "2025-07-08T21:24:05.617Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 260,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.374Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 259,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.373Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 258,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.373Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 257,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.372Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 256,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.371Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 255,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.370Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 254,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.370Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 253,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.369Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 252,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 8,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:23:32.367Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 251,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: ⚠️ HIGH PRIORITY Cat rescue",
+    "related_object_id": 68,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:23:32.359Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 250,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.108Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 249,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.107Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 248,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.106Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 247,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.106Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 246,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.105Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 245,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.105Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 244,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.104Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 243,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Cat rescue - SUCCESS",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.103Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 242,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Cat rescue has been completed by volunteer1.",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:30.102Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 241,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: ⚠️ HIGH PRIORITY Cat rescue",
+    "related_object_id": 65,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:19:30.098Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 240,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🏆 Achievement Unlocked!",
+    "message": "You earned: Community Guardian",
+    "related_object_id": 8,
+    "related_object_type": "achievement",
+    "is_read": true,
+    "created_at": "2025-07-08T21:19:30.096Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 239,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: ⚠️ HIGH PRIORITY Cat rescue",
+    "related_object_id": 64,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:19:30.072Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 238,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.421Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 237,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.420Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 236,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.420Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 235,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.419Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 234,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.418Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 233,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.418Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 232,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.417Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 231,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Behind grocery store on Oak Street",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.416Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 230,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 7,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:19:21.415Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 229,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: ⚠️ HIGH PRIORITY Cat rescue",
+    "related_object_id": 63,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:19:21.406Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 228,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.416Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 227,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.416Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 226,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.415Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 225,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.415Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 224,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.414Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 223,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.413Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 222,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.413Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 221,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed Dog rescue - SUCCESS",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.412Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 220,
+  "fields": {
+    "recipient": 31,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your Dog rescue has been completed by volunteer1.",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:33.410Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 219,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: 🚨 EMERGENCY Dog rescue",
+    "related_object_id": 61,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:14:33.406Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 218,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: 🚨 EMERGENCY Dog rescue",
+    "related_object_id": 60,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:14:33.388Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 217,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.015Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 216,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.014Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 215,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.014Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 214,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.013Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 213,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.012Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 212,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.011Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 211,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.011Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 210,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Central Park",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.010Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 209,
+  "fields": {
+    "recipient": 31,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 6,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T21:14:04.008Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 208,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: 🚨 EMERGENCY Dog rescue",
+    "related_object_id": 59,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T21:14:03.998Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 207,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.572Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 206,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.571Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 205,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.571Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 204,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.570Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 203,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.570Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 202,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.569Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 201,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.569Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 200,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.568Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 199,
+  "fields": {
+    "recipient": 30,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your None rescue has been completed by volunteer1.",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:36:52.567Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 198,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: 🚨 EMERGENCY None rescue",
+    "related_object_id": 57,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T16:36:52.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 197,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: 🚨 EMERGENCY None rescue",
+    "related_object_id": 55,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T16:36:52.545Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 196,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.964Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 195,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.963Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 194,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.962Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 193,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.962Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 192,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.961Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 191,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.961Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 190,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.960Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 189,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in ",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.959Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 188,
+  "fields": {
+    "recipient": 30,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 5,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:35:28.957Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 187,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: 🚨 EMERGENCY None rescue",
+    "related_object_id": 54,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T16:35:28.950Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 186,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.692Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 185,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.692Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 184,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.691Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 183,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.691Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 182,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.691Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 181,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.690Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 180,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.690Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 179,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Mission Completed",
+    "message": "volunteer1 completed None rescue - SUCCESS",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.689Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 178,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Completed! 🎉",
+    "message": "Your None rescue has been completed by volunteer1.",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:07:23.688Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 177,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: 🚨 EMERGENCY None rescue",
+    "related_object_id": 52,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T16:07:23.684Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 176,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +75",
+    "message": "Completed rescue mission: 🚨 EMERGENCY None rescue",
+    "related_object_id": 50,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T16:07:23.672Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 175,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🏆 Achievement Unlocked!",
+    "message": "You earned: First Responder",
+    "related_object_id": 1,
+    "related_object_type": "achievement",
+    "is_read": true,
+    "created_at": "2025-07-08T16:07:23.668Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 174,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.648Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 173,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.647Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 172,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.647Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 171,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.647Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 170,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.646Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 169,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.646Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 168,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 167,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 166,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 4,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T16:04:39.643Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 165,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: 🚨 EMERGENCY None rescue",
+    "related_object_id": 49,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T16:04:39.635Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 164,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.767Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 163,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.766Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 162,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.766Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 161,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.765Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 160,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.765Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 159,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.764Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 158,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.764Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 157,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Assignment Accepted",
+    "message": "volunteer1 accepted None rescue in Main Street and 5th Avenue intersection",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.763Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 156,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Volunteer Responding! 🚑",
+    "message": "volunteer1 is responding to your None report.",
+    "related_object_id": 3,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-08T15:43:23.761Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 155,
+  "fields": {
+    "recipient": 54,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: 🚨 EMERGENCY None rescue",
+    "related_object_id": 47,
+    "related_object_type": "useractivity",
+    "is_read": true,
+    "created_at": "2025-07-08T15:43:23.755Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 154,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $15 to Emergency Medical Fund!",
+    "related_object_id": 168,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T10:38:01.278Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 153,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $40 to Virtual Adoptions!",
+    "related_object_id": 167,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T10:36:19.348Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 152,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $25.00 to Emergency Medical Fund!",
+    "related_object_id": 165,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T10:26:36.181Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 151,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $10 to Emergency Medical Fund!",
+    "related_object_id": 164,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T10:09:52.820Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 150,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.661Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 149,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.661Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 148,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.660Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 147,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.660Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 146,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.659Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 145,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.658Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 144,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.658Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 143,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $100 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.657Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 142,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $100 to Emergency Medical Fund!",
+    "related_object_id": 163,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T09:55:45.652Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 141,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $20 to Emergency Medical Fund!",
+    "related_object_id": 162,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:39:39.266Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 140,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $10 to Emergency Medical Fund!",
+    "related_object_id": 161,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:39:21.277Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 139,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $15.00 to Emergency Medical Fund!",
+    "related_object_id": 160,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:38:08.918Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 138,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $25 to Emergency Medical Fund!",
+    "related_object_id": 159,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:37:38.656Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 137,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $50.00 to Emergency Medical Fund!",
+    "related_object_id": 158,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:35:08.081Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 136,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.170Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 135,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.170Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 134,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.169Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 133,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.169Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 132,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.168Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 131,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.168Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 130,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.167Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 129,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Significant Donation Received",
+    "message": "A donation of $1000 was made to Emergency Medical Fund by testuser5",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.166Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 128,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $1000 to Emergency Medical Fund!",
+    "related_object_id": 157,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T04:02:17.164Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 127,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $25 to Emergency Medical Fund!",
+    "related_object_id": 156,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-08T03:29:46.589Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 126,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $30 to Emergency Medical Fund!",
+    "related_object_id": 155,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-07T22:32:02.632Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 125,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $75 to Emergency Medical Fund!",
+    "related_object_id": 154,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-07T22:28:14.239Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 124,
+  "fields": {
+    "recipient": 51,
+    "notification_type": "DONATION_RECEIVED",
+    "title": "Donation Received",
+    "message": "Thank you for your donation of $50 to Emergency Medical Fund!",
+    "related_object_id": 153,
+    "related_object_type": "donation",
+    "is_read": false,
+    "created_at": "2025-07-07T22:08:47.621Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 123,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.637Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 122,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.636Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 121,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.635Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 120,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.635Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 119,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.634Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 118,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.633Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 117,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.632Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 116,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser7 (Match: 84%)",
+    "related_object_id": 11,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T18:57:58.629Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 115,
+  "fields": {
+    "recipient": 37,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.697Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 114,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.697Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 113,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.696Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 112,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.696Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 111,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.695Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 110,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.695Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 109,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.694Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 108,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Charlie_Available_4802 by testuser5 (Match: 88%)",
+    "related_object_id": 10,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-07-07T09:05:35.693Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 107,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.194Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 106,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.193Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 105,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.192Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 104,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.192Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 103,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.191Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 102,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.190Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 101,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 2.00 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-06T05:07:04.188Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 100,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.753Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 99,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.752Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 98,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.751Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 97,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.750Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 96,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.750Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 95,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.750Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 94,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Pain Medication (Tramadol) is running low. Current quantity: 3 BOX",
+    "related_object_id": 8,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.750Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 93,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.742Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 92,
+  "fields": {
+    "recipient": 35,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.742Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 91,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.741Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 90,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.741Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 89,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.741Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 88,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.740Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 87,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Distemper Vaccine is running low. Current quantity: 8 DOSE",
+    "related_object_id": 5,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-07-05T11:23:50.740Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 86,
+  "fields": {
+    "recipient": 30,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🎉 Points Earned: +50",
+    "message": "Emergency response: 🚨 EMERGENCY animal rescue",
+    "related_object_id": 17,
+    "related_object_type": "useractivity",
+    "is_read": false,
+    "created_at": "2025-07-04T00:37:44.145Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 85,
+  "fields": {
+    "recipient": 30,
+    "notification_type": "ACHIEVEMENT",
+    "title": "🏆 Achievement Unlocked!",
+    "message": "You earned: First Responder",
+    "related_object_id": 1,
+    "related_object_type": "achievement",
+    "is_read": false,
+    "created_at": "2025-07-03T19:43:37.517Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 84,
+  "fields": {
+    "recipient": 30,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "Volunteer Assignment Confirmed",
+    "message": "You have signed up for: Weekend Adoption Event on July 06, 2025 at 12:48 AM",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.941Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 83,
+  "fields": {
+    "recipient": 33,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "New Volunteer Assignment",
+    "message": "Zack volunteered for: Weekend Adoption Event",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.941Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 82,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "New Volunteer Assignment",
+    "message": "Zack volunteered for: Weekend Adoption Event",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.940Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 81,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "New Volunteer Assignment",
+    "message": "Zack volunteered for: Weekend Adoption Event",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.940Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 80,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "New Volunteer Assignment",
+    "message": "Zack volunteered for: Weekend Adoption Event",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.939Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 79,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "New Volunteer Assignment",
+    "message": "Zack volunteered for: Weekend Adoption Event",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.939Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 78,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "VOLUNTEER_ASSIGNMENT",
+    "title": "New Volunteer Assignment",
+    "message": "Zack volunteered for: Weekend Adoption Event",
+    "related_object_id": 1,
+    "related_object_type": "volunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T16:08:26.937Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 77,
+  "fields": {
+    "recipient": 1,
+    "notification_type": "REPORT_UPDATE",
+    "title": "Report #6 Status Updated",
+    "message": "Your report has been updated to: In Progress",
+    "related_object_id": 6,
+    "related_object_type": "report",
+    "is_read": false,
+    "created_at": "2025-07-02T10:06:46.890Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 76,
+  "fields": {
+    "recipient": 1,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Update",
+    "message": "Rescue completed! Your animal report has been resolved.",
+    "related_object_id": 1,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T07:23:26.690Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 75,
+  "fields": {
+    "recipient": 1,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Update",
+    "message": "Volunteer has arrived at the scene of your animal report.",
+    "related_object_id": 1,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T07:22:08.298Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 74,
+  "fields": {
+    "recipient": 1,
+    "notification_type": "RESCUE_UPDATE",
+    "title": "Rescue Update",
+    "message": "Volunteer is on the way to help with your animal report.",
+    "related_object_id": 1,
+    "related_object_type": "rescuevolunteerassignment",
+    "is_read": false,
+    "created_at": "2025-07-02T07:20:59.066Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 73,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 0.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-30T16:47:24.194Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 72,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 0.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-30T16:47:24.193Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 71,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 0.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-30T16:47:24.193Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 70,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 0.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-30T16:47:24.192Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 69,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 0.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-30T16:47:24.179Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 68,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T13:39:56.797Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 67,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T13:39:56.797Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 66,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T13:39:56.797Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 65,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T13:39:56.796Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 64,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T13:39:56.795Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 63,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:57:52.661Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 62,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:57:52.660Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 61,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:57:52.659Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 60,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:57:52.658Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 59,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Cat Litter is expiring in 1 days (on 2025-06-30)",
+    "related_object_id": 4,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:57:52.657Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 58,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.669Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 57,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.669Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 56,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.668Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 55,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.668Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 54,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.667Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 53,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 16 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.663Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 52,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 16 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.662Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 51,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 16 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.662Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 50,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 16 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.658Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 49,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 16 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:51:26.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 48,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:48:45.014Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 47,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:48:45.013Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 46,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:48:45.013Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 45,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:48:45.012Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 44,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:48:45.011Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 43,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:47:55.187Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 42,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:47:55.187Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 41,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:47:55.186Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 40,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:47:55.185Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 39,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-29T03:47:55.183Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 38,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:23.156Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 37,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:23.155Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 36,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:23.155Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 35,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:23.154Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 34,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:23.146Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 33,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:09.070Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 32,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:09.070Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 31,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:09.069Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 30,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:09.069Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 29,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:49:09.061Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 28,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.291Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 27,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.290Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 26,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.289Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 25,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.289Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 24,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Expiring Inventory Alert",
+    "message": "Antibiotics is expiring in 17 days (on 2025-07-15)",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.288Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 23,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Antibiotics is running low. Current quantity: 0.00 UNIT",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.287Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 22,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Antibiotics is running low. Current quantity: 0.00 UNIT",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.286Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 21,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Antibiotics is running low. Current quantity: 0.00 UNIT",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.286Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 20,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Antibiotics is running low. Current quantity: 0.00 UNIT",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.285Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 19,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Antibiotics is running low. Current quantity: 0.00 UNIT",
+    "related_object_id": 3,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:52.284Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 18,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:16.860Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 17,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:16.859Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 16,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:16.859Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 15,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:16.858Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 14,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "SYSTEM_MESSAGE",
+    "title": "Low Inventory Alert",
+    "message": "Dog Food (Adult) is running low. Current quantity: 3.00 KG",
+    "related_object_id": 2,
+    "related_object_type": "inventoryitem",
+    "is_read": false,
+    "created_at": "2025-06-28T20:48:16.856Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 13,
+  "fields": {
+    "recipient": 27,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Spot by habeba",
+    "related_object_id": 9,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-28T12:30:03.161Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 12,
+  "fields": {
+    "recipient": 26,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Spot by habeba",
+    "related_object_id": 9,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-28T12:30:03.161Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 11,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Spot by habeba",
+    "related_object_id": 9,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-28T12:30:03.160Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 10,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Spot by habeba",
+    "related_object_id": 9,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-28T12:30:03.159Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 9,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Spot by habeba",
+    "related_object_id": 9,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-28T12:30:03.158Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 8,
+  "fields": {
+    "recipient": 22,
+    "notification_type": "REPORT_UPDATE",
+    "title": "Report #4 Status Updated",
+    "message": "Your report has been updated to: Assigned",
+    "related_object_id": 4,
+    "related_object_type": "report",
+    "is_read": false,
+    "created_at": "2025-06-28T00:01:45.162Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 7,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Mittens by habeba",
+    "related_object_id": 8,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-26T14:01:01.597Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 6,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Mittens by habeba",
+    "related_object_id": 8,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-26T14:01:01.597Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 5,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Mittens by habeba",
+    "related_object_id": 8,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-26T14:01:01.596Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 4,
+  "fields": {
+    "recipient": 20,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Rex by habeba",
+    "related_object_id": 7,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-26T13:54:04.818Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 3,
+  "fields": {
+    "recipient": 17,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Rex by habeba",
+    "related_object_id": 7,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-26T13:54:04.818Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 2,
+  "fields": {
+    "recipient": 24,
+    "notification_type": "ADOPTION_UPDATE",
+    "title": "New Adoption Application",
+    "message": "New application for Rex by habeba",
+    "related_object_id": 7,
+    "related_object_type": "adoptionapplication",
+    "is_read": false,
+    "created_at": "2025-06-26T13:54:04.817Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 1,
+  "fields": {
+    "recipient": 1,
+    "notification_type": "test",
+    "title": "Test Database Notification",
+    "message": "This is saved in the database",
+    "related_object_id": null,
+    "related_object_type": null,
+    "is_read": true,
+    "created_at": "2025-06-08T05:30:29.536Z"
+  }
+}
+]

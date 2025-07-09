@@ -1,0 +1,201 @@
+[
+{
+  "model": "community.forumcategory",
+  "pk": 6,
+  "fields": {
+    "name": "Operational Coordination",
+    "description": "Daily operations, shift coordination, and workflow discussions for shelter management",
+    "icon": "⚙️",
+    "order": 1,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.430Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Adoption Stories",
+    "description": "Share your adoption experiences and success stories",
+    "icon": "favorite",
+    "order": 2,
+    "is_active": true,
+    "created_at": "2025-05-24T02:39:56.805Z",
+    "allowed_user_types": []
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 7,
+  "fields": {
+    "name": "Emergency Response",
+    "description": "Emergency protocols, urgent situations, and crisis management coordination",
+    "icon": "🚨",
+    "order": 2,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.451Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF",
+      "VOLUNTEER",
+      "AUTHORITY"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Health & Veterinary",
+    "description": "Medical protocols, health concerns, and veterinary coordination for professionals",
+    "icon": "🏥",
+    "order": 3,
+    "is_active": true,
+    "created_at": "2025-05-24T02:39:56.808Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF",
+      "AUTHORITY"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 8,
+  "fields": {
+    "name": "Resource Management",
+    "description": "Inventory management, supply coordination, and resource planning discussions",
+    "icon": "📦",
+    "order": 4,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.462Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 9,
+  "fields": {
+    "name": "Staff Wellness & Support",
+    "description": "Mental health resources, stress management, and peer support for shelter workers",
+    "icon": "💚",
+    "order": 5,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.464Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 10,
+  "fields": {
+    "name": "Volunteer Coordination",
+    "description": "Volunteer schedules, training coordination, and community volunteer management",
+    "icon": "🤝",
+    "order": 6,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.465Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF",
+      "VOLUNTEER"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 11,
+  "fields": {
+    "name": "Policy & Advocacy",
+    "description": "Animal welfare policies, legislation updates, and advocacy coordination",
+    "icon": "🏛️",
+    "order": 7,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.467Z",
+    "allowed_user_types": [
+      "AUTHORITY",
+      "SHELTER"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 12,
+  "fields": {
+    "name": "Adoption Success Stories",
+    "description": "Share successful adoptions, positive outcomes, and heartwarming stories",
+    "icon": "🎉",
+    "order": 8,
+    "is_active": true,
+    "created_at": "2025-07-04T11:54:50.468Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF",
+      "PUBLIC",
+      "VOLUNTEER",
+      "AUTHORITY"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Pet Care Basics",
+    "description": "General questions about pet care, feeding, health, and basic animal welfare",
+    "icon": "🐾",
+    "order": 9,
+    "is_active": true,
+    "created_at": "2025-05-24T02:39:56.787Z",
+    "allowed_user_types": [
+      "PUBLIC",
+      "VOLUNTEER"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Training & Behavior",
+    "description": "Tips and questions about animal training, behavior modification, and pet development",
+    "icon": "🎓",
+    "order": 10,
+    "is_active": true,
+    "created_at": "2025-05-24T02:39:56.807Z",
+    "allowed_user_types": [
+      "PUBLIC",
+      "VOLUNTEER"
+    ]
+  }
+},
+{
+  "model": "community.forumcategory",
+  "pk": 5,
+  "fields": {
+    "name": "General Discussion",
+    "description": "General discussion about animal welfare, community issues, and open topics",
+    "icon": "💬",
+    "order": 11,
+    "is_active": true,
+    "created_at": "2025-05-24T02:39:56.809Z",
+    "allowed_user_types": [
+      "SHELTER",
+      "STAFF",
+      "PUBLIC",
+      "VOLUNTEER",
+      "AUTHORITY"
+    ]
+  }
+}
+]

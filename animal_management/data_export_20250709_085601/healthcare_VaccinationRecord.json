@@ -1,0 +1,128 @@
+[
+{
+  "model": "healthcare.vaccinationrecord",
+  "pk": 5,
+  "fields": {
+    "animal": 16,
+    "vaccine_type": "RABIES",
+    "vaccine_name": "Rabies Vaccine",
+    "date_administered": "2025-07-06",
+    "next_due_date": "2026-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "Animal Shelter Clinic",
+    "batch_number": "",
+    "notes": "RV2025-001",
+    "inventory_item": null,
+    "quantity_used": "1.00",
+    "inventory_consumed": false,
+    "created_by": 26,
+    "created_at": "2025-07-06T05:38:28.140Z",
+    "updated_at": "2025-07-06T05:38:28.140Z"
+  }
+},
+{
+  "model": "healthcare.vaccinationrecord",
+  "pk": 6,
+  "fields": {
+    "animal": 16,
+    "vaccine_type": "RABIES",
+    "vaccine_name": "Rabies Vaccine",
+    "date_administered": "2025-07-06",
+    "next_due_date": "2026-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "Animal Shelter Clinic",
+    "batch_number": "RV2025-001",
+    "notes": "",
+    "inventory_item": null,
+    "quantity_used": "1.00",
+    "inventory_consumed": false,
+    "created_by": 26,
+    "created_at": "2025-07-06T14:46:29.823Z",
+    "updated_at": "2025-07-06T14:46:29.823Z"
+  }
+},
+{
+  "model": "healthcare.vaccinationrecord",
+  "pk": 2,
+  "fields": {
+    "animal": 16,
+    "vaccine_type": "RABIES",
+    "vaccine_name": "Rabies Vaccine",
+    "date_administered": "2025-06-28",
+    "next_due_date": "2026-06-28",
+    "veterinarian": "Emily Marc",
+    "clinic_name": "Animal Shelter Clinic",
+    "batch_number": "RV2025-001",
+    "notes": "Annual rabies vaccination - animal responded well",
+    "inventory_item": null,
+    "quantity_used": "1.00",
+    "inventory_consumed": false,
+    "created_by": 27,
+    "created_at": "2025-06-28T21:05:02.044Z",
+    "updated_at": "2025-06-28T21:05:02.044Z"
+  }
+},
+{
+  "model": "healthcare.vaccinationrecord",
+  "pk": 3,
+  "fields": {
+    "animal": 16,
+    "vaccine_type": "RABIES",
+    "vaccine_name": "Rabies Vaccine",
+    "date_administered": "2025-06-28",
+    "next_due_date": "2026-06-28",
+    "veterinarian": "Emily Marc",
+    "clinic_name": "Animal Shelter Clinic",
+    "batch_number": "RV2025-001",
+    "notes": "",
+    "inventory_item": null,
+    "quantity_used": "1.00",
+    "inventory_consumed": false,
+    "created_by": 27,
+    "created_at": "2025-06-28T21:12:02.141Z",
+    "updated_at": "2025-06-28T21:12:02.141Z"
+  }
+},
+{
+  "model": "healthcare.vaccinationrecord",
+  "pk": 4,
+  "fields": {
+    "animal": 16,
+    "vaccine_type": "RABIES",
+    "vaccine_name": "Rabies Vaccine",
+    "date_administered": "2025-06-28",
+    "next_due_date": "2026-06-28",
+    "veterinarian": "Emily Marc",
+    "clinic_name": "Animal Shelter Clinic",
+    "batch_number": "RV2025-001",
+    "notes": "",
+    "inventory_item": null,
+    "quantity_used": "1.00",
+    "inventory_consumed": false,
+    "created_by": 27,
+    "created_at": "2025-06-28T21:12:44.020Z",
+    "updated_at": "2025-06-28T21:12:44.020Z"
+  }
+},
+{
+  "model": "healthcare.vaccinationrecord",
+  "pk": 1,
+  "fields": {
+    "animal": 16,
+    "vaccine_type": "RABIES",
+    "vaccine_name": "H20",
+    "date_administered": "2025-06-27",
+    "next_due_date": "2025-07-15",
+    "veterinarian": "Marcos Rodriguez",
+    "clinic_name": "PawProtect",
+    "batch_number": "1234567",
+    "notes": "Administred by Emily",
+    "inventory_item": null,
+    "quantity_used": "1.00",
+    "inventory_consumed": false,
+    "created_by": 27,
+    "created_at": "2025-06-27T11:26:17.267Z",
+    "updated_at": "2025-06-27T11:26:17.267Z"
+  }
+}
+]

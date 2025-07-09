@@ -1,0 +1,58 @@
+[
+{
+  "model": "inventory.itemcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Medical Supplies",
+    "description": "Vaccines, medications, and medical equipment"
+  }
+},
+{
+  "model": "inventory.itemcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Animal Food",
+    "description": "Dog food, cat food, and treats"
+  }
+},
+{
+  "model": "inventory.itemcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Cleaning Supplies",
+    "description": "Sanitizers, cleaning products, and hygiene items"
+  }
+},
+{
+  "model": "inventory.itemcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Vaccines",
+    "description": "Vaccines and immunizations"
+  }
+},
+{
+  "model": "inventory.itemcategory",
+  "pk": 5,
+  "fields": {
+    "name": "Medications",
+    "description": "Antibiotics and medical treatments"
+  }
+},
+{
+  "model": "inventory.itemcategory",
+  "pk": 6,
+  "fields": {
+    "name": "Food & Nutrition",
+    "description": "Pet food and nutritional supplements"
+  }
+},
+{
+  "model": "inventory.itemcategory",
+  "pk": 7,
+  "fields": {
+    "name": "Wound Care",
+    "description": "Wound care and surgical supplies"
+  }
+}
+]

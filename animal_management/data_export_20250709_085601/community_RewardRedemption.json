@@ -1,0 +1,16 @@
+[
+{
+  "model": "community.rewardredemption",
+  "pk": 1,
+  "fields": {
+    "user": 51,
+    "reward": 8,
+    "points_spent": 25,
+    "status": "PENDING",
+    "redemption_date": "2025-07-07T21:02:07.165Z",
+    "processed_date": null,
+    "processed_by": null,
+    "notes": null
+  }
+}
+]

@@ -1,0 +1,97 @@
+[
+{
+  "model": "resources.learningprogress",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "module": 1,
+    "status": "FAILED",
+    "completion_percentage": 0,
+    "current_step": 0,
+    "latest_score": 60,
+    "best_score": 60,
+    "attempts_count": 2,
+    "progress_data": {},
+    "started_at": "2025-06-04T22:00:35.355Z",
+    "completed_at": null,
+    "last_accessed": "2025-06-04T22:35:27.663Z",
+    "total_time_spent": 2
+  }
+},
+{
+  "model": "resources.learningprogress",
+  "pk": 2,
+  "fields": {
+    "user": 30,
+    "module": 7,
+    "status": "FAILED",
+    "completion_percentage": 0,
+    "current_step": 0,
+    "latest_score": 75,
+    "best_score": 75,
+    "attempts_count": 2,
+    "progress_data": {},
+    "started_at": "2025-07-03T08:17:01.365Z",
+    "completed_at": null,
+    "last_accessed": "2025-07-03T08:21:05.196Z",
+    "total_time_spent": 0
+  }
+},
+{
+  "model": "resources.learningprogress",
+  "pk": 3,
+  "fields": {
+    "user": 30,
+    "module": 3,
+    "status": "PASSED",
+    "completion_percentage": 100,
+    "current_step": 0,
+    "latest_score": 100,
+    "best_score": 100,
+    "attempts_count": 4,
+    "progress_data": {},
+    "started_at": "2025-07-03T08:17:49.814Z",
+    "completed_at": "2025-07-03T19:43:37.473Z",
+    "last_accessed": "2025-07-03T19:44:56.924Z",
+    "total_time_spent": 3
+  }
+},
+{
+  "model": "resources.learningprogress",
+  "pk": 4,
+  "fields": {
+    "user": 30,
+    "module": 4,
+    "status": "PASSED",
+    "completion_percentage": 0,
+    "current_step": 0,
+    "latest_score": 100,
+    "best_score": 100,
+    "attempts_count": 1,
+    "progress_data": {},
+    "started_at": "2025-07-04T00:35:37.844Z",
+    "completed_at": "2025-07-04T00:36:49.793Z",
+    "last_accessed": "2025-07-04T00:36:49.851Z",
+    "total_time_spent": 1
+  }
+},
+{
+  "model": "resources.learningprogress",
+  "pk": 5,
+  "fields": {
+    "user": 38,
+    "module": 3,
+    "status": "PASSED",
+    "completion_percentage": 0,
+    "current_step": 0,
+    "latest_score": 100,
+    "best_score": 100,
+    "attempts_count": 1,
+    "progress_data": {},
+    "started_at": "2025-07-07T02:06:58.376Z",
+    "completed_at": "2025-07-07T02:07:17.244Z",
+    "last_accessed": "2025-07-07T02:07:17.298Z",
+    "total_time_spent": 0
+  }
+}
+]

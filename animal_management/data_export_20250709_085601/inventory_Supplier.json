@@ -1,0 +1,36 @@
+[
+{
+  "model": "inventory.supplier",
+  "pk": 1,
+  "fields": {
+    "name": "Pet Food Wholesale",
+    "contact_person": "Mike Chen",
+    "email": "orders@petfoodwholesale.com",
+    "phone": "555-0456",
+    "address": null,
+    "website": null,
+    "is_preferred": false,
+    "average_delivery_days": 5,
+    "notes": null,
+    "created_at": "2025-06-29T03:34:07.379Z",
+    "updated_at": "2025-06-29T03:34:07.379Z"
+  }
+},
+{
+  "model": "inventory.supplier",
+  "pk": 2,
+  "fields": {
+    "name": "VetMed Supply Co.",
+    "contact_person": "Dr. Sarah Johnson",
+    "email": "orders@vetmedsupply.com",
+    "phone": "555-0123",
+    "address": null,
+    "website": null,
+    "is_preferred": false,
+    "average_delivery_days": 3,
+    "notes": null,
+    "created_at": "2025-06-29T03:34:07.394Z",
+    "updated_at": "2025-06-29T03:34:07.394Z"
+  }
+}
+]

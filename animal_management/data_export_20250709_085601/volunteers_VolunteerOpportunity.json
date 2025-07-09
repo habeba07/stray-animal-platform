@@ -1,0 +1,173 @@
+[
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 1,
+  "fields": {
+    "title": "Weekend Adoption Event",
+    "description": "Help showcase adoptable animals and assist potential adopters at our monthly adoption event.",
+    "category": "ADOPTION_EVENT",
+    "location": "Central Park Pavilion",
+    "start_time": "2025-07-06T00:48:12.037Z",
+    "end_time": "2025-07-06T07:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Animal Handling",
+      "Customer Service"
+    ],
+    "min_volunteers": 3,
+    "max_volunteers": 8,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.041Z",
+    "updated_at": "2025-07-02T15:48:12.041Z",
+    "requires_transportation": false,
+    "minimum_experience": "BEGINNER",
+    "is_emergency": false
+  }
+},
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 2,
+  "fields": {
+    "title": "Facility Deep Clean",
+    "description": "Monthly deep cleaning of animal kennels, play areas, and common spaces.",
+    "category": "MAINTENANCE",
+    "location": "Main Shelter Facility",
+    "start_time": "2025-07-07T23:48:12.037Z",
+    "end_time": "2025-07-08T03:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Cleaning"
+    ],
+    "min_volunteers": 2,
+    "max_volunteers": 6,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.050Z",
+    "updated_at": "2025-07-02T15:48:12.050Z",
+    "requires_transportation": false,
+    "minimum_experience": "BEGINNER",
+    "is_emergency": false
+  }
+},
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 3,
+  "fields": {
+    "title": "Animal Photography Session",
+    "description": "Professional photo session for adoptable animals to improve their adoption profiles.",
+    "category": "OTHER",
+    "location": "Photography Studio - Downtown",
+    "start_time": "2025-07-10T05:48:12.037Z",
+    "end_time": "2025-07-10T08:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Photography"
+    ],
+    "min_volunteers": 1,
+    "max_volunteers": 3,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.052Z",
+    "updated_at": "2025-07-02T15:48:12.052Z",
+    "requires_transportation": true,
+    "minimum_experience": "INTERMEDIATE",
+    "is_emergency": false
+  }
+},
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 4,
+  "fields": {
+    "title": "Community Outreach Booth",
+    "description": "Staff information booth at local farmers market to promote animal adoption and services.",
+    "category": "FUNDRAISING",
+    "location": "Saturday Farmers Market",
+    "start_time": "2025-07-04T22:48:12.037Z",
+    "end_time": "2025-07-05T04:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Public Speaking",
+      "Customer Service"
+    ],
+    "min_volunteers": 2,
+    "max_volunteers": 4,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.053Z",
+    "updated_at": "2025-07-02T15:48:12.053Z",
+    "requires_transportation": false,
+    "minimum_experience": "BEGINNER",
+    "is_emergency": false
+  }
+},
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 5,
+  "fields": {
+    "title": "New Volunteer Orientation",
+    "description": "Training session for new volunteers covering animal handling, safety protocols, and emergency procedures.",
+    "category": "RESCUE_TRAINING",
+    "location": "Training Room - Shelter",
+    "start_time": "2025-07-13T09:48:12.037Z",
+    "end_time": "2025-07-13T11:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Training"
+    ],
+    "min_volunteers": 8,
+    "max_volunteers": 15,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.054Z",
+    "updated_at": "2025-07-02T15:48:12.054Z",
+    "requires_transportation": false,
+    "minimum_experience": "BEGINNER",
+    "is_emergency": false
+  }
+},
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 6,
+  "fields": {
+    "title": "Emergency Transport Training",
+    "description": "Specialized training for volunteers who want to assist with emergency animal transportation.",
+    "category": "EMERGENCY_RESPONSE",
+    "location": "Shelter Parking Lot",
+    "start_time": "2025-07-15T01:48:12.037Z",
+    "end_time": "2025-07-15T05:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Transportation",
+      "Animal Handling"
+    ],
+    "min_volunteers": 3,
+    "max_volunteers": 8,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.055Z",
+    "updated_at": "2025-07-02T15:48:12.055Z",
+    "requires_transportation": true,
+    "minimum_experience": "INTERMEDIATE",
+    "is_emergency": false
+  }
+},
+{
+  "model": "volunteers.volunteeropportunity",
+  "pk": 7,
+  "fields": {
+    "title": "Administrative Support",
+    "description": "Help with data entry, filing, and organizing adoption paperwork.",
+    "category": "ADMIN",
+    "location": "Shelter Office",
+    "start_time": "2025-07-04T04:48:12.037Z",
+    "end_time": "2025-07-04T08:48:12.037Z",
+    "status": "OPEN",
+    "skills_required": [
+      "Administration"
+    ],
+    "min_volunteers": 1,
+    "max_volunteers": 3,
+    "created_by": 33,
+    "created_at": "2025-07-02T15:48:12.056Z",
+    "updated_at": "2025-07-02T15:48:12.056Z",
+    "requires_transportation": false,
+    "minimum_experience": "BEGINNER",
+    "is_emergency": false
+  }
+}
+]

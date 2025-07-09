@@ -1,0 +1,62 @@
+[
+{
+  "model": "community.forumpost",
+  "pk": 1,
+  "fields": {
+    "topic": 1,
+    "author": 8,
+    "content": "I just adopted a 2-year-old mixed breed dog from the shelter. What kind of food should I give him? Any recommendations for high-quality dog food brands?",
+    "is_solution": false,
+    "created_at": "2025-05-24T02:39:57.512Z",
+    "updated_at": "2025-05-24T02:39:57.512Z"
+  }
+},
+{
+  "model": "community.forumpost",
+  "pk": 2,
+  "fields": {
+    "topic": 2,
+    "author": 9,
+    "content": "I wanted to share my wonderful adoption story! I adopted Luna, a shy 3-year-old cat, 6 months ago. She was so scared at first, but now she's the most loving companion. Patient love really works!",
+    "is_solution": false,
+    "created_at": "2025-05-24T02:39:57.518Z",
+    "updated_at": "2025-05-24T02:39:57.518Z"
+  }
+},
+{
+  "model": "community.forumpost",
+  "pk": 3,
+  "fields": {
+    "topic": 2,
+    "author": 8,
+    "content": "That's such a heartwarming story! Thank you for giving Luna a second chance. It's amazing how much love and patience can transform a scared animal.",
+    "is_solution": false,
+    "created_at": "2025-05-24T02:39:57.520Z",
+    "updated_at": "2025-05-24T02:39:57.520Z"
+  }
+},
+{
+  "model": "community.forumpost",
+  "pk": 4,
+  "fields": {
+    "topic": 3,
+    "author": 10,
+    "content": "I have a 4-month-old puppy who is struggling with house training. Any tips or advice? How long does it usually take?",
+    "is_solution": false,
+    "created_at": "2025-05-24T02:39:57.523Z",
+    "updated_at": "2025-05-24T02:39:57.523Z"
+  }
+},
+{
+  "model": "community.forumpost",
+  "pk": 5,
+  "fields": {
+    "topic": 3,
+    "author": 8,
+    "content": "House training takes patience! Set a consistent schedule, take them out every 2 hours, immediately after meals, and first thing in the morning. Reward with treats when they go outside. Most puppies get it within 4-6 months.",
+    "is_solution": false,
+    "created_at": "2025-05-24T02:39:57.525Z",
+    "updated_at": "2025-05-24T02:39:57.525Z"
+  }
+}
+]

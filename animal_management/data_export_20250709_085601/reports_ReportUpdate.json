@@ -1,0 +1,145 @@
+[
+{
+  "model": "reports.reportupdate",
+  "pk": 16,
+  "fields": {
+    "report": 20,
+    "updated_by": 51,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with NORMAL priority",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-07T20:41:22.899Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 15,
+  "fields": {
+    "report": 19,
+    "updated_by": null,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with NORMAL priority(Anonymous)",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-07T03:02:50.979Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 14,
+  "fields": {
+    "report": 18,
+    "updated_by": null,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with NORMAL priority",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-07T02:21:47.280Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 9,
+  "fields": {
+    "report": 13,
+    "updated_by": 35,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with NORMAL priority",
+    "old_value": null,
+    "new_value": "IN_PROGRESS",
+    "created_at": "2025-07-05T11:23:50.732Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 8,
+  "fields": {
+    "report": 12,
+    "updated_by": 35,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with HIGH priority",
+    "old_value": null,
+    "new_value": "ASSIGNED",
+    "created_at": "2025-07-05T11:23:50.727Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 7,
+  "fields": {
+    "report": 11,
+    "updated_by": 35,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with EMERGENCY priority",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-05T11:23:50.697Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 6,
+  "fields": {
+    "report": 10,
+    "updated_by": 35,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with NORMAL priority",
+    "old_value": null,
+    "new_value": "IN_PROGRESS",
+    "created_at": "2025-07-05T11:10:46.321Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 5,
+  "fields": {
+    "report": 9,
+    "updated_by": 35,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with HIGH priority",
+    "old_value": null,
+    "new_value": "ASSIGNED",
+    "created_at": "2025-07-05T11:10:46.317Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 4,
+  "fields": {
+    "report": 8,
+    "updated_by": 35,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with EMERGENCY priority",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-05T11:10:46.287Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 2,
+  "fields": {
+    "report": 6,
+    "updated_by": 1,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with EMERGENCY priority",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-02T02:54:01.590Z"
+  }
+},
+{
+  "model": "reports.reportupdate",
+  "pk": 1,
+  "fields": {
+    "report": 5,
+    "updated_by": 31,
+    "update_type": "STATUS_CHANGE",
+    "message": "Report created with EMERGENCY priority",
+    "old_value": null,
+    "new_value": "PENDING",
+    "created_at": "2025-07-02T02:29:47.949Z"
+  }
+}
+]

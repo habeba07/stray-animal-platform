@@ -1,0 +1,50 @@
+[
+{
+  "model": "community.knowledgearticle",
+  "pk": 2,
+  "fields": {
+    "title": "Understanding Pet Body Language",
+    "slug": "understanding-pet-body-language",
+    "article_type": "TIPS",
+    "content": "\n# Understanding Pet Body Language\n\nLearning to read your pet's body language helps build trust and prevents problems.\n\n## Dog Body Language\n**Happy/Relaxed:**\n- Loose, wiggly body\n- Soft eyes\n- Tail wagging at medium height\n\n**Stressed/Anxious:**\n- Panting when not hot\n- Pacing or restlessness\n- Tucked tail\n- Avoiding eye contact\n\n## Cat Body Language\n**Content:**\n- Slow blinking\n- Purring\n- Relaxed posture\n\n**Upset:**\n- Flattened ears\n- Dilated pupils\n- Arched back\n- Hissing or growling\n\n## When to Give Space\nIf your pet shows stress signals, give them space and time to calm down. Never force interactions when they're uncomfortable.\n",
+    "summary": "Learn to read your pet's emotions and signals",
+    "tags": [
+      "behavior",
+      "communication",
+      "training",
+      "body language"
+    ],
+    "author": 9,
+    "is_featured": false,
+    "is_published": true,
+    "view_count": 0,
+    "helpful_count": 0,
+    "created_at": "2025-05-24T02:39:57.530Z",
+    "updated_at": "2025-05-24T02:39:57.530Z"
+  }
+},
+{
+  "model": "community.knowledgearticle",
+  "pk": 1,
+  "fields": {
+    "title": "First-Time Pet Owner Checklist",
+    "slug": "first-time-pet-owner-checklist",
+    "article_type": "GUIDE",
+    "content": "\n# First-Time Pet Owner Checklist\n\nAdopting your first pet is exciting, but preparation is key to success!\n\n## Before You Adopt\n- Research different breeds and their needs\n- Pet-proof your home\n- Budget for ongoing costs (food, vet bills, supplies)\n- Choose a local veterinarian\n\n## Essential Supplies\n- Quality food and water bowls\n- Appropriate food for your pet's age and size\n- Collar, leash, and ID tags\n- Comfortable bed or crate\n- Toys for mental stimulation\n- Grooming supplies\n\n## First Week Tips\n- Give your pet time to adjust\n- Establish routines early\n- Schedule a vet checkup\n- Start basic training\n- Be patient - adjustment takes time!\n\nRemember: Every pet is different, so be flexible and patient as you both learn together.\n",
+    "summary": "Everything you need to know before adopting your first pet",
+    "tags": [
+      "beginners",
+      "checklist",
+      "adoption",
+      "preparation"
+    ],
+    "author": 8,
+    "is_featured": false,
+    "is_published": true,
+    "view_count": 0,
+    "helpful_count": 0,
+    "created_at": "2025-05-24T02:39:57.527Z",
+    "updated_at": "2025-05-24T02:39:57.527Z"
+  }
+}
+]

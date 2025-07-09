@@ -1,0 +1,32 @@
+[
+{
+  "model": "healthcare.healthstatus",
+  "pk": 1,
+  "fields": {
+    "animal": 1,
+    "current_status": "HEALTHY",
+    "last_checkup_date": "2025-06-07",
+    "next_checkup_date": "2025-06-14",
+    "weight": 50.0,
+    "temperature": 37.0,
+    "notes": "",
+    "updated_by": null,
+    "updated_at": "2025-06-08T04:36:00.574Z"
+  }
+},
+{
+  "model": "healthcare.healthstatus",
+  "pk": 2,
+  "fields": {
+    "animal": 16,
+    "current_status": "HEALTHY",
+    "last_checkup_date": null,
+    "next_checkup_date": "2025-06-28",
+    "weight": 3.2,
+    "temperature": 38.5,
+    "notes": "Kitten appears healthy, eating well, playful behavior observed",
+    "updated_by": null,
+    "updated_at": "2025-06-28T00:27:16.514Z"
+  }
+}
+]

@@ -1,0 +1,167 @@
+[
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 11,
+  "fields": {
+    "donor": 17,
+    "total_donated": "0.00",
+    "animals_helped": 0,
+    "first_donation_date": null,
+    "last_donation_date": null,
+    "donor_level": "BRONZE",
+    "donations_count": 0,
+    "favorite_cause": null,
+    "updated_at": "2025-06-10T23:01:57.335Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 12,
+  "fields": {
+    "donor": 24,
+    "total_donated": "0.00",
+    "animals_helped": 0,
+    "first_donation_date": null,
+    "last_donation_date": null,
+    "donor_level": "BRONZE",
+    "donations_count": 0,
+    "favorite_cause": null,
+    "updated_at": "2025-06-25T22:02:39.874Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 13,
+  "fields": {
+    "donor": 29,
+    "total_donated": "0.00",
+    "animals_helped": 0,
+    "first_donation_date": null,
+    "last_donation_date": null,
+    "donor_level": "BRONZE",
+    "donations_count": 0,
+    "favorite_cause": null,
+    "updated_at": "2025-06-30T21:38:53.545Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 14,
+  "fields": {
+    "donor": 26,
+    "total_donated": "0.00",
+    "animals_helped": 0,
+    "first_donation_date": null,
+    "last_donation_date": null,
+    "donor_level": "BRONZE",
+    "donations_count": 0,
+    "favorite_cause": null,
+    "updated_at": "2025-07-02T10:07:10.737Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 7,
+  "fields": {
+    "donor": 14,
+    "total_donated": "9932.00",
+    "animals_helped": 25,
+    "first_donation_date": "2025-05-24T13:32:42.342Z",
+    "last_donation_date": "2025-05-24T14:03:39.026Z",
+    "donor_level": "DIAMOND",
+    "donations_count": 44,
+    "favorite_cause": null,
+    "updated_at": "2025-07-08T10:49:13.615Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 15,
+  "fields": {
+    "donor": 51,
+    "total_donated": "1515.00",
+    "animals_helped": 53,
+    "first_donation_date": "2025-07-07T22:08:47.577Z",
+    "last_donation_date": "2025-07-08T10:38:01.211Z",
+    "donor_level": "GOLD",
+    "donations_count": 16,
+    "favorite_cause": null,
+    "updated_at": "2025-07-08T10:49:13.621Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 10,
+  "fields": {
+    "donor": 11,
+    "total_donated": "9428.00",
+    "animals_helped": 72,
+    "first_donation_date": "2025-05-24T13:32:42.338Z",
+    "last_donation_date": "2025-05-24T14:03:39.034Z",
+    "donor_level": "DIAMOND",
+    "donations_count": 34,
+    "favorite_cause": null,
+    "updated_at": "2025-07-08T10:49:13.626Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 6,
+  "fields": {
+    "donor": 1,
+    "total_donated": "100.00",
+    "animals_helped": 0,
+    "first_donation_date": "2025-05-22T15:41:56.482Z",
+    "last_donation_date": "2025-06-08T04:53:26.271Z",
+    "donor_level": "BRONZE",
+    "donations_count": 2,
+    "favorite_cause": null,
+    "updated_at": "2025-07-08T10:49:13.632Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 9,
+  "fields": {
+    "donor": 13,
+    "total_donated": "9835.00",
+    "animals_helped": 73,
+    "first_donation_date": "2025-05-24T13:32:42.325Z",
+    "last_donation_date": "2025-05-24T14:03:39.032Z",
+    "donor_level": "DIAMOND",
+    "donations_count": 42,
+    "favorite_cause": null,
+    "updated_at": "2025-07-08T10:49:13.637Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 8,
+  "fields": {
+    "donor": 12,
+    "total_donated": "7848.00",
+    "animals_helped": 59,
+    "first_donation_date": "2025-05-24T13:32:42.345Z",
+    "last_donation_date": "2025-05-24T14:03:39.030Z",
+    "donor_level": "DIAMOND",
+    "donations_count": 30,
+    "favorite_cause": null,
+    "updated_at": "2025-07-08T10:49:13.641Z"
+  }
+},
+{
+  "model": "donations.donorimpactsummary",
+  "pk": 16,
+  "fields": {
+    "donor": 54,
+    "total_donated": "0.00",
+    "animals_helped": 0,
+    "first_donation_date": null,
+    "last_donation_date": null,
+    "donor_level": "BRONZE",
+    "donations_count": 0,
+    "favorite_cause": null,
+    "updated_at": "2025-07-09T05:33:51.749Z"
+  }
+}
+]

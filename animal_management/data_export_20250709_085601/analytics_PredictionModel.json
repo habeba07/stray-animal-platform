@@ -1,0 +1,19 @@
+[
+{
+  "model": "analytics.predictionmodel",
+  "pk": 1,
+  "fields": {
+    "name": "Animal Intake Forecaster",
+    "prediction_type": "ANIMAL_INTAKE",
+    "description": "Predicts daily animal intake based on historical patterns",
+    "is_active": true,
+    "accuracy_score": 87.5,
+    "last_trained": null,
+    "training_data_points": 0,
+    "model_parameters": {},
+    "feature_importance": {},
+    "created_at": "2025-06-25T22:23:11.134Z",
+    "updated_at": "2025-06-25T22:23:11.134Z"
+  }
+}
+]

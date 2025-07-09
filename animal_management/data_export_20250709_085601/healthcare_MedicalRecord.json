@@ -1,0 +1,170 @@
+[
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 8,
+  "fields": {
+    "animal": 1017,
+    "record_type": "TREATMENT",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Stomach Ache",
+    "diagnosis": "",
+    "treatment": "",
+    "medications": "",
+    "follow_up_required": false,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T05:07:04.140Z",
+    "updated_at": "2025-07-06T05:07:04.140Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 2,
+  "fields": {
+    "animal": 1031,
+    "record_type": "EMERGENCY",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Emergency treatment for injured leg - administered pain medication, cleaned wound, applied bandage. Animal stable and responsive",
+    "diagnosis": "",
+    "treatment": "Emergency treatment for injured leg - administered pain medication, cleaned wound, applied bandage. Animal stable and responsive",
+    "medications": "",
+    "follow_up_required": false,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T00:50:18.279Z",
+    "updated_at": "2025-07-06T00:50:18.279Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 3,
+  "fields": {
+    "animal": 1031,
+    "record_type": "EMERGENCY",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Emergency treatment for injured leg - administered pain medication, cleaned wound, applied bandage. Animal stable and responsive",
+    "diagnosis": "",
+    "treatment": "Emergency treatment for injured leg - administered pain medication, cleaned wound, applied bandage. Animal stable and responsive",
+    "medications": "",
+    "follow_up_required": false,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T01:02:11.295Z",
+    "updated_at": "2025-07-06T01:02:11.295Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 4,
+  "fields": {
+    "animal": 1026,
+    "record_type": "EMERGENCY",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Injured leg requiring immediate care",
+    "diagnosis": "",
+    "treatment": "",
+    "medications": "",
+    "follow_up_required": false,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T01:07:23.850Z",
+    "updated_at": "2025-07-06T01:07:23.850Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 5,
+  "fields": {
+    "animal": 1025,
+    "record_type": "TREATMENT",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Stray Animal",
+    "diagnosis": "",
+    "treatment": "",
+    "medications": "",
+    "follow_up_required": false,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T01:15:34.416Z",
+    "updated_at": "2025-07-06T01:15:34.416Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 6,
+  "fields": {
+    "animal": 1022,
+    "record_type": "TREATMENT",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Stray Animal",
+    "diagnosis": "",
+    "treatment": "",
+    "medications": "",
+    "follow_up_required": false,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T01:24:45.012Z",
+    "updated_at": "2025-07-06T01:24:45.012Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 7,
+  "fields": {
+    "animal": 1013,
+    "record_type": "TREATMENT",
+    "date": "2025-07-06",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Stomach Ache",
+    "diagnosis": "",
+    "treatment": "",
+    "medications": "",
+    "follow_up_required": true,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-06T01:28:41.993Z",
+    "updated_at": "2025-07-06T01:28:41.993Z"
+  }
+},
+{
+  "model": "healthcare.medicalrecord",
+  "pk": 1,
+  "fields": {
+    "animal": 1031,
+    "record_type": "EMERGENCY",
+    "date": "2025-07-05",
+    "veterinarian": "Dr. Sarah Johnson",
+    "clinic_name": "",
+    "reason": "Injured leg requiring immediate care",
+    "diagnosis": "Deep laceration on left hind leg",
+    "treatment": "Wound cleaning, pain medication, bandaging",
+    "medications": "",
+    "follow_up_required": true,
+    "follow_up_date": null,
+    "attachments": null,
+    "created_by": 26,
+    "created_at": "2025-07-05T20:14:51.443Z",
+    "updated_at": "2025-07-05T20:14:51.443Z"
+  }
+}
+]

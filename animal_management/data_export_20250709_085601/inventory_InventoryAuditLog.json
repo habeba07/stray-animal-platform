@@ -1,0 +1,30 @@
+[
+{
+  "model": "inventory.inventoryauditlog",
+  "pk": 2,
+  "fields": {
+    "item": 2,
+    "action": "UPDATE",
+    "field_changed": "quantity",
+    "old_value": "3.00",
+    "new_value": "0.00",
+    "user": 27,
+    "timestamp": "2025-06-30T16:47:24.195Z",
+    "notes": null
+  }
+},
+{
+  "model": "inventory.inventoryauditlog",
+  "pk": 1,
+  "fields": {
+    "item": 4,
+    "action": "CREATE",
+    "field_changed": null,
+    "old_value": null,
+    "new_value": null,
+    "user": 27,
+    "timestamp": "2025-06-29T03:57:52.662Z",
+    "notes": "Item created: Cat Litter"
+  }
+}
+]

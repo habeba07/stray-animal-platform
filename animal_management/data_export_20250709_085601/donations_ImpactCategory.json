@@ -1,0 +1,80 @@
+[
+{
+  "model": "donations.impactcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Rescue Operations",
+    "category_type": "RESCUE",
+    "description": "Emergency rescue missions and transportation",
+    "icon": "🚑",
+    "color": "#9b59b6",
+    "cost_per_unit": "100.00",
+    "unit_name": "rescue mission"
+  }
+},
+{
+  "model": "donations.impactcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Emergency Medical Treatment",
+    "category_type": "MEDICAL",
+    "description": "Life-saving medical care for injured and sick animals",
+    "icon": "🏥",
+    "color": "#e74c3c",
+    "cost_per_unit": "3.00",
+    "unit_name": "treatment"
+  }
+},
+{
+  "model": "donations.impactcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Daily Food & Nutrition",
+    "category_type": "FOOD",
+    "description": "Nutritious meals and supplements for animals in care",
+    "icon": "🍽️",
+    "color": "#f39c12",
+    "cost_per_unit": "2.00",
+    "unit_name": "day of meals"
+  }
+},
+{
+  "model": "donations.impactcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Safe Shelter & Housing",
+    "category_type": "SHELTER",
+    "description": "Warm, safe housing and shelter facilities",
+    "icon": "🏠",
+    "color": "#3498db",
+    "cost_per_unit": "2.00",
+    "unit_name": "day of shelter"
+  }
+},
+{
+  "model": "donations.impactcategory",
+  "pk": 5,
+  "fields": {
+    "name": "Adoption Services",
+    "category_type": "ADOPTION",
+    "description": "Adoption processing, matching, and support services",
+    "icon": "❤️",
+    "color": "#e91e63",
+    "cost_per_unit": "1.50",
+    "unit_name": "adoption step"
+  }
+},
+{
+  "model": "donations.impactcategory",
+  "pk": 6,
+  "fields": {
+    "name": "Community Education",
+    "category_type": "EDUCATION",
+    "description": "Educational programs and community outreach",
+    "icon": "📚",
+    "color": "#4caf50",
+    "cost_per_unit": "1.00",
+    "unit_name": "educational resource"
+  }
+}
+]

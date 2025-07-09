@@ -1,0 +1,289 @@
+[
+{
+  "model": "resources.userquizattempt",
+  "pk": 1,
+  "fields": {
+    "progress": 1,
+    "score_percentage": 60,
+    "correct_answers": 3,
+    "total_questions": 5,
+    "answers_data": {
+      "1": 1,
+      "2": false,
+      "3": 2,
+      "4": 1,
+      "5": false
+    },
+    "started_at": "2025-06-04T22:26:10.337Z",
+    "completed_at": "2025-06-04T22:26:16.595Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 2,
+  "fields": {
+    "progress": 1,
+    "score_percentage": 60,
+    "correct_answers": 3,
+    "total_questions": 5,
+    "answers_data": {
+      "1": 0,
+      "2": true,
+      "3": 1,
+      "4": 2,
+      "5": false
+    },
+    "started_at": "2025-06-04T22:32:56.646Z",
+    "completed_at": "2025-06-04T22:35:27.638Z",
+    "time_spent_minutes": 2
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 3,
+  "fields": {
+    "progress": 2,
+    "score_percentage": 50,
+    "correct_answers": 2,
+    "total_questions": 4,
+    "answers_data": {
+      "22": 0,
+      "23": 1,
+      "24": false,
+      "25": 1
+    },
+    "started_at": "2025-07-03T08:17:02.069Z",
+    "completed_at": "2025-07-03T08:17:13.781Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 4,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 50,
+    "correct_answers": 2,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": true,
+      "9": 3
+    },
+    "started_at": "2025-07-03T08:17:51.554Z",
+    "completed_at": "2025-07-03T08:18:22.821Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 5,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 75,
+    "correct_answers": 3,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 0
+    },
+    "started_at": "2025-07-03T08:18:46.012Z",
+    "completed_at": "2025-07-03T08:18:59.671Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 6,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 50,
+    "correct_answers": 2,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 2,
+      "7": 1,
+      "8": false,
+      "9": 0
+    },
+    "started_at": "2025-07-03T08:19:10.040Z",
+    "completed_at": "2025-07-03T08:19:22.796Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 7,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-03T08:19:38.991Z",
+    "completed_at": "2025-07-03T08:20:07.641Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 8,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-03T08:19:38.991Z",
+    "completed_at": "2025-07-03T08:20:10.478Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 9,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-03T08:19:38.991Z",
+    "completed_at": "2025-07-03T08:20:11.528Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 10,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-03T08:19:38.991Z",
+    "completed_at": "2025-07-03T08:20:14.246Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 11,
+  "fields": {
+    "progress": 2,
+    "score_percentage": 75,
+    "correct_answers": 3,
+    "total_questions": 4,
+    "answers_data": {
+      "22": 2,
+      "23": 1,
+      "24": true,
+      "25": 0
+    },
+    "started_at": "2025-07-03T08:20:30.975Z",
+    "completed_at": "2025-07-03T08:21:05.161Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 12,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-03T08:21:24.087Z",
+    "completed_at": "2025-07-03T08:21:33.786Z",
+    "time_spent_minutes": 0
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 13,
+  "fields": {
+    "progress": 3,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-03T19:43:56.138Z",
+    "completed_at": "2025-07-03T19:44:56.897Z",
+    "time_spent_minutes": 1
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 14,
+  "fields": {
+    "progress": 4,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "10": 1,
+      "11": 1,
+      "12": true,
+      "13": 1
+    },
+    "started_at": "2025-07-04T00:35:37.911Z",
+    "completed_at": "2025-07-04T00:36:49.793Z",
+    "time_spent_minutes": 1
+  }
+},
+{
+  "model": "resources.userquizattempt",
+  "pk": 15,
+  "fields": {
+    "progress": 5,
+    "score_percentage": 100,
+    "correct_answers": 4,
+    "total_questions": 4,
+    "answers_data": {
+      "6": 1,
+      "7": 1,
+      "8": false,
+      "9": 1
+    },
+    "started_at": "2025-07-07T02:06:58.434Z",
+    "completed_at": "2025-07-07T02:07:17.244Z",
+    "time_spent_minutes": 0
+  }
+}
+]

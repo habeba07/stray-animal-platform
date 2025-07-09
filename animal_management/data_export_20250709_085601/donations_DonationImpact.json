@@ -1,0 +1,1185 @@
+[
+{
+  "model": "donations.donationimpact",
+  "pk": 196,
+  "fields": {
+    "donation": 164,
+    "impact_category": 1,
+    "amount_allocated": "3.00",
+    "units_helped": 1,
+    "description": "Support for emergency medical treatment through donation",
+    "date_achieved": "2025-07-08T10:25:29.593Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 197,
+  "fields": {
+    "donation": 164,
+    "impact_category": 2,
+    "amount_allocated": "2.50",
+    "units_helped": 1,
+    "description": "Support for daily food & nutrition through donation",
+    "date_achieved": "2025-07-08T10:25:29.612Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 198,
+  "fields": {
+    "donation": 164,
+    "impact_category": 3,
+    "amount_allocated": "2.00",
+    "units_helped": 1,
+    "description": "Support for safe shelter & housing through donation",
+    "date_achieved": "2025-07-08T10:25:29.615Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 199,
+  "fields": {
+    "donation": 164,
+    "impact_category": 5,
+    "amount_allocated": "1.50",
+    "units_helped": 1,
+    "description": "Support for adoption services through donation",
+    "date_achieved": "2025-07-08T10:25:29.616Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 200,
+  "fields": {
+    "donation": 164,
+    "impact_category": 6,
+    "amount_allocated": "1.00",
+    "units_helped": 1,
+    "description": "Support for community education through donation",
+    "date_achieved": "2025-07-08T10:25:29.618Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 206,
+  "fields": {
+    "donation": 166,
+    "impact_category": 1,
+    "amount_allocated": "7.50",
+    "units_helped": 2,
+    "description": "Support for emergency medical treatment through donation",
+    "date_achieved": "2025-07-08T10:34:28.903Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 207,
+  "fields": {
+    "donation": 166,
+    "impact_category": 2,
+    "amount_allocated": "6.25",
+    "units_helped": 3,
+    "description": "Support for daily food & nutrition through donation",
+    "date_achieved": "2025-07-08T10:34:28.906Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 208,
+  "fields": {
+    "donation": 166,
+    "impact_category": 3,
+    "amount_allocated": "5.00",
+    "units_helped": 2,
+    "description": "Support for safe shelter & housing through donation",
+    "date_achieved": "2025-07-08T10:34:28.908Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 209,
+  "fields": {
+    "donation": 166,
+    "impact_category": 5,
+    "amount_allocated": "3.75",
+    "units_helped": 2,
+    "description": "Support for adoption services through donation",
+    "date_achieved": "2025-07-08T10:34:28.909Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 210,
+  "fields": {
+    "donation": 166,
+    "impact_category": 6,
+    "amount_allocated": "2.50",
+    "units_helped": 2,
+    "description": "Support for community education through donation",
+    "date_achieved": "2025-07-08T10:34:28.910Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 216,
+  "fields": {
+    "donation": 168,
+    "impact_category": 1,
+    "amount_allocated": "4.50",
+    "units_helped": 1,
+    "description": "Support for emergency medical treatment through donation",
+    "date_achieved": "2025-07-08T10:38:01.272Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 217,
+  "fields": {
+    "donation": 168,
+    "impact_category": 2,
+    "amount_allocated": "3.75",
+    "units_helped": 1,
+    "description": "Support for daily food & nutrition through donation",
+    "date_achieved": "2025-07-08T10:38:01.274Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 218,
+  "fields": {
+    "donation": 168,
+    "impact_category": 3,
+    "amount_allocated": "3.00",
+    "units_helped": 1,
+    "description": "Support for safe shelter & housing through donation",
+    "date_achieved": "2025-07-08T10:38:01.275Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 219,
+  "fields": {
+    "donation": 168,
+    "impact_category": 5,
+    "amount_allocated": "2.25",
+    "units_helped": 1,
+    "description": "Support for adoption services through donation",
+    "date_achieved": "2025-07-08T10:38:01.276Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 220,
+  "fields": {
+    "donation": 168,
+    "impact_category": 6,
+    "amount_allocated": "1.50",
+    "units_helped": 1,
+    "description": "Support for community education through donation",
+    "date_achieved": "2025-07-08T10:38:01.277Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 201,
+  "fields": {
+    "donation": 165,
+    "impact_category": 1,
+    "amount_allocated": "7.50",
+    "units_helped": 2,
+    "description": "Support for emergency medical treatment through donation",
+    "date_achieved": "2025-07-08T10:26:36.140Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 202,
+  "fields": {
+    "donation": 165,
+    "impact_category": 2,
+    "amount_allocated": "6.25",
+    "units_helped": 3,
+    "description": "Support for daily food & nutrition through donation",
+    "date_achieved": "2025-07-08T10:26:36.142Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 203,
+  "fields": {
+    "donation": 165,
+    "impact_category": 3,
+    "amount_allocated": "5.00",
+    "units_helped": 2,
+    "description": "Support for safe shelter & housing through donation",
+    "date_achieved": "2025-07-08T10:26:36.143Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 204,
+  "fields": {
+    "donation": 165,
+    "impact_category": 5,
+    "amount_allocated": "3.75",
+    "units_helped": 2,
+    "description": "Support for adoption services through donation",
+    "date_achieved": "2025-07-08T10:26:36.145Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 205,
+  "fields": {
+    "donation": 165,
+    "impact_category": 6,
+    "amount_allocated": "2.50",
+    "units_helped": 2,
+    "description": "Support for community education through donation",
+    "date_achieved": "2025-07-08T10:26:36.146Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 130,
+  "fields": {
+    "donation": 102,
+    "impact_category": 4,
+    "amount_allocated": "426.00",
+    "units_helped": 4,
+    "description": "Helped 4 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:38.941Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 131,
+  "fields": {
+    "donation": 103,
+    "impact_category": 1,
+    "amount_allocated": "425.00",
+    "units_helped": 2,
+    "description": "Helped 2 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:38.968Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 132,
+  "fields": {
+    "donation": 104,
+    "impact_category": 5,
+    "amount_allocated": "344.00",
+    "units_helped": 6,
+    "description": "Helped 6 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:38.970Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 133,
+  "fields": {
+    "donation": 105,
+    "impact_category": 6,
+    "amount_allocated": "88.31",
+    "units_helped": 2,
+    "description": "Helped 2 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.971Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 134,
+  "fields": {
+    "donation": 105,
+    "impact_category": 3,
+    "amount_allocated": "330.69",
+    "units_helped": 4,
+    "description": "Helped 4 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:38.971Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 135,
+  "fields": {
+    "donation": 106,
+    "impact_category": 2,
+    "amount_allocated": "152.71",
+    "units_helped": 6,
+    "description": "Helped 6 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:38.975Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 136,
+  "fields": {
+    "donation": 107,
+    "impact_category": 5,
+    "amount_allocated": "130.21",
+    "units_helped": 2,
+    "description": "Helped 2 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:38.977Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 137,
+  "fields": {
+    "donation": 107,
+    "impact_category": 6,
+    "amount_allocated": "131.16",
+    "units_helped": 4,
+    "description": "Helped 4 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.977Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 138,
+  "fields": {
+    "donation": 108,
+    "impact_category": 2,
+    "amount_allocated": "232.00",
+    "units_helped": 9,
+    "description": "Helped 9 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:38.979Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 139,
+  "fields": {
+    "donation": 109,
+    "impact_category": 6,
+    "amount_allocated": "361.00",
+    "units_helped": 12,
+    "description": "Helped 12 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.980Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 140,
+  "fields": {
+    "donation": 112,
+    "impact_category": 4,
+    "amount_allocated": "187.00",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:38.983Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 141,
+  "fields": {
+    "donation": 113,
+    "impact_category": 6,
+    "amount_allocated": "421.00",
+    "units_helped": 14,
+    "description": "Helped 14 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.984Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 142,
+  "fields": {
+    "donation": 115,
+    "impact_category": 6,
+    "amount_allocated": "385.00",
+    "units_helped": 12,
+    "description": "Helped 12 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.986Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 143,
+  "fields": {
+    "donation": 116,
+    "impact_category": 4,
+    "amount_allocated": "108.44",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:38.987Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 144,
+  "fields": {
+    "donation": 116,
+    "impact_category": 6,
+    "amount_allocated": "69.05",
+    "units_helped": 2,
+    "description": "Helped 2 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.987Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 145,
+  "fields": {
+    "donation": 116,
+    "impact_category": 2,
+    "amount_allocated": "82.51",
+    "units_helped": 3,
+    "description": "Helped 3 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:38.987Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 146,
+  "fields": {
+    "donation": 117,
+    "impact_category": 1,
+    "amount_allocated": "289.14",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:38.989Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 147,
+  "fields": {
+    "donation": 118,
+    "impact_category": 2,
+    "amount_allocated": "216.00",
+    "units_helped": 8,
+    "description": "Helped 8 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:38.990Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 148,
+  "fields": {
+    "donation": 119,
+    "impact_category": 4,
+    "amount_allocated": "148.40",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:38.991Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 149,
+  "fields": {
+    "donation": 119,
+    "impact_category": 6,
+    "amount_allocated": "64.59",
+    "units_helped": 2,
+    "description": "Helped 2 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.991Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 150,
+  "fields": {
+    "donation": 119,
+    "impact_category": 1,
+    "amount_allocated": "240.01",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:38.991Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 151,
+  "fields": {
+    "donation": 120,
+    "impact_category": 4,
+    "amount_allocated": "397.00",
+    "units_helped": 3,
+    "description": "Helped 3 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:38.993Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 152,
+  "fields": {
+    "donation": 121,
+    "impact_category": 6,
+    "amount_allocated": "328.00",
+    "units_helped": 10,
+    "description": "Helped 10 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.995Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 153,
+  "fields": {
+    "donation": 122,
+    "impact_category": 3,
+    "amount_allocated": "167.00",
+    "units_helped": 2,
+    "description": "Helped 2 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:38.996Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 154,
+  "fields": {
+    "donation": 123,
+    "impact_category": 6,
+    "amount_allocated": "181.10",
+    "units_helped": 6,
+    "description": "Helped 6 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:38.997Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 155,
+  "fields": {
+    "donation": 123,
+    "impact_category": 2,
+    "amount_allocated": "68.10",
+    "units_helped": 2,
+    "description": "Helped 2 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:38.997Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 156,
+  "fields": {
+    "donation": 123,
+    "impact_category": 1,
+    "amount_allocated": "209.80",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:38.997Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 157,
+  "fields": {
+    "donation": 124,
+    "impact_category": 3,
+    "amount_allocated": "118.06",
+    "units_helped": 1,
+    "description": "Helped 1 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:38.999Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 158,
+  "fields": {
+    "donation": 124,
+    "impact_category": 5,
+    "amount_allocated": "189.94",
+    "units_helped": 3,
+    "description": "Helped 3 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:38.999Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 159,
+  "fields": {
+    "donation": 125,
+    "impact_category": 3,
+    "amount_allocated": "232.00",
+    "units_helped": 3,
+    "description": "Helped 3 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:39.001Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 160,
+  "fields": {
+    "donation": 126,
+    "impact_category": 5,
+    "amount_allocated": "112.81",
+    "units_helped": 2,
+    "description": "Helped 2 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.002Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 161,
+  "fields": {
+    "donation": 126,
+    "impact_category": 2,
+    "amount_allocated": "72.98",
+    "units_helped": 2,
+    "description": "Helped 2 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.002Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 162,
+  "fields": {
+    "donation": 127,
+    "impact_category": 5,
+    "amount_allocated": "246.00",
+    "units_helped": 4,
+    "description": "Helped 4 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.003Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 163,
+  "fields": {
+    "donation": 128,
+    "impact_category": 1,
+    "amount_allocated": "338.00",
+    "units_helped": 2,
+    "description": "Helped 2 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.004Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 164,
+  "fields": {
+    "donation": 129,
+    "impact_category": 1,
+    "amount_allocated": "222.05",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.006Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 165,
+  "fields": {
+    "donation": 129,
+    "impact_category": 3,
+    "amount_allocated": "258.95",
+    "units_helped": 3,
+    "description": "Helped 3 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:39.006Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 166,
+  "fields": {
+    "donation": 130,
+    "impact_category": 1,
+    "amount_allocated": "187.91",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.007Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 167,
+  "fields": {
+    "donation": 130,
+    "impact_category": 3,
+    "amount_allocated": "240.09",
+    "units_helped": 3,
+    "description": "Helped 3 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:39.007Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 168,
+  "fields": {
+    "donation": 131,
+    "impact_category": 2,
+    "amount_allocated": "266.00",
+    "units_helped": 10,
+    "description": "Helped 10 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.009Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 169,
+  "fields": {
+    "donation": 132,
+    "impact_category": 6,
+    "amount_allocated": "75.00",
+    "units_helped": 2,
+    "description": "Helped 2 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:39.010Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 170,
+  "fields": {
+    "donation": 133,
+    "impact_category": 6,
+    "amount_allocated": "211.00",
+    "units_helped": 7,
+    "description": "Helped 7 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:39.011Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 171,
+  "fields": {
+    "donation": 134,
+    "impact_category": 5,
+    "amount_allocated": "162.72",
+    "units_helped": 3,
+    "description": "Helped 3 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.012Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 172,
+  "fields": {
+    "donation": 134,
+    "impact_category": 2,
+    "amount_allocated": "85.99",
+    "units_helped": 3,
+    "description": "Helped 3 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.012Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 173,
+  "fields": {
+    "donation": 135,
+    "impact_category": 5,
+    "amount_allocated": "109.28",
+    "units_helped": 2,
+    "description": "Helped 2 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.013Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 174,
+  "fields": {
+    "donation": 136,
+    "impact_category": 3,
+    "amount_allocated": "220.00",
+    "units_helped": 2,
+    "description": "Helped 2 month of shelters through this donation",
+    "date_achieved": "2025-05-24T14:03:39.014Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 175,
+  "fields": {
+    "donation": 137,
+    "impact_category": 2,
+    "amount_allocated": "44.88",
+    "units_helped": 1,
+    "description": "Helped 1 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.016Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 176,
+  "fields": {
+    "donation": 137,
+    "impact_category": 4,
+    "amount_allocated": "159.12",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:39.016Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 177,
+  "fields": {
+    "donation": 138,
+    "impact_category": 2,
+    "amount_allocated": "74.74",
+    "units_helped": 2,
+    "description": "Helped 2 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.017Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 178,
+  "fields": {
+    "donation": 139,
+    "impact_category": 5,
+    "amount_allocated": "319.62",
+    "units_helped": 6,
+    "description": "Helped 6 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.018Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 179,
+  "fields": {
+    "donation": 141,
+    "impact_category": 2,
+    "amount_allocated": "79.57",
+    "units_helped": 3,
+    "description": "Helped 3 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.020Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 180,
+  "fields": {
+    "donation": 141,
+    "impact_category": 6,
+    "amount_allocated": "47.54",
+    "units_helped": 1,
+    "description": "Helped 1 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:39.020Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 181,
+  "fields": {
+    "donation": 141,
+    "impact_category": 4,
+    "amount_allocated": "105.89",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:39.020Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 182,
+  "fields": {
+    "donation": 142,
+    "impact_category": 2,
+    "amount_allocated": "58.47",
+    "units_helped": 2,
+    "description": "Helped 2 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.022Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 183,
+  "fields": {
+    "donation": 142,
+    "impact_category": 4,
+    "amount_allocated": "136.00",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:39.022Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 184,
+  "fields": {
+    "donation": 143,
+    "impact_category": 1,
+    "amount_allocated": "166.75",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.024Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 185,
+  "fields": {
+    "donation": 143,
+    "impact_category": 4,
+    "amount_allocated": "131.25",
+    "units_helped": 1,
+    "description": "Helped 1 rescue missions through this donation",
+    "date_achieved": "2025-05-24T14:03:39.024Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 186,
+  "fields": {
+    "donation": 144,
+    "impact_category": 5,
+    "amount_allocated": "195.00",
+    "units_helped": 3,
+    "description": "Helped 3 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.025Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 187,
+  "fields": {
+    "donation": 145,
+    "impact_category": 1,
+    "amount_allocated": "195.00",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.026Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 188,
+  "fields": {
+    "donation": 146,
+    "impact_category": 5,
+    "amount_allocated": "260.00",
+    "units_helped": 5,
+    "description": "Helped 5 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.027Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 189,
+  "fields": {
+    "donation": 147,
+    "impact_category": 1,
+    "amount_allocated": "189.31",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.029Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 190,
+  "fields": {
+    "donation": 147,
+    "impact_category": 5,
+    "amount_allocated": "204.69",
+    "units_helped": 4,
+    "description": "Helped 4 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.029Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 191,
+  "fields": {
+    "donation": 148,
+    "impact_category": 2,
+    "amount_allocated": "79.02",
+    "units_helped": 3,
+    "description": "Helped 3 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.030Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 192,
+  "fields": {
+    "donation": 148,
+    "impact_category": 5,
+    "amount_allocated": "53.70",
+    "units_helped": 1,
+    "description": "Helped 1 adoption processs through this donation",
+    "date_achieved": "2025-05-24T14:03:39.030Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 193,
+  "fields": {
+    "donation": 149,
+    "impact_category": 1,
+    "amount_allocated": "158.00",
+    "units_helped": 1,
+    "description": "Helped 1 treatments through this donation",
+    "date_achieved": "2025-05-24T14:03:39.032Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 194,
+  "fields": {
+    "donation": 150,
+    "impact_category": 2,
+    "amount_allocated": "33.74",
+    "units_helped": 1,
+    "description": "Helped 1 week of foods through this donation",
+    "date_achieved": "2025-05-24T14:03:39.033Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 195,
+  "fields": {
+    "donation": 151,
+    "impact_category": 6,
+    "amount_allocated": "424.00",
+    "units_helped": 14,
+    "description": "Helped 14 workshops through this donation",
+    "date_achieved": "2025-05-24T14:03:39.034Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 211,
+  "fields": {
+    "donation": 167,
+    "impact_category": 1,
+    "amount_allocated": "12.00",
+    "units_helped": 4,
+    "description": "Support for emergency medical treatment through donation",
+    "date_achieved": "2025-07-08T10:36:19.324Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 212,
+  "fields": {
+    "donation": 167,
+    "impact_category": 2,
+    "amount_allocated": "10.00",
+    "units_helped": 5,
+    "description": "Support for daily food & nutrition through donation",
+    "date_achieved": "2025-07-08T10:36:19.327Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 213,
+  "fields": {
+    "donation": 167,
+    "impact_category": 3,
+    "amount_allocated": "8.00",
+    "units_helped": 4,
+    "description": "Support for safe shelter & housing through donation",
+    "date_achieved": "2025-07-08T10:36:19.330Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 214,
+  "fields": {
+    "donation": 167,
+    "impact_category": 5,
+    "amount_allocated": "6.00",
+    "units_helped": 4,
+    "description": "Support for adoption services through donation",
+    "date_achieved": "2025-07-08T10:36:19.332Z",
+    "animals_helped": []
+  }
+},
+{
+  "model": "donations.donationimpact",
+  "pk": 215,
+  "fields": {
+    "donation": 167,
+    "impact_category": 6,
+    "amount_allocated": "4.00",
+    "units_helped": 4,
+    "description": "Support for community education through donation",
+    "date_achieved": "2025-07-08T10:36:19.334Z",
+    "animals_helped": []
+  }
+}
+]
