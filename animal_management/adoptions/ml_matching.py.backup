@@ -1,0 +1,491 @@
+# adoptions/ml_matching.py (ENHANCED VERSION)
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, accuracy_score
+import pickle
+import os
+from django.conf import settings
+from .models import AdopterProfile, AnimalBehaviorProfile, AdoptionApplication
+from animals.models import Animal
+
+class MLAdoptionMatcher:
+    """
+    Enhanced ML-based adoption matching system
+    Now uses real Austin Animal Center + Kaggle data for better predictions
+    """
+    
+    def __init__(self):
+        self.compatibility_model = None  # For adopter-animal matching
+        self.adoption_likelihood_model = None  # NEW: For adoption prediction
+        self.scaler = StandardScaler()
+        self.likelihood_scaler = StandardScaler()  # NEW: Separate scaler
+        self.label_encoders = {}
+        self.likelihood_encoders = {}  # NEW: Separate encoders
+        self.model_path = os.path.join(settings.BASE_DIR, 'ml_models')
+        os.makedirs(self.model_path, exist_ok=True)
+        self.load_model()  # Try to load existing model
+    
+    def encode_categorical(self, feature_name, value):
+        """Convert text values to numbers for ML"""
+        if feature_name not in self.label_encoders:
+            self.label_encoders[feature_name] = LabelEncoder()
+            # Define known categories
+            known_categories = self.get_known_categories(feature_name)
+            self.label_encoders[feature_name].fit(known_categories)
+        
+        try:
+            return self.label_encoders[feature_name].transform([value])[0]
+        except ValueError:
+            # Handle unknown categories
+            return 0
+    
+    def get_known_categories(self, feature_name):
+        """Define all possible categories for each feature"""
+        categories = {
+            'activity_level': ['SEDENTARY', 'MODERATELY_ACTIVE', 'ACTIVE', 'VERY_ACTIVE'],
+            'pet_experience': ['NONE', 'BEGINNER', 'INTERMEDIATE', 'EXPERT'],
+            'housing_type': ['APARTMENT', 'HOUSE', 'CONDO', 'OTHER'],
+            'energy_level': ['LOW', 'MEDIUM', 'HIGH', 'VERY_HIGH'],
+            'training_level': ['NONE', 'BASIC', 'INTERMEDIATE', 'ADVANCED'],
+            'animal_type': ['DOG', 'CAT', 'OTHER'],
+            'size': ['Small', 'Medium', 'Large', 'Extra Large'],
+            'age_category': ['Baby', 'Young', 'Adult', 'Senior'],
+        }
+        return categories.get(feature_name, ['DEFAULT'])
+    
+    def prepare_features(self, adopter_profile, animal_behavior_profile):
+        """Convert adopter and animal data into numbers for ML (EXISTING CODE)"""
+        
+        # Helper function to safely convert to boolean then int
+        def safe_bool_to_int(value):
+            if isinstance(value, str):
+                return int(value.lower() in ['true', '1', 'yes'])
+            elif isinstance(value, bool):
+                return int(value)
+            else:
+                return int(bool(value))
+        
+        # Helper function to safely get numeric value
+        def safe_int(value, default=0):
+            try:
+                return int(value)
+            except (ValueError, TypeError):
+                return default
+        
+        features = {
+            # Adopter features (with safe conversion)
+            'adopter_activity': self.encode_categorical('activity_level', adopter_profile.activity_level),
+            'adopter_experience': self.encode_categorical('pet_experience', adopter_profile.pet_experience),
+            'adopter_housing': self.encode_categorical('housing_type', adopter_profile.housing_type),
+            'has_yard': safe_bool_to_int(adopter_profile.has_yard),
+            'children_count': safe_int(adopter_profile.children_in_home),
+            'hours_alone': safe_int(adopter_profile.hours_alone),
+            'willing_train': safe_bool_to_int(adopter_profile.willing_to_train),
+            'special_needs_ok': safe_bool_to_int(adopter_profile.special_needs_capable),
+            
+            # Animal features (with safe conversion)
+            'animal_energy': self.encode_categorical('energy_level', animal_behavior_profile.energy_level),
+            'animal_training': self.encode_categorical('training_level', animal_behavior_profile.training_level),
+            'good_with_kids': safe_bool_to_int(animal_behavior_profile.good_with_children),
+            'good_with_dogs': safe_bool_to_int(animal_behavior_profile.good_with_dogs),
+            'good_with_cats': safe_bool_to_int(animal_behavior_profile.good_with_cats),
+            'special_needs': safe_bool_to_int(animal_behavior_profile.special_needs),
+            'animal_type': self.encode_categorical('animal_type', animal_behavior_profile.animal.animal_type),
+        }
+        
+        return list(features.values())
+
+    # NEW METHOD: Train adoption likelihood model using real data
+    def train_adoption_likelihood_model(self):
+        """Train model to predict adoption likelihood using Austin + Kaggle data"""
+        print("🤖 Training adoption likelihood model with real data...")
+        
+        # Get animals with Kaggle data (has adoption likelihood scores)
+        animals_with_kaggle = Animal.objects.filter(
+            last_location_json__kaggle_data__isnull=False
+        )
+        
+        if len(animals_with_kaggle) < 10:
+            print("❌ Not enough animals with Kaggle data for training")
+            return False
+        
+        print(f"📊 Found {len(animals_with_kaggle)} animals with real adoption data")
+        
+        # Prepare training data
+        X = []  # Features
+        y = []  # Adoption likelihood (0 or 1)
+        
+        for animal in animals_with_kaggle:
+            try:
+                kaggle_data = animal.last_location_json['kaggle_data']
+                
+                # Create feature vector from animal characteristics
+                features = self._extract_animal_features_for_likelihood(animal, kaggle_data)
+                X.append(features)
+                
+                # Target: adoption likelihood from Kaggle data
+                y.append(kaggle_data.get('adoption_likelihood', 0))
+                
+            except Exception as e:
+                print(f"⚠️ Skipping animal {animal.id}: {e}")
+                continue
+        
+        if len(X) < 5:
+            print("❌ Not enough valid training examples")
+            return False
+        
+        # Convert to arrays
+        X = np.array(X)
+        y = np.array(y)
+        
+        print(f"📈 Training with {len(X)} examples")
+        print(f"📈 Positive examples (likely to be adopted): {sum(y)}")
+        print(f"📈 Negative examples (less likely): {len(y) - sum(y)}")
+        
+        # Split data
+        if len(X) > 10:
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        else:
+            X_train, X_test, y_train, y_test = X, X, y, y
+        
+        # Scale features
+        X_train_scaled = self.likelihood_scaler.fit_transform(X_train)
+        X_test_scaled = self.likelihood_scaler.transform(X_test)
+        
+        # Train Random Forest Classifier for adoption likelihood
+        self.adoption_likelihood_model = RandomForestClassifier(
+            n_estimators=50, 
+            random_state=42,
+            class_weight='balanced'  # Handle imbalanced data
+        )
+        self.adoption_likelihood_model.fit(X_train_scaled, y_train)
+        
+        # Test the model
+        train_score = self.adoption_likelihood_model.score(X_train_scaled, y_train)
+        test_score = self.adoption_likelihood_model.score(X_test_scaled, y_test)
+        
+        # Get predictions for detailed metrics
+        y_pred = self.adoption_likelihood_model.predict(X_test_scaled)
+        accuracy = accuracy_score(y_test, y_pred)
+        
+        print(f"✅ Adoption likelihood model trained successfully!")
+        print(f"📈 Training accuracy: {train_score:.2f}")
+        print(f"📈 Test accuracy: {test_score:.2f}")
+        print(f"📈 Final accuracy: {accuracy:.2f}")
+        
+        return True
+    
+    def _extract_animal_features_for_likelihood(self, animal, kaggle_data):
+        """Extract features from animal for adoption likelihood prediction"""
+        
+        # Helper function to categorize age
+        def categorize_age(age_str):
+            if not age_str:
+                return 'Unknown'
+            age_str = str(age_str).lower()
+            if 'week' in age_str or 'puppy' in age_str or 'kitten' in age_str:
+                return 'Baby'
+            elif 'month' in age_str:
+                try:
+                    months = int(age_str.split()[0])
+                    return 'Baby' if months < 6 else 'Young' if months < 12 else 'Adult'
+                except:
+                    return 'Adult'
+            elif 'year' in age_str:
+                try:
+                    years = int(age_str.split()[0])
+                    if years < 1: return 'Baby'
+                    elif years < 3: return 'Young'
+                    elif years < 8: return 'Adult'
+                    else: return 'Senior'
+                except:
+                    return 'Adult'
+            return 'Unknown'
+        
+        # Encode categorical features for likelihood model
+        def encode_for_likelihood(feature_name, value):
+            if feature_name not in self.likelihood_encoders:
+                self.likelihood_encoders[feature_name] = LabelEncoder()
+                categories = self.get_known_categories(feature_name)
+                self.likelihood_encoders[feature_name].fit(categories)
+            
+            try:
+                return self.likelihood_encoders[feature_name].transform([value])[0]
+            except ValueError:
+                return 0
+        
+        # Extract features
+        age_category = categorize_age(animal.age_estimate)
+        
+        features = [
+            encode_for_likelihood('animal_type', animal.animal_type),
+            encode_for_likelihood('size', kaggle_data.get('size', 'Medium')),
+            encode_for_likelihood('age_category', age_category),
+            animal.weight or 0,
+            int(animal.vaccinated) if animal.vaccinated else 0,
+            animal.adoption_fee or 0,
+            kaggle_data.get('time_in_shelter_days', 30),
+            kaggle_data.get('previous_owner', 0),
+            kaggle_data.get('health_condition', 0),
+        ]
+        
+        return features
+
+    def train_model(self):
+        """Train both the compatibility model (existing) AND the new adoption likelihood model"""
+        print("🤖 Training comprehensive ML adoption system...")
+        
+        # First train the existing compatibility model
+        compatibility_success = self._train_compatibility_model()
+        
+        # Then train the new adoption likelihood model with real data
+        likelihood_success = self.train_adoption_likelihood_model()
+        
+        if compatibility_success or likelihood_success:
+            self.save_model()
+            print("✅ ML training completed!")
+            if compatibility_success and likelihood_success:
+                print("🎉 Both models trained successfully!")
+            elif likelihood_success:
+                print("✅ Adoption likelihood model trained with real data!")
+            elif compatibility_success:
+                print("✅ Compatibility model trained!")
+            return True
+        else:
+            print("❌ Training failed for both models")
+            return False
+
+    def _train_compatibility_model(self):
+        """Train the existing compatibility model (your original code)"""
+        print("🤖 Training compatibility matching model...")
+        
+        # Get successful adoptions for training
+        successful_adoptions = AdoptionApplication.objects.filter(status='APPROVED')
+        
+        if len(successful_adoptions) < 5:
+            print("❌ Not enough training data for compatibility model (need at least 5 successful adoptions)")
+            return False
+        
+        print(f"📊 Found {len(successful_adoptions)} successful adoptions for compatibility training")
+        
+        # Prepare training data (your existing code)
+        X = []  # Features (adopter + animal characteristics)
+        y = []  # Target (compatibility scores)
+        
+        for adoption in successful_adoptions:
+            try:
+                # Get adopter profile from user
+                if not hasattr(adoption.applicant, 'adopterprofile'):
+                    continue
+                
+                adopter_profile = adoption.applicant.adopterprofile
+                
+                if hasattr(adoption.animal, 'behavior_profile'):
+                    features = self.prepare_features(adopter_profile, adoption.animal.behavior_profile)
+                    X.append(features)
+                    
+                    # Use rule-based score as training target
+                    from .matching import AdoptionMatchingSystem
+                    rule_matcher = AdoptionMatchingSystem()
+                    score = rule_matcher.calculate_compatibility(adopter_profile, adoption.animal)
+                    y.append(score['overall_score'])
+                
+            except Exception as e:
+                print(f"⚠️ Skipping adoption {adoption.id}: {e}")
+                continue
+        
+        if len(X) < 3:
+            print("❌ Not enough valid training examples for compatibility model")
+            return False
+        
+        # Convert to arrays
+        X = np.array(X)
+        y = np.array(y)
+        
+        # Split data for training and testing
+        if len(X) > 4:
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        else:
+            X_train, X_test, y_train, y_test = X, X, y, y
+        
+        # Scale features
+        X_train_scaled = self.scaler.fit_transform(X_train)
+        X_test_scaled = self.scaler.transform(X_test)
+        
+        # Train Random Forest model
+        self.compatibility_model = RandomForestRegressor(n_estimators=50, random_state=42)
+        self.compatibility_model.fit(X_train_scaled, y_train)
+        
+        # Test the model
+        train_score = self.compatibility_model.score(X_train_scaled, y_train)
+        test_score = self.compatibility_model.score(X_test_scaled, y_test)
+        
+        print(f"✅ Compatibility model trained successfully!")
+        print(f"📈 Training accuracy: {train_score:.2f}")
+        print(f"📈 Test accuracy: {test_score:.2f}")
+        
+        return True
+
+    # NEW METHOD: Predict adoption likelihood for any animal
+    def predict_adoption_likelihood(self, animal):
+        """Predict how likely an animal is to be adopted using real data model"""
+        if not self.adoption_likelihood_model:
+            print("⚠️ No adoption likelihood model available")
+            return {
+                'adoption_likelihood': 0.5,
+                'confidence': 'low',
+                'message': 'No trained model available'
+            }
+        
+        try:
+            # Check if animal has Kaggle data
+            if not (animal.last_location_json and 'kaggle_data' in animal.last_location_json):
+                # For animals without Kaggle data, create estimated data
+                kaggle_data = {
+                    'size': 'Medium',
+                    'time_in_shelter_days': 30,
+                    'previous_owner': 0,
+                    'health_condition': 0 if animal.vaccinated else 1
+                }
+            else:
+                kaggle_data = animal.last_location_json['kaggle_data']
+            
+            # Extract features
+            features = self._extract_animal_features_for_likelihood(animal, kaggle_data)
+            features_scaled = self.likelihood_scaler.transform([features])
+            
+            # Make prediction
+            likelihood_proba = self.adoption_likelihood_model.predict_proba(features_scaled)[0]
+            likelihood = likelihood_proba[1] if len(likelihood_proba) > 1 else likelihood_proba[0]
+            
+            # Get feature importance
+            feature_names = [
+                'Animal Type', 'Size', 'Age Category', 'Weight', 
+                'Vaccinated', 'Adoption Fee', 'Time in Shelter',
+                'Previous Owner', 'Health Condition'
+            ]
+            
+            importances = self.adoption_likelihood_model.feature_importances_
+            top_factors = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)[:3]
+            
+            return {
+                'adoption_likelihood': float(likelihood),
+                'confidence': 'high',
+                'top_factors': [factor[0] for factor in top_factors],
+                'prediction_method': 'real_data_ml',
+                'animal_id': animal.id,
+                'animal_name': animal.name
+            }
+            
+        except Exception as e:
+            print(f"❌ Adoption likelihood prediction failed: {e}")
+            return {
+                'adoption_likelihood': 0.5,
+                'confidence': 'low',
+                'message': f'Prediction error: {str(e)}'
+            }
+
+    def predict_compatibility(self, adopter_profile, animal_behavior_profile):
+        """Enhanced compatibility prediction using both existing and new models"""
+        
+        # Get basic compatibility from existing model
+        if self.compatibility_model:
+            try:
+                features = self.prepare_features(adopter_profile, animal_behavior_profile)
+                features_scaled = self.scaler.transform([features])
+                
+                ml_score = self.compatibility_model.predict(features_scaled)[0]
+                ml_score = max(0, min(100, ml_score))
+                
+                # Get feature importance
+                feature_names = [
+                    'Activity Match', 'Experience Level', 'Housing Type', 'Has Yard',
+                    'Children Count', 'Hours Alone', 'Training Willingness', 'Special Needs OK',
+                    'Animal Energy', 'Animal Training', 'Good with Kids', 'Good with Dogs',
+                    'Good with Cats', 'Special Needs', 'Animal Type'
+                ]
+                
+                importances = self.compatibility_model.feature_importances_
+                top_factors = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)[:3]
+                
+                # ENHANCED: Also get adoption likelihood for this animal
+                adoption_prediction = self.predict_adoption_likelihood(animal_behavior_profile.animal)
+                
+                return {
+                    'overall_score': ml_score,
+                    'prediction_method': 'enhanced_ml',
+                    'confidence': 'high' if len(AdoptionApplication.objects.filter(status='APPROVED')) > 10 else 'medium',
+                    'top_matching_factors': [factor[0] for factor in top_factors],
+                    'match_reasons': [f"Strong match on {factor[0]}" for factor in top_factors[:2]],
+                    'potential_challenges': [] if ml_score > 70 else ["Consider additional preparation"],
+                    # NEW: Include adoption likelihood
+                    'adoption_likelihood': adoption_prediction['adoption_likelihood'],
+                    'likelihood_factors': adoption_prediction.get('top_factors', [])
+                }
+                
+            except Exception as e:
+                print(f"❌ Enhanced ML prediction failed: {e}")
+        
+        # Fallback to rule-based matching
+        print("⚠️ Using rule-based matching fallback")
+        from .matching import AdoptionMatchingSystem
+        matcher = AdoptionMatchingSystem()
+        result = matcher.calculate_compatibility(adopter_profile, animal_behavior_profile.animal)
+        
+        # Add adoption likelihood even for rule-based
+        adoption_prediction = self.predict_adoption_likelihood(animal_behavior_profile.animal)
+        result['adoption_likelihood'] = adoption_prediction['adoption_likelihood']
+        result['likelihood_factors'] = adoption_prediction.get('top_factors', [])
+        
+        return result
+    
+    def save_model(self):
+        """Save both models to disk"""
+        model_data = {
+            'compatibility_model': self.compatibility_model,
+            'adoption_likelihood_model': self.adoption_likelihood_model,  # NEW
+            'scaler': self.scaler,
+            'likelihood_scaler': self.likelihood_scaler,  # NEW
+            'label_encoders': self.label_encoders,
+            'likelihood_encoders': self.likelihood_encoders,  # NEW
+            'version': '2.0'  # Updated version
+        }
+        
+        model_file = os.path.join(self.model_path, 'adoption_matcher.pkl')
+        with open(model_file, 'wb') as f:
+            pickle.dump(model_data, f)
+        
+        print(f"💾 Enhanced model saved to {model_file}")
+    
+    def load_model(self):
+        """Load previously trained models"""
+        model_file = os.path.join(self.model_path, 'adoption_matcher.pkl')
+        
+        if os.path.exists(model_file):
+            try:
+                with open(model_file, 'rb') as f:
+                    model_data = pickle.load(f)
+                
+                # Load existing compatibility model
+                self.compatibility_model = model_data.get('model') or model_data.get('compatibility_model')
+                self.scaler = model_data.get('scaler', StandardScaler())
+                self.label_encoders = model_data.get('label_encoders', {})
+                
+                # Load new adoption likelihood model (if available)
+                self.adoption_likelihood_model = model_data.get('adoption_likelihood_model')
+                self.likelihood_scaler = model_data.get('likelihood_scaler', StandardScaler())
+                self.likelihood_encoders = model_data.get('likelihood_encoders', {})
+                
+                version = model_data.get('version', '1.0')
+                print(f"✅ ML model loaded successfully (version {version})")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Failed to load model: {e}")
+                return False
+        
+        print("ℹ️ No saved model found")
+        return False

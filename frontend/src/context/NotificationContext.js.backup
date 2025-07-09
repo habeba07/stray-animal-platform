@@ -1,0 +1,107 @@
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import api from '../redux/api';
+import { useSelector } from 'react-redux';
+
+const NotificationContext = createContext();
+
+export const useNotifications = () => useContext(NotificationContext);
+
+export const NotificationProvider = ({ children }) => {
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const { user } = useSelector((state) => state.auth);
+
+  // Fetch notifications on initial load and when user changes
+  useEffect(() => {
+    if (user) {
+      fetchNotifications();
+    }
+  }, [user]);
+
+  // Fetch all notifications
+  const fetchNotifications = async () => {
+    try {
+      const response = await api.get('/notifications/');
+      setNotifications(response.data);
+      setUnreadCount(response.data.filter(notif => !notif.is_read).length);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  };
+
+  // Fetch unread notifications
+  const fetchUnreadNotifications = async () => {
+    try {
+      const response = await api.get('/notifications/unread/');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching unread notifications:', error);
+      return [];
+    }
+  };
+
+  // Mark a notification as read
+  const markAsRead = async (notificationId) => {
+    try {
+      await api.post(`/notifications/${notificationId}/mark_as_read/`);
+      
+      // Update local state
+      setNotifications(prevNotifications => 
+        prevNotifications.map(notif => 
+          notif.id === notificationId ? { ...notif, is_read: true } : notif
+        )
+      );
+      
+      setUnreadCount(prev => Math.max(0, prev - 1));
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
+  };
+
+  // Mark all notifications as read
+  const markAllAsRead = async () => {
+    try {
+      await api.post('/notifications/mark_all_as_read/');
+      
+      // Update local state
+      setNotifications(prevNotifications => 
+        prevNotifications.map(notif => ({ ...notif, is_read: true }))
+      );
+      
+      setUnreadCount(0);
+    } catch (error) {
+      console.error('Error marking all notifications as read:', error);
+    }
+  };
+
+  // Poll for new notifications (every 30 seconds)
+  useEffect(() => {
+    if (!user) return;
+
+    const pollInterval = setInterval(async () => {
+      const unreadNotifications = await fetchUnreadNotifications();
+      const newUnreadCount = unreadNotifications.length;
+      
+      if (newUnreadCount > unreadCount) {
+        // If there are new notifications, update the full list
+        fetchNotifications();
+      }
+    }, 30000);
+
+    return () => clearInterval(pollInterval);
+  }, [user, unreadCount]);
+
+  const value = {
+    notifications,
+    unreadCount,
+    fetchNotifications,
+    markAsRead,
+    markAllAsRead
+  };
+
+  return (
+    <NotificationContext.Provider value={value}>
+      {children}
+    </NotificationContext.Provider>
+  );
+};

@@ -1,0 +1,47 @@
+import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+
+export const useWebSocket = () => {
+  const [notifications, setNotifications] = useState([]);
+  const [isConnected, setIsConnected] = useState(false);
+  const ws = useRef(null);
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user?.id) return;
+
+    // WebSocket URL - note: using ws:// for local development
+    const wsUrl = `ws://localhost:8000/ws/notifications/${user.user_id}/`;
+    
+    ws.current = new WebSocket(wsUrl);
+
+    ws.current.onopen = () => {
+      console.log('✅ WebSocket connected!');
+      setIsConnected(true);
+    };
+
+    ws.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log('📢 New notification:', data.message);
+      
+      setNotifications(prev => [data.message, ...prev]);
+    };
+
+    ws.current.onclose = () => {
+      console.log('❌ WebSocket disconnected');
+      setIsConnected(false);
+    };
+
+    ws.current.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    return () => {
+      if (ws.current) {
+        ws.current.close();
+      }
+    };
+  }, [user?.id]);
+
+  return { notifications, isConnected };
+};

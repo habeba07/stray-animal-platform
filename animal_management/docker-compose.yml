@@ -1,0 +1,61 @@
+# Docker Compose configuration for animal management system
+services:
+  # PostgreSQL database with PostGIS extension
+  db:
+    image: postgis/postgis:14-3.2  # PostGIS image based on PostgreSQL
+    environment:
+      - POSTGRES_DB=animal_management
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/  # Persistent data storage
+    ports:
+      - "5432:5432"  # Expose PostgreSQL port
+  
+  # MongoDB database for document storage
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    volumes:
+      - mongo_data:/data/db  # Persistent data storage
+    environment:
+      - MONGO_INITDB_DATABASE=stray_animal_management
+
+  # Redis cache service (FIXED INDENTATION!)
+  redis:
+    image: redis:7-alpine
+    container_name: animal_mgmt_redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  # Web application container
+  web:
+    build: .  # Build using the Dockerfile in current directory
+    command: ./wait-for-db.sh  # Run the wait script before starting Django
+    volumes:
+      - .:/code  # Mount current directory to /code in container
+    ports:
+      - "8000:8000"  # Expose Django development server port
+    depends_on:
+      - db
+      - mongo
+      - redis  # ADD redis as dependency
+    environment:
+      - DATABASE_URL=postgis://postgres:postgres@db:5432/animal_management
+      - MONGODB_URI=mongodb://mongo:27017/
+      - PYTHONPATH=/code
+
+# Define persistent volumes
+volumes:
+  postgres_data:  # Volume for PostgreSQL data
+  mongo_data:     # Volume for MongoDB data
+  redis_data:     # Volume for Redis data
