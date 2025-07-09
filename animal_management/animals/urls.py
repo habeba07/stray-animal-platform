@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
-from .views import setup_production_simple
+from animals.views import setup_production_simple, import_data_simple
 
 router = DefaultRouter()
 router.register(r'', views.AnimalViewSet)
@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include(router.urls)),
     
     path('setup-production-simple/', setup_production_simple, name='setup_production_simple'),
+    path('api/import-data-simple/', import_data_simple, name='import_data_simple'),
 
     # NEW: Enhanced animal management endpoints for SHELTER users
     path('emergency/', views.emergency_animals, name='emergency_animals'),

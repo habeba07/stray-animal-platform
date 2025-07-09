@@ -81,3 +81,41 @@ def setup_production_simple(request):
         })
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'Setup failed: {str(e)}'})
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def import_data_simple(request):
+    """Import data only - no admin user creation"""
+    from django.conf import settings
+    import glob
+    
+    if settings.DEBUG:
+        return JsonResponse({'success': False, 'message': 'Import only available in production'})
+    
+    try:
+        # Clear existing data first
+        call_command('clear_production', '--confirm')
+        
+        # Look for export data
+        export_dirs = glob.glob('data_export_*')
+        if not export_dirs:
+            return JsonResponse({'success': False, 'message': 'No export data found'})
+        
+        export_dir = sorted(export_dirs)[-1]
+        
+        # Import the data
+        call_command('transfer_to_production', '--mode=import', f'--file={export_dir}', '--confirm')
+        
+        from animals.models import Animal
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Data imported successfully!',
+            'animals': Animal.objects.count(),
+            'users': User.objects.count()
+        })
+        
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
