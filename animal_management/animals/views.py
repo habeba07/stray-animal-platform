@@ -8,6 +8,11 @@ from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+import json
+
 class AnimalViewSet(viewsets.ModelViewSet):
     queryset = Animal.objects.all()
     serializer_class = AnimalSerializer
@@ -53,25 +58,26 @@ class AnimalViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(adoptable, many=True)
         return Response(serializer.data)
 
-    @action(detail=False, methods=['post'], permission_classes=[permissions.AllowAny])
-    def setup_production(self, request):
-        """Setup production via API endpoint"""
-        from django.conf import settings
+@csrf_exempt
+@require_http_methods(["POST"])
+def setup_production_simple(request):
+    """Simple production setup endpoint"""
+    from django.conf import settings
     
-        if settings.DEBUG:
-            return Response({'success': False, 'message': 'Setup only available in production'})
+    if settings.DEBUG:
+        return JsonResponse({'success': False, 'message': 'Setup only available in production'})
     
-        User = get_user_model()
-        if User.objects.filter(is_superuser=True).exists():
-            return Response({'success': False, 'message': 'Production already has admin user'})
+    User = get_user_model()
+    if User.objects.filter(is_superuser=True).exists():
+        return JsonResponse({'success': False, 'message': 'Production already has admin user'})
     
-        try:
-            call_command('auto_setup_production')
-            return Response({
-                'success': True,
-                'message': 'Production setup completed!',
-                'admin_username': 'admin',
-                'admin_password': 'PawRescue2025!'
-            })
-        except Exception as e:
-            return Response({'success': False, 'message': f'Setup failed: {str(e)}'})
+    try:
+        call_command('auto_setup_production')
+        return JsonResponse({
+            'success': True,
+            'message': 'Production setup completed!',
+            'admin_username': 'admin',
+            'admin_password': 'PawRescue2025!'
+        })
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Setup failed: {str(e)}'})
