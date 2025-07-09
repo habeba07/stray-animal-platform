@@ -10,7 +10,7 @@ urlpatterns = [
     path('', include(router.urls)),
     
     path('setup-production-simple/', setup_production_simple, name='setup_production_simple'),
-    path('api/animals/', include('animals.urls')),
+
     # NEW: Enhanced animal management endpoints for SHELTER users
     path('emergency/', views.emergency_animals, name='emergency_animals'),
     path('medical-priority/', views.medical_priority_animals, name='medical_priority_animals'),

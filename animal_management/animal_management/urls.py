@@ -138,6 +138,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
+    path('api/setup-production-simple/', setup_production_simple, name='setup_production_simple'),
     path('api/dashboard/', include('dashboard.urls')),
     path('api/health/', include('health.urls')),
     path('api/resources/', include('resources.urls')),
