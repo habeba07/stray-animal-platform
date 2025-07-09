@@ -5,22 +5,8 @@ import dj_database_url
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '-sm0i3-y#yzn5^pd(@-j$ewldzsrjzjoike78g3#t&@sv*2ypy')
 
-DEBUG = True  # Change from False to True temporarily
+DEBUG = False 
 
-# Also add detailed logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-    },
-}
 
 # Allowed hosts for production
 ALLOWED_HOSTS = [
@@ -84,3 +70,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+# MongoDB Atlas Configuration for Production
+MONGODB_URI = os.environ.get('MONGODB_URI', 'mongodb+srv://pawrescue:WIAFiBFLyAOritOy@pawrescue-cluster.zcdgeih.mongodb.net/?retryWrites=true&w=majority&appName=pawrescue-cluster')
+
+# MongoDB Database Name
+MONGODB_DATABASE = os.environ.get('MONGODB_DATABASE', 'stray_animal_management')
