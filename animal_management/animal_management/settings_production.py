@@ -2,6 +2,7 @@
 from .settings import *
 import os
 import dj_database_url 
+import ssl
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '-sm0i3-y#yzn5^pd(@-j$ewldzsrjzjoike78g3#t&@sv*2ypy')
 
@@ -100,10 +101,18 @@ CACHES = {
         'LOCATION': REDIS_URL,
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {
+                'ssl_cert_reqs': ssl.CERT_NONE,
+                'retry_on_timeout': True,
+                'socket_connect_timeout': 30,
+                'socket_timeout': 30,
+                'health_check_interval': 30,
+            },
+            'IGNORE_EXCEPTIONS': True,  # Don't crash if Redis fails
         }
     }
 }
 
-# Use Redis for sessions (better performance)
+# Redis sessions with fallback
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
