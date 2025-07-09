@@ -93,26 +93,37 @@ MONGODB_URI = os.environ.get('MONGODB_URI', 'mongodb+srv://pawrescue:WIAFiBFLyAO
 # MongoDB Database Name
 MONGODB_DATABASE = os.environ.get('MONGODB_DATABASE', 'stray_animal_management')
 
-REDIS_URL = os.environ.get('REDIS_URL', 'rediss://default:AZv8AAIjcDE3MGRiMGE5YzdkOWI0ZjZkYTY2MzYwYTljZTA1ZTI1M3AxMA@integral-tarpon-39932.upstash.io:6379')
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_URL,
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'CONNECTION_POOL_KWARGS': {
-                'ssl_cert_reqs': ssl.CERT_NONE,
-                'retry_on_timeout': True,
-                'socket_connect_timeout': 30,
-                'socket_timeout': 30,
-                'health_check_interval': 30,
-            },
-            'IGNORE_EXCEPTIONS': True,  # Don't crash if Redis fails
+# Smart Redis Configuration with Database Fallback
+try:
+    REDIS_URL = os.environ.get('REDIS_URL', 'rediss://default:AZv8AAIjcDE3MGRiMGE5YzdkOWI0ZjZkYTY2MzYwYTljZTA1ZTI1M3AxMA@integral-tarpon-39932.upstash.io:6379')
+    
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': REDIS_URL,
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'IGNORE_EXCEPTIONS': True,
+            }
         }
     }
-}
-
-# Redis sessions with fallback
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
+    
+    # Use Redis for sessions
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    SESSION_CACHE_ALIAS = 'default'
+    
+    print("✅ Redis configuration loaded")
+    
+except Exception as e:
+    print(f"⚠️ Redis failed, using database cache: {e}")
+    
+    # Fallback to database cache
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+            'LOCATION': 'cache_table',
+        }
+    }
+    
+    # Use database sessions
+    SESSION_ENGINE = 'django.contrib.sessions.backends.db'

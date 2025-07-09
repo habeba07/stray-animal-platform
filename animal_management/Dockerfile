@@ -29,4 +29,4 @@ COPY wait-for-db.sh /code/
 RUN chmod +x /code/wait-for-db.sh
 
 # Default command (will be overridden by docker-compose)
-CMD python manage.py migrate --settings=animal_management.settings_production && python manage.py runserver 0.0.0.0:$PORT --settings=animal_management.settings_production
+CMD python manage.py createcachetable --settings=animal_management.settings_production --noinput; python manage.py collectstatic --noinput --clear --settings=animal_management.settings_production; python manage.py migrate --settings=animal_management.settings_production && python manage.py runserver 0.0.0.0:$PORT --settings=animal_management.settings_production
