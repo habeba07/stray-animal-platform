@@ -91,3 +91,26 @@ MONGODB_URI = os.environ.get('MONGODB_URI', 'mongodb+srv://pawrescue:WIAFiBFLyAO
 
 # MongoDB Database Name
 MONGODB_DATABASE = os.environ.get('MONGODB_DATABASE', 'stray_animal_management')
+
+# Upstash Redis Configuration (with TLS support)
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://default:AZv8AAIjcDE3MGRiMGE5YzdkOWI0ZjZkYTY2MzYwYTljZTA1ZTI1M3AxMA@integral-tarpon-39932.upstash.io:6379')
+
+# Configure Django Redis with TLS
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {
+                'ssl_cert_reqs': None,
+                'ssl_check_hostname': False,
+                'ssl': True,
+            },
+        }
+    }
+}
+
+# Use Redis for sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
