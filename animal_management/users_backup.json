@@ -1,0 +1,7 @@
+Using GDAL library path: /usr/lib/aarch64-linux-gnu/libgdal.so
+Using GDAL library path: /usr/lib/aarch64-linux-gnu/libgdal.so
+✅ Enhanced ML model loaded (version 3.0_research_grade)
+✅ Advanced model (89.5% accuracy) loaded
+✅ Collaborative filtering model loaded
+✅ ML models auto-loaded on startup
+[

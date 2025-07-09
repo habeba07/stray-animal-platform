@@ -5,6 +5,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Animal
 from .serializers import AnimalSerializer
 from django.db.models import Q
+from django.contrib.auth import get_user_model
+from django.core.management import call_command
 
 class AnimalViewSet(viewsets.ModelViewSet):
     queryset = Animal.objects.all()
@@ -50,3 +52,26 @@ class AnimalViewSet(viewsets.ModelViewSet):
         adoptable = self.queryset.filter(status='AVAILABLE')
         serializer = self.get_serializer(adoptable, many=True)
         return Response(serializer.data)
+
+    @action(detail=False, methods=['post'], permission_classes=[permissions.AllowAny])
+    def setup_production(self, request):
+        """Setup production via API endpoint"""
+        from django.conf import settings
+    
+        if settings.DEBUG:
+            return Response({'success': False, 'message': 'Setup only available in production'})
+    
+        User = get_user_model()
+        if User.objects.filter(is_superuser=True).exists():
+            return Response({'success': False, 'message': 'Production already has admin user'})
+    
+        try:
+            call_command('auto_setup_production')
+            return Response({
+                'success': True,
+                'message': 'Production setup completed!',
+                'admin_username': 'admin',
+                'admin_password': 'PawRescue2025!'
+            })
+        except Exception as e:
+            return Response({'success': False, 'message': f'Setup failed: {str(e)}'})
