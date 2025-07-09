@@ -72,8 +72,8 @@ from mental_health.views import (
     StressLogEntryViewSet
 )
 
-from animals.views import setup_production_simple
-from animals.views import setup_production_simple, import_data_simple
+from animals.views import setup_production_simple, import_data_simple, import_core_data
+
 
 # Create a router and register our viewsets with it
 router = DefaultRouter()
