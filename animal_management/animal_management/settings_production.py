@@ -152,14 +152,21 @@ if os.environ.get('DATABASE_URL'):
         try:
             from django.core.management.color import no_style
             from django.db import connection
+            from django.apps import apps
             
             print("🔄 Fixing database sequences...")
             style = no_style()
+            
+            # Get all models and reset their sequences
+            all_models = apps.get_models()
+            sequence_sql = connection.ops.sequence_reset_sql(style, all_models)
+            
             with connection.cursor() as cursor:
                 reset_count = 0
-                for query in connection.ops.sequence_reset_sql(style, connection.introspection.installed_models()):
-                    cursor.execute(query)
+                for sql in sequence_sql:
+                    cursor.execute(sql)
                     reset_count += 1
+            
             print(f"✅ Successfully reset {reset_count} database sequences!")
             
         except Exception as e:
