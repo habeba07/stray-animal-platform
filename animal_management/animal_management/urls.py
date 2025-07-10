@@ -287,6 +287,88 @@ def data_audit(request):
     }, indent=2), content_type='application/json')
 
 
+def import_missing_data(request):
+    from django.core import serializers
+    import glob
+    import os
+    
+    try:
+        # Look for export data
+        export_dirs = glob.glob('data_export_*')
+        if not export_dirs:
+            return JsonResponse({'success': False, 'message': 'No export data found'})
+        
+        export_dir = sorted(export_dirs)[-1]
+        
+        # Models that are missing (in dependency order)
+        missing_files = [
+            # Healthcare first (independent)
+            'healthcare_VaccinationRecord.json',
+            'healthcare_MedicalRecord.json', 
+            'healthcare_MedicalSupplyUsage.json',
+            'healthcare_HealthStatus.json',
+            
+            # Adoptions (depends on animals/users - already imported)
+            'adoptions_AdopterProfile.json',
+            'adoptions_AnimalBehaviorProfile.json',
+            'adoptions_AdoptionApplication.json',
+            
+            # Donations (independent)
+            'donations_DonationCampaign.json',
+            'donations_ImpactCategory.json',
+            'donations_Donation.json',
+            'donations_DonationImpact.json',
+            'donations_SuccessStory.json',
+            'donations_DonorImpactSummary.json',
+            'donations_RecurringDonation.json',
+            
+            # Community (depends on users - already imported)
+            'community_UserActivity.json',
+            'community_Reward.json',
+            'community_Achievement.json',
+            'community_UserAchievement.json',
+            'community_RewardRedemption.json',
+            'community_ForumCategory.json',
+            'community_ForumTopic.json',
+            'community_ForumPost.json',
+            'community_KnowledgeArticle.json',
+            
+            # Volunteers (depends on users - already imported)
+            'volunteers_VolunteerProfile.json',
+            'volunteers_VolunteerOpportunity.json',
+            'volunteers_VolunteerAssignment.json',
+            'volunteers_RescueVolunteerAssignment.json',
+        ]
+        
+        imported_counts = {}
+        
+        for filename in missing_files:
+            filepath = f"{export_dir}/{filename}"
+            if os.path.exists(filepath):
+                try:
+                    with open(filepath, 'r') as f:
+                        objects = serializers.deserialize('json', f.read())
+                        count = 0
+                        for obj in objects:
+                            obj.save()
+                            count += 1
+                        imported_counts[filename] = count
+                except Exception as e:
+                    imported_counts[filename] = f"Error: {str(e)}"
+            else:
+                imported_counts[filename] = "File not found"
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Missing data import completed!',
+            'imported': imported_counts
+        })
+        
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
@@ -294,6 +376,7 @@ urlpatterns = [
     path('api/fix-admin/', fix_admin, name='fix_admin'), 
     path('api/test-login/', test_login, name='test_login'), 
     path('api/data-audit/', data_audit, name='data_audit'),
+    path('api/import-missing-data/', import_missing_data, name='import_missing_data'),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
