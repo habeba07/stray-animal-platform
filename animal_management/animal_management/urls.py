@@ -205,14 +205,6 @@ def fix_admin(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('api/create-admin/', create_admin, name='create_admin'),
-    path('api/fix-admin/', fix_admin, name='fix_admin'),  # Add this line
-    # ... rest of your URLs
-]
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
