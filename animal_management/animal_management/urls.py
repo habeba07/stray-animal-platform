@@ -367,6 +367,86 @@ def import_missing_data(request):
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
 
+def import_final_missing(request):
+    from django.core import serializers
+    import glob
+    import os
+    
+    try:
+        # Look for export data
+        export_dirs = glob.glob('data_export_*')
+        if not export_dirs:
+            return JsonResponse({'success': False, 'message': 'No export data found'})
+        
+        export_dir = sorted(export_dirs)[-1]
+        
+        # Final missing models (in dependency order)
+        final_missing_files = [
+            # Resources (independent)
+            'resources_ResourceCategory.json',
+            'resources_EducationalResource.json',
+            'resources_ResourceRating.json',
+            'resources_InteractiveLearningModule.json',
+            'resources_LearningProgress.json',
+            'resources_QuizQuestion.json',
+            'resources_UserQuizAttempt.json',
+            
+            # Mental Health (independent)
+            'mental_health_ResourceCategory.json',
+            'mental_health_MentalHealthResource.json',
+            'mental_health_SelfCareReminder.json',
+            'mental_health_StressLogEntry.json',
+            
+            # Inventory (independent)
+            'inventory_ItemCategory.json',
+            'inventory_Supplier.json',
+            'inventory_InventoryItem.json',
+            'inventory_InventoryTransaction.json',
+            'inventory_Purchase.json',
+            'inventory_PurchaseItem.json',
+            'inventory_InventoryAuditLog.json',
+            
+            # Analytics (independent)
+            'analytics_PredictionModel.json',
+            'analytics_Prediction.json',
+            
+            # Virtual Adoptions (depends on animals - already imported)
+            'virtual_adoptions_VirtualAdoption.json',
+            
+            # Notifications (depends on users - already imported) - Do this last as it's the biggest
+            'notifications_Notification.json',
+        ]
+        
+        imported_counts = {}
+        total_imported = 0
+        
+        for filename in final_missing_files:
+            filepath = f"{export_dir}/{filename}"
+            if os.path.exists(filepath):
+                try:
+                    with open(filepath, 'r') as f:
+                        objects = serializers.deserialize('json', f.read())
+                        count = 0
+                        for obj in objects:
+                            obj.save()
+                            count += 1
+                        imported_counts[filename] = count
+                        total_imported += count
+                except Exception as e:
+                    imported_counts[filename] = f"Error: {str(e)}"
+            else:
+                imported_counts[filename] = "File not found"
+        
+        return JsonResponse({
+            'success': True,
+            'message': f'Final import completed! Imported {total_imported} additional records.',
+            'imported': imported_counts,
+            'total_new_records': total_imported
+        })
+        
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
+
 
 
 urlpatterns = [
@@ -377,6 +457,7 @@ urlpatterns = [
     path('api/test-login/', test_login, name='test_login'), 
     path('api/data-audit/', data_audit, name='data_audit'),
     path('api/import-missing-data/', import_missing_data, name='import_missing_data'),
+    path('api/import-final-missing/', import_final_missing, name='import_final_missing'),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
