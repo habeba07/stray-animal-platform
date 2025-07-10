@@ -93,7 +93,7 @@ try:
     }
     
     # Use Redis for sessions
-    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    SESSION_ENGINE = 'django.contrib.sessions.backends.db'
     SESSION_CACHE_ALIAS = 'default'
     
     print("✅ Redis configuration loaded")
