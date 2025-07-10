@@ -142,3 +142,29 @@ LOGGING = {
         },
     },
 }
+
+# Auto-fix database sequences after data import (Render production only)
+if os.environ.get('DATABASE_URL'):
+    print("🔧 Production database detected - registering sequence fix")
+    
+    def fix_database_sequences():
+        """Fix database sequences after data import to prevent duplicate key errors"""
+        try:
+            from django.core.management.color import no_style
+            from django.db import connection
+            
+            print("🔄 Fixing database sequences...")
+            style = no_style()
+            with connection.cursor() as cursor:
+                reset_count = 0
+                for query in connection.ops.sequence_reset_sql(style, connection.introspection.installed_models()):
+                    cursor.execute(query)
+                    reset_count += 1
+            print(f"✅ Successfully reset {reset_count} database sequences!")
+            
+        except Exception as e:
+            print(f"⚠️ Could not fix database sequences: {str(e)}")
+    
+    # Register the sequence fix to run after Django fully loads
+    import atexit
+    atexit.register(fix_database_sequences)
