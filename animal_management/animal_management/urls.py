@@ -205,12 +205,44 @@ def fix_admin(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
+def test_login(request):
+    from django.contrib.auth import authenticate
+    from django.contrib.auth import get_user_model
+    
+    try:
+        User = get_user_model()
+        
+        # Test authentication
+        user = authenticate(username='admin', password='PawRescue2025!')
+        
+        if user:
+            return JsonResponse({
+                'success': True,
+                'message': 'Authentication works!',
+                'user_id': user.id,
+                'is_staff': user.is_staff,
+                'is_superuser': user.is_superuser
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'message': 'Authentication failed',
+                'debug': {
+                    'user_exists': User.objects.filter(username='admin').exists(),
+                    'user_count': User.objects.count()
+                }
+            })
+            
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/create-admin/', create_admin, name='create_admin'), 
     path('api/fix-admin/', fix_admin, name='fix_admin'), 
+    path('api/test-login/', test_login, name='test_login'), 
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
