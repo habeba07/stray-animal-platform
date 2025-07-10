@@ -210,6 +210,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/create-admin/', create_admin, name='create_admin'), 
+    path('api/fix-admin/', fix_admin, name='fix_admin'), 
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
