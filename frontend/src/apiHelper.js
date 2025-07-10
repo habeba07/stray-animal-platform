@@ -1,16 +1,22 @@
-// apiHelper.js - Safe environment-aware version
+// apiHelper.js - Debug version
 
-// This will use the environment variable, or fallback to localhost
+// Debug: Let's see what environment variables are available
+console.log('Environment check:', {
+  NODE_ENV: process.env.NODE_ENV,
+  REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+  all_env: process.env
+});
+
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
-// Simple function to get the auth token
+console.log('Using API_URL:', API_URL);
+
+// Rest of your code stays the same...
 function getToken() {
   return localStorage.getItem('authToken');
 }
 
-// Export simple fetch functions
 export default {
-  // GET request with authentication
   async get(endpoint) {
     const token = getToken();
     const headers = token ? { 'Authorization': `Token ${token}` } : {};
@@ -25,7 +31,6 @@ export default {
     return response.json();
   },
   
-  // POST request with authentication
   async post(endpoint, data) {
     const token = getToken();
     const headers = token ? { 'Authorization': `Token ${token}` } : {};
@@ -41,4 +46,4 @@ export default {
     
     return response.json();
   }
-};// Updated for production API
+};
