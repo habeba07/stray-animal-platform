@@ -5,13 +5,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Animal
 from .serializers import AnimalSerializer
 from django.db.models import Q
-from django.contrib.auth import get_user_model
-from django.core.management import call_command
-
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
-import json
 
 class AnimalViewSet(viewsets.ModelViewSet):
     queryset = Animal.objects.all()
@@ -22,11 +15,10 @@ class AnimalViewSet(viewsets.ModelViewSet):
     ordering_fields = ['created_at', 'intake_date']
     
     def get_permissions(self):
-
-        if self.action in ['list', 'retrieve', 'adoptable', 'setup_production']:
+        if self.action in ['list', 'retrieve', 'adoptable']:
             return [permissions.AllowAny()] 
         elif self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAuthenticated()]  # You can add custom permissions here later
+            return [permissions.IsAuthenticated()]
         return [permissions.IsAuthenticated()]
 
     def get_queryset(self):
@@ -57,128 +49,3 @@ class AnimalViewSet(viewsets.ModelViewSet):
         adoptable = self.queryset.filter(status='AVAILABLE')
         serializer = self.get_serializer(adoptable, many=True)
         return Response(serializer.data)
-
-@csrf_exempt
-@require_http_methods(["POST"])
-def setup_production_simple(request):
-    """Simple production setup endpoint"""
-    from django.conf import settings
-    
-    if settings.DEBUG:
-        return JsonResponse({'success': False, 'message': 'Setup only available in production'})
-    
-    User = get_user_model()
-    if User.objects.filter(is_superuser=True).exists():
-        return JsonResponse({'success': False, 'message': 'Production already has admin user'})
-    
-    try:
-        call_command('auto_setup_production')
-        return JsonResponse({
-            'success': True,
-            'message': 'Production setup completed!',
-            'admin_username': 'admin',
-            'admin_password': 'PawRescue2025!'
-        })
-    except Exception as e:
-        return JsonResponse({'success': False, 'message': f'Setup failed: {str(e)}'})
-
-@csrf_exempt
-@require_http_methods(["POST"])
-def import_data_simple(request):
-    """Import data only - no admin user creation"""
-    from django.conf import settings
-    import glob
-    
-    if settings.DEBUG:
-        return JsonResponse({'success': False, 'message': 'Import only available in production'})
-    
-    try:
-        # Run migrations first to create tables
-        call_command('migrate')
-        
-        # Clear existing data (only if tables exist)
-        try:
-            call_command('clear_production', '--confirm')
-        except Exception as e:
-            # If clear fails, tables probably don't exist - that's okay
-            pass
-        
-        # Look for export data
-        export_dirs = glob.glob('data_export_*')
-        if not export_dirs:
-            return JsonResponse({'success': False, 'message': 'No export data found'})
-        
-        export_dir = sorted(export_dirs)[-1]
-        
-        # Import the data
-        call_command('transfer_to_production', '--mode=import', f'--file={export_dir}', '--confirm')
-        
-        from animals.models import Animal
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
-        
-        return JsonResponse({
-            'success': True,
-            'message': 'Data imported successfully!',
-            'animals': Animal.objects.count(),
-            'users': User.objects.count()
-        })
-        
-    except Exception as e:
-        return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
-
-@csrf_exempt
-@require_http_methods(["POST"])
-def import_core_data(request):
-    """Import core data in optimized chunks"""
-    from django.conf import settings
-    import glob
-    import json
-    import os  # Add this line
-    
-    if settings.DEBUG:
-        return JsonResponse({'success': False, 'message': 'Import only available in production'})
-    
-    try:
-        # Run migrations first
-        call_command('migrate')
-        
-        # Look for export data
-        export_dirs = glob.glob('data_export_*')
-        if not export_dirs:
-            return JsonResponse({'success': False, 'message': 'No export data found'})
-        
-        export_dir = sorted(export_dirs)[-1]
-        
-        # Import core models in order
-        core_files = [
-            'users_User.json',
-            'animals_Animal.json',
-            'reports_Report.json',
-            'adoptions_AdoptionMatch.json',
-            'donations_Donation.json',
-        ]
-        
-        imported_counts = {}
-        
-        from django.core import serializers
-        
-        for filename in core_files:
-            filepath = f"{export_dir}/{filename}"
-            if os.path.exists(filepath):
-                with open(filepath, 'r') as f:
-                    objects = serializers.deserialize('json', f.read())
-                    count = 0
-                    for obj in objects:
-                        obj.save()
-                        count += 1
-                    imported_counts[filename] = count
-        
-        return JsonResponse({
-            'success': True,
-            'message': 'Core data imported successfully!',
-            'imported': imported_counts
-        })
-        
-    except Exception as e:
-        return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
