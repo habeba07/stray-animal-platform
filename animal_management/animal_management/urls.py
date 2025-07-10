@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
+import json
 
 from users.views import UserViewSet
 from animals.views import AnimalViewSet
@@ -326,7 +327,7 @@ def data_audit(request):
                 'missing': original_count - current_count
             }
     
-    return JsonResponse({
+    result = {
         'summary': {
             'original_total': original_total,
             'imported_total': imported_total,
@@ -336,8 +337,9 @@ def data_audit(request):
         'missing_data': missing_data,
         'fully_imported': [k for k, v in original_data.items() if current_data.get(k, 0) == v],
         'completely_missing': [k for k, v in original_data.items() if current_data.get(k, 0) == 0]
-    }, indent=2)
+    }
 
+    return HttpResponse(json.dumps(result, indent=2), content_type='application/json')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
