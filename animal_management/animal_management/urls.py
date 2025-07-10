@@ -6,6 +6,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 from django.http import HttpResponse
 import json
+from django.http import HttpResponse
 
 
 from users.views import UserViewSet
@@ -448,6 +449,9 @@ def import_final_missing(request):
         return JsonResponse({'success': False, 'message': f'Import failed: {str(e)}'})
 
 
+def health_check(request):
+    return HttpResponse('OK', status=200)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -458,6 +462,7 @@ urlpatterns = [
     path('api/data-audit/', data_audit, name='data_audit'),
     path('api/import-missing-data/', import_missing_data, name='import_missing_data'),
     path('api/import-final-missing/', import_final_missing, name='import_final_missing'),
+    path('health/', health_check, name='health'),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
