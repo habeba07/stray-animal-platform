@@ -1,9 +1,10 @@
-// apiHelper.js - Force production URL
+// apiHelper.js - Environment-aware version
 
-// Hardcode production URL for now
-const API_URL = 'https://pawrescue-backend.onrender.com/api';
+// Use environment variable or fallback to localhost for development
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
-console.log('FORCED PRODUCTION URL - Using:', API_URL);
+console.log('API Helper - Using:', API_URL);
+console.log('Environment:', process.env.NODE_ENV);
 
 function getToken() {
   return localStorage.getItem('authToken');
