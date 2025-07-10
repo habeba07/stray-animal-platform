@@ -1,7 +1,7 @@
-// apiHelper.js - Very simple API helper
+// apiHelper.js - Safe environment-aware version
 
-// Base URL for all API requests
-const API_URL = 'http://localhost:8000/api';
+// This will use the environment variable, or fallback to localhost
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // Simple function to get the auth token
 function getToken() {
