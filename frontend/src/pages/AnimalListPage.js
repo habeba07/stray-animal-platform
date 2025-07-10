@@ -81,7 +81,7 @@ function AnimalListPage() {
       setLoading(true);
       const response = await api.get('/animals/');
       console.log('Animals data received:', response.data);
-      setAnimals(response.data);
+      setAnimals(response.data.results || []);
       setLoading(false);
     } catch (err) {
       console.error('Error fetching animals:', err);
