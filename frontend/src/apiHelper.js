@@ -46,4 +46,4 @@ export default {
     
     return response.json();
   }
-};
+};console.log('DEPLOYMENT TEST - If you see this, the new code is loaded!');
