@@ -41,4 +41,4 @@ export default {
     
     return response.json();
   }
-};
+};// Updated for production API
