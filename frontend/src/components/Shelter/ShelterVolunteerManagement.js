@@ -1,6 +1,8 @@
 // ShelterVolunteerManagement.js - Complete volunteer management system for SHELTER users
 
 import React, { useState, useEffect } from 'react';
+import api from '../../redux/api'; 
+
 import {
   Container,
   Typography,
@@ -51,7 +53,7 @@ import {
   LocationOn as LocationIcon,
 } from '@mui/icons-material';
 import { format } from 'date-fns';
-import api from '../../redux/api';
+
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -108,12 +110,6 @@ function ShelterVolunteerManagement() {
   const fetchAllData = async () => {
     try {
       setLoading(true);
-
-      const assignmentsData = await fetch('/api/volunteer-assignments/')
-        .then(r => r.json());
-    
-      const volunteersData = await fetch('/api/volunteer-profiles/')  // Add this
-        .then(r => r.json());
       
       const [
         opportunitiesResponse,
@@ -128,16 +124,16 @@ function ShelterVolunteerManagement() {
       ]);
 
       
-      setOpportunities(opportunitiesResponse.data);
-      setAssignments(assignmentsData); 
-      setVolunteers(volunteersData);
-      setRescueAssignments(rescueAssignmentsResponse.data);
+     setOpportunities(opportunitiesResponse.data);
+     setAssignments(assignmentsResponse.data);
+     setVolunteers(volunteersResponse.data);
+     setRescueAssignments(rescueAssignmentsResponse.data);
 
    
 
 
       // Calculate analytics
-      calculateAnalytics(opportunitiesResponse.data, assignmentsData, volunteersData);
+      calculateAnalytics(opportunitiesResponse.data, assignmentsResponse.data, volunteersResponse.data);
       
     } catch (err) {
       setError('Failed to load volunteer management data');

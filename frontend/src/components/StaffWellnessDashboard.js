@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from '../redux/api';
 
 // Custom theme colors
 const theme = {
@@ -48,22 +49,18 @@ const StaffWellnessDashboard = () => {
     try {
       setLoading(true);
       
-      const headers = {
-        'Authorization': `Token ${user.token}`,
-        'Content-Type': 'application/json'
-      };
 
       const [categoriesRes, resourcesRes, remindersRes, stressRes] = await Promise.all([
-        fetch('/api/mental-health-categories/'),
-        fetch('/api/mental-health-resources/'),
-        fetch('/api/self-care-reminders/', { headers }),
-        fetch('/api/stress-logs/', { headers })
+        api.get('/mental-health-categories/'),
+        api.get('/mental-health-resources/'),
+        api.get('/self-care-reminders/'),
+        api.get('/stress-logs/')
       ]);
 
-      const categories = await categoriesRes.json();
-      const resources = await resourcesRes.json();
-      const reminders = await remindersRes.json();
-      const stress = await stressRes.json();
+      const categories = categoriesRes.data;
+      const resources = resourcesRes.data;
+      const reminders = remindersRes.data;
+      const stress = stressRes.data;
 
       setMentalHealthCategories(categories);
       setMentalHealthResources(resources.slice(0, 6)); // Latest 6 resources
@@ -88,55 +85,43 @@ const StaffWellnessDashboard = () => {
     }
     
     try {
-      const response = await fetch('/api/stress-logs/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Token ${user.token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+     const response = await api.post('/stress-logs/', {
+
           date: new Date().toISOString().split('T')[0],
           stress_level: stressLevel,
           notes: stressNotes,
           factors: []
-        })
+
       });
 
-      if (response.ok) {
         setStressDialogOpen(false);
         setStressNotes('');
         showMessage('Stress level logged successfully!');
         fetchWellnessData(); // Refresh data
-      }
+
     } catch (err) {
       setError('Failed to log stress level');
     }
   };
 
   const handleCrisisProceed = async () => {
-    // Log the high stress level after showing crisis resources
+   
     try {
-      const response = await fetch('/api/stress-logs/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Token ${user.token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      const response = await api.post('/stress-logs/', {
+
           date: new Date().toISOString().split('T')[0],
           stress_level: stressLevel,
           notes: stressNotes,
           factors: ['crisis_level_stress']
-        })
       });
 
-      if (response.ok) {
+
         setCrisisDialogOpen(false);
         setStressDialogOpen(false);
         setStressNotes('');
         showMessage('Crisis support resources provided. Please reach out for help.');
         fetchWellnessData();
-      }
+
     } catch (err) {
       setError('Failed to log stress level');
     }
@@ -144,28 +129,24 @@ const StaffWellnessDashboard = () => {
 
   const handleReminderSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await fetch('/api/self-care-reminders/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Token ${user.token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      const response = await api.post('/self-care-reminders/', {
+       
           title: reminderTitle,
           message: reminderMessage,
           frequency: reminderFrequency,
           time_of_day: reminderTime
-        })
+
       });
 
-      if (response.ok) {
+
         setReminderDialogOpen(false);
         setReminderTitle('');
         setReminderMessage('');
         showMessage('Self-care reminder created!');
         fetchWellnessData(); // Refresh data
-      }
+
     } catch (err) {
       setError('Failed to create reminder');
     }
