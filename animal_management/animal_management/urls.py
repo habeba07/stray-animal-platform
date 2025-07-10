@@ -239,109 +239,53 @@ def test_login(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
-# Add this function before urlpatterns
 def data_audit(request):
     from django.apps import apps
     from django.db import models
     
-    # Your original export counts
-    original_data = {
-        'users.User': 42,
-        'animals.Animal': 1041,
-        'reports.Report': 15,
-        'reports.ReportUpdate': 11,
-        'healthcare.VaccinationRecord': 6,
-        'healthcare.MedicalRecord': 8,
-        'healthcare.MedicalSupplyUsage': 1,
-        'healthcare.HealthStatus': 2,
-        'adoptions.AdopterProfile': 9,
-        'adoptions.AnimalBehaviorProfile': 350,
-        'adoptions.AdoptionApplication': 11,
-        'adoptions.AdoptionMatch': 673,
-        'donations.DonationCampaign': 2,
-        'donations.ImpactCategory': 6,
-        'donations.Donation': 168,
-        'donations.DonationImpact': 91,
-        'donations.SuccessStory': 5,
-        'donations.DonorImpactSummary': 11,
-        'donations.RecurringDonation': 2,
-        'community.UserActivity': 82,
-        'community.Reward': 7,
-        'community.Achievement': 10,
-        'community.UserAchievement': 4,
-        'community.RewardRedemption': 1,
-        'community.ForumCategory': 12,
-        'community.ForumTopic': 6,
-        'community.ForumPost': 5,
-        'community.KnowledgeArticle': 2,
-        'volunteers.VolunteerProfile': 4,
-        'volunteers.VolunteerOpportunity': 7,
-        'volunteers.VolunteerAssignment': 1,
-        'volunteers.RescueVolunteerAssignment': 12,
-        'resources.ResourceCategory': 10,
-        'resources.EducationalResource': 17,
-        'resources.ResourceRating': 2,
-        'resources.InteractiveLearningModule': 7,
-        'resources.LearningProgress': 5,
-        'resources.QuizQuestion': 25,
-        'resources.UserQuizAttempt': 15,
-        'virtual_adoptions.VirtualAdoption': 2,
-        'notifications.Notification': 349,
-        'mental_health.ResourceCategory': 5,
-        'mental_health.MentalHealthResource': 5,
-        'mental_health.SelfCareReminder': 1,
-        'mental_health.StressLogEntry': 4,
-        'inventory.ItemCategory': 7,
-        'inventory.InventoryItem': 9,
-        'inventory.InventoryTransaction': 1,
-        'inventory.Supplier': 2,
-        'inventory.Purchase': 3,
-        'inventory.PurchaseItem': 3,
-        'inventory.InventoryAuditLog': 2,
-        'analytics.PredictionModel': 1,
-        'analytics.Prediction': 2,
-    }
-    
+    # Check what's actually in the database first
     current_data = {}
-    missing_data = {}
     imported_total = 0
-    original_total = sum(original_data.values())
     
-    # Check current data
+    # Get all current data with proper model names
     for model in apps.get_models():
         if hasattr(model, 'objects'):
-            model_name = f"{model._meta.app_label}.{model._meta.model_name}"
+            app_label = model._meta.app_label
+            model_name = model._meta.model_name  # This is lowercase
+            full_name = f"{app_label}.{model_name}"
             try:
                 current_count = model.objects.count()
                 if current_count > 0:
-                    current_data[model_name] = current_count
+                    current_data[full_name] = current_count
                     imported_total += current_count
             except:
                 pass
     
-    # Find missing data
-    for model_name, original_count in original_data.items():
-        current_count = current_data.get(model_name, 0)
-        if current_count < original_count:
-            missing_data[model_name] = {
-                'original': original_count,
-                'current': current_count,
-                'missing': original_count - current_count
-            }
+    # Also check animals specifically since we know they exist
+    try:
+        from animals.models import Animal
+        animal_count = Animal.objects.count()
+        if animal_count > 0:
+            current_data['animals.animal'] = animal_count
+    except:
+        pass
+        
+    # Check users specifically  
+    try:
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        user_count = User.objects.count()
+        if user_count > 0:
+            current_data['users.user'] = user_count
+    except:
+        pass
     
-    result = {
-        'summary': {
-            'original_total': original_total,
-            'imported_total': imported_total,
-            'missing_total': original_total - imported_total,
-            'import_percentage': round((imported_total / original_total) * 100, 2)
-        },
-        'missing_data': missing_data,
-        'fully_imported': [k for k, v in original_data.items() if current_data.get(k, 0) == v],
-        'completely_missing': [k for k, v in original_data.items() if current_data.get(k, 0) == 0]
-    }
+    return HttpResponse(json.dumps({
+        'imported_total': imported_total,
+        'current_data': current_data,
+        'top_models_by_count': dict(sorted(current_data.items(), key=lambda x: x[1], reverse=True)[:20])
+    }, indent=2), content_type='application/json')
 
-    return HttpResponse(json.dumps(result, indent=2), content_type='application/json')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
