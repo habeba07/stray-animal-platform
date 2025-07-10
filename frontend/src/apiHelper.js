@@ -1,17 +1,10 @@
-// apiHelper.js - Debug version
+// apiHelper.js - Force production URL
 
-// Debug: Let's see what environment variables are available
-console.log('Environment check:', {
-  NODE_ENV: process.env.NODE_ENV,
-  REACT_APP_API_URL: process.env.REACT_APP_API_URL,
-  all_env: process.env
-});
+// Hardcode production URL for now
+const API_URL = 'https://pawrescue-backend.onrender.com/api';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+console.log('FORCED PRODUCTION URL - Using:', API_URL);
 
-console.log('Using API_URL:', API_URL);
-
-// Rest of your code stays the same...
 function getToken() {
   return localStorage.getItem('authToken');
 }
@@ -46,4 +39,4 @@ export default {
     
     return response.json();
   }
-};console.log('DEPLOYMENT TEST - If you see this, the new code is loaded!');
+};
