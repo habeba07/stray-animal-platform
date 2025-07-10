@@ -163,6 +163,56 @@ def create_admin(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
+# Add this function before urlpatterns
+def fix_admin(request):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    
+    try:
+        # Find the admin user
+        admin_user = User.objects.filter(username='admin').first()
+        
+        if not admin_user:
+            return JsonResponse({'error': 'No admin user found'})
+        
+        # Check current status
+        current_status = {
+            'username': admin_user.username,
+            'is_staff': admin_user.is_staff,
+            'is_superuser': admin_user.is_superuser,
+            'is_active': admin_user.is_active,
+            'user_type': admin_user.user_type,
+        }
+        
+        # Fix the admin user
+        admin_user.set_password('PawRescue2025!')
+        admin_user.is_staff = True
+        admin_user.is_superuser = True
+        admin_user.is_active = True
+        admin_user.user_type = 'STAFF'
+        admin_user.save()
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Admin user fixed!',
+            'before': current_status,
+            'credentials': {
+                'username': 'admin',
+                'password': 'PawRescue2025!'
+            }
+        })
+        
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('api/create-admin/', create_admin, name='create_admin'),
+    path('api/fix-admin/', fix_admin, name='fix_admin'),  # Add this line
+    # ... rest of your URLs
+]
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
