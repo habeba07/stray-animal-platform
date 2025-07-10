@@ -74,6 +74,9 @@ from mental_health.views import (
 
 # from animals.views import setup_production_simple, import_data_simple, import_core_data
 
+from django.http import JsonResponse
+from django.contrib.auth import get_user_model
+
 
 # Create a router and register our viewsets with it
 router = DefaultRouter()
@@ -132,10 +135,39 @@ router.register(r'self-care-reminders', SelfCareReminderViewSet,
 router.register(r'stress-logs', StressLogEntryViewSet,
                basename='stress-log')
 
+def create_admin(request):
+    User = get_user_model()
+    
+    # Check if admin already exists
+    if User.objects.filter(username='admin').exists():
+        return JsonResponse({'message': 'Admin user already exists'})
+    
+    try:
+        # Create admin user
+        admin_user = User.objects.create_user(
+            username='admin',
+            email='admin@pawrescue.com',
+            password='PawRescue2025!',
+            user_type='STAFF',
+            is_staff=True,
+            is_superuser=True,
+            is_email_verified=True
+        )
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Admin user created successfully!',
+            'username': 'admin',
+            'password': 'PawRescue2025!'
+        })
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/create-admin/', create_admin, name='create_admin'), 
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('api/login/', login_view, name='api_login'),
