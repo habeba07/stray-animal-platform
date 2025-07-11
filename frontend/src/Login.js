@@ -1,37 +1,42 @@
 import React, { useState } from 'react';
 
-function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setError('');
+  
+  try {
+    // Use environment-aware API URL
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
     
-    try {
-      // Send login request to get token
-      const response = await fetch('http://localhost:8000/api-token-auth/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
+    // Send login request to correct endpoint
+    const response = await fetch(`${API_URL}/login/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    
+    const data = await response.json();
+    
+    // If login successful, save complete user data
+    if (data.token) {
+      const userData = {
+        token: data.token,
+        user_id: data.user_id,
+        username: data.username,
+        user_type: data.user_type,
+      };
       
-      const data = await response.json();
-      
-      // If login successful, save token
-      if (data.token) {
-        localStorage.setItem('authToken', data.token);
-        alert('Login successful!');
-        window.location.href = '/'; // Redirect to home page
-      } else {
-        setError('Login failed: ' + (data.detail || 'Unknown error'));
-      }
-    } catch (error) {
-      setError('Login failed: Network error');
-      console.error('Login error:', error);
+      localStorage.setItem('user', JSON.stringify(userData));  // Fixed storage key
+      alert('Login successful!');
+      window.location.href = '/';
+    } else {
+      setError('Login failed: ' + (data.error || data.detail || 'Unknown error'));
     }
-  };
+  } catch (error) {
+    setError('Login failed: Network error');
+    console.error('Login error:', error);
+  }
+};
 
   return (
     <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px' }}>
