@@ -271,6 +271,12 @@ class RescueVolunteerAssignment(models.Model):
         on_delete=models.CASCADE, 
         related_name='volunteer_assignments'
     )
+
+    hours_logged = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Hours spent on this rescue mission"
+    )
     assignment_type = models.CharField(max_length=20, choices=ASSIGNMENT_TYPE_CHOICES, default='PRIMARY')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ASSIGNED')
     
@@ -349,12 +355,22 @@ class RescueVolunteerAssignment(models.Model):
         self.completed_at = timezone.now()
         if completion_notes:
             self.completion_notes = completion_notes
+
+        if self.accepted_at and self.completed_at:
+            time_diff = self.completed_at - self.accepted_at
+            self.hours_logged = round(time_diff.total_seconds() / 3600, 2)
+        
         self.save()
         
         # Update volunteer profile stats
         try:
             volunteer_profile = self.volunteer.volunteer_profile
             volunteer_profile.update_rescue_stats()
+
+            if self.hours_logged:
+                volunteer_profile.total_hours = (volunteer_profile.total_hours or 0) + self.hours_logged
+                volunteer_profile.save()
+
         except VolunteerProfile.DoesNotExist:
             pass
         
