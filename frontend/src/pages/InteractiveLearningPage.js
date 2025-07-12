@@ -169,6 +169,40 @@ const InteractiveLearningPage = () => {
   return fundamentalsCompleted;
 };
 
+  const handleTrainingCompletion = async (resourceSlug, completionData) => {
+    console.log('🎯 Training completed:', resourceSlug, completionData);
+  
+    try {
+      // Wait a moment for backend signal to process
+      setTimeout(async () => {
+        try {
+          // Refresh volunteer qualifications
+          await api.post('/volunteers/rescue-assignments/refresh_qualifications/');
+        
+          // Show success message with qualification update
+          setError(`🎉 Training completed! Your rescue qualifications have been updated. You can now access new rescue opportunities!`);
+        
+          // Refresh training data to show completion
+          fetchTrainingData();
+        
+          // Optional: Navigate back to volunteer hub to see new opportunities
+          setTimeout(() => {
+            if (window.confirm('Training completed! Would you like to check for new rescue opportunities?')) {
+              window.location.href = '/volunteer/hub';
+            }
+          }, 3000);
+        
+        } catch (refreshError) {
+          console.warn('Could not refresh qualifications immediately:', refreshError);
+          setError(`✅ Training completed! Please refresh the page to see updated qualifications.`);
+        }
+      }, 2000); // Give backend signal time to process
+    
+    } catch (error) {
+      console.error('Error handling training completion:', error);
+    }
+  };
+
   const calculateOverallProgress = () => {
     if (resources.length === 0) return 0;
     
@@ -216,8 +250,8 @@ const InteractiveLearningPage = () => {
         </Button>
         <InteractiveLearning 
           resourceSlug={selectedResource} 
-          onComplete={() => {
-            // Refresh progress when course is completed
+          onComplete={(completionData) => {
+            handleTrainingCompletion(selectedResource, completionData);
             fetchTrainingData();
             setSelectedResource(null);
           }}

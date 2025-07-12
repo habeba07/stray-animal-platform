@@ -313,6 +313,8 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
         ).exclude(
             # Exclude reports where volunteer is already assigned
             volunteer_assignments__volunteer=request.user
+        ).exclude(
+            volunteer_assignments__status__in=['ACCEPTED', 'IN_PROGRESS']
         ).select_related('animal').order_by('-urgency_level', '-created_at')
 
         available_rescues = []
@@ -389,11 +391,13 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
 
                 # 🔧 FIXED: Better time calculation
                 time_since = self.calculate_time_since(report.created_at)
+       
+                skill_analysis = self.analyze_rescue_skills(report, volunteer_profile)
 
                 rescue_data = {
                     'id': report.id,
                     'type': 'rescue',
-                    'animal_type': animal_type,  # Now properly detects "Dog Rescue", "Cat Rescue", etc.
+                    'animal_type': animal_type,  
                     'urgency': urgency,
                     'location': coordinates or location_display,
                     'location_details': getattr(report, 'location_details', ''),
@@ -404,7 +408,18 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
                     'distance_km': None,  # Will be calculated by frontend if needed
                     'photos': getattr(report, 'photos', []),
                     'status': report.status,
-                    'reporter_contact': getattr(report.reporter, 'phone', '') if hasattr(report, 'reporter') and report.reporter else ''
+                    'reporter_contact': getattr(report.reporter, 'phone', '') if hasattr(report, 'reporter') and report.reporter else '',
+
+                    'skill_match': skill_analysis['match_level'],
+                    'skill_score': skill_analysis['score'],
+                    'required_trainings': skill_analysis['required_trainings'],
+                    'recommended_trainings': skill_analysis['recommended_trainings'],
+                    'completed_trainings': skill_analysis['completed_trainings'],
+                    'training_requirements': skill_analysis['training_requirements'],
+                    'skill_badges': skill_analysis['badges'],
+                    'qualification_message': skill_analysis['message'],
+                    'critical_missing': skill_analysis.get('critical_missing', [])
+
                 }
 
                 available_rescues.append(rescue_data)
@@ -529,6 +544,270 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
             days = total_seconds // 86400
             hours = (total_seconds % 86400) // 3600
             return f"{days}d {hours}h ago"
+
+
+    def analyze_rescue_skills(self, report, volunteer_profile):
+        """
+        Analyze training requirements vs volunteer completions - TRAINING INTEGRATED
+        Returns comprehensive skill matching data linked to actual training modules
+        """
+        # Get completed training modules
+        completed_trainings = set()
+        earned_certifications = set()
+    
+        try:
+            # Get completed training progress
+            training_progress = volunteer_profile.training_progress.filter(
+                completed_date__isnull=False,
+                progress_percentage=100
+            )
+            completed_trainings = set(tp.training_slug for tp in training_progress if tp.training_slug)
+        
+            # Get active certifications  
+            certifications = volunteer_profile.certifications.filter(is_active=True)
+            earned_certifications = set(cert.skill_name for cert in certifications)
+        except:
+            # Fallback if relations don't exist
+            pass
+    
+        # Define training module mappings
+        TRAINING_MODULES = {
+            'animal-rescue-fundamentals': {
+                'name': 'Animal Rescue Fundamentals',
+                'provides_skills': ['Animal Handling', 'Basic Rescue', 'Safety Protocols'],
+                'level': 'beginner',
+                'duration': '45min'
+            },
+            'emergency-animal-first-aid': {
+                'name': 'Emergency Animal First Aid', 
+                'provides_skills': ['First Aid', 'Medical Emergency Response', 'Wound Care'],
+                'level': 'intermediate',
+                'duration': '60min'
+            },
+            'emergency-scene-management': {
+                'name': 'Emergency Scene Management',
+                'provides_skills': ['Emergency Response', 'Scene Coordination', 'Rapid Response Training'],
+                'level': 'advanced', 
+                'duration': '65min'
+            },
+            'animal-behavior-psychology': {
+                'name': 'Animal Behavior & Psychology',
+                'provides_skills': ['Dog Handling', 'Cat Handling', 'Animal Behavior Assessment', 'Stress Recognition'],
+                'level': 'intermediate',
+                'duration': '60min'
+            },
+            'large-animal-rescue': {
+                'name': 'Large Animal Rescue Operations',
+                'provides_skills': ['Large Animal Handling', 'Livestock Rescue', 'Equipment Operation'],
+                'level': 'advanced',
+                'duration': '75min'
+            }
+        }
+    
+        # Build available skills from completed training
+        available_skills = set()
+        for training_slug in completed_trainings:
+            if training_slug in TRAINING_MODULES:
+                available_skills.update(TRAINING_MODULES[training_slug]['provides_skills'])
+    
+        # Add skills from certifications
+        available_skills.update(earned_certifications)
+    
+        # Determine rescue requirements
+        animal_type = self.detect_rescue_animal_type(report)
+        condition = self.detect_rescue_condition(report)
+        urgency = getattr(report, 'urgency_level', 'NORMAL')
+    
+        # Build training requirements (instead of generic skills)
+        required_trainings = []
+        recommended_trainings = []
+        critical_missing = []
+    
+        # BASIC REQUIREMENTS - Always needed
+        required_trainings.append('animal-rescue-fundamentals')
+    
+        # CONDITION-BASED REQUIREMENTS
+        if condition in ['injured', 'bleeding', 'hurt']:
+            required_trainings.append('emergency-animal-first-aid')
+        elif condition in ['sick', 'ill']:
+            recommended_trainings.append('emergency-animal-first-aid')
+        elif condition in ['aggressive', 'dangerous']:
+            required_trainings.append('animal-behavior-psychology')
+        elif condition in ['pregnant', 'with babies']:
+            recommended_trainings.append('animal-behavior-psychology')
+    
+        # ANIMAL-TYPE REQUIREMENTS
+        if animal_type in ['DOG', 'CAT']:
+            recommended_trainings.append('animal-behavior-psychology')
+        elif animal_type in ['HORSE', 'LIVESTOCK', 'LARGE']:
+            required_trainings.append('large-animal-rescue')
+    
+        # URGENCY-BASED REQUIREMENTS
+        if urgency in ['EMERGENCY', 'HIGH']:
+            if not volunteer_profile.available_for_emergency:
+                critical_missing.append({
+                    'type': 'authorization',
+                    'name': 'Emergency Response Authorization',
+                    'action': 'Enable emergency availability in your profile settings'
+                })
+            recommended_trainings.append('emergency-scene-management')
+        
+        if urgency == 'EMERGENCY':
+            required_trainings.append('emergency-scene-management')
+    
+        # CALCULATE TRAINING MATCH
+        required_training_set = set(required_trainings)
+        recommended_training_set = set(recommended_trainings)
+    
+        # Check which trainings are completed
+        completed_required = required_training_set.intersection(completed_trainings)
+        completed_recommended = recommended_training_set.intersection(completed_trainings)
+    
+        # Find missing trainings
+        missing_required = required_training_set - completed_trainings
+        missing_recommended = recommended_training_set - completed_trainings
+    
+        # Check critical blockers
+        if critical_missing:
+            match_level = 'not_recommended'
+            score = 0
+            message = f"❌ Missing: {critical_missing[0]['name']}"
+        else:
+            # Calculate match score based on training completion
+            total_required = len(required_training_set) or 1
+            total_recommended = len(recommended_training_set) or 1
+        
+            required_percent = (len(completed_required) / total_required) * 100
+            recommended_percent = (len(completed_recommended) / total_recommended) if recommended_training_set else 100
+        
+            # Weighted score (required training counts more)
+            score = int((required_percent * 0.8) + (recommended_percent * 0.2))
+        
+            # Determine match level and message
+            if len(missing_required) == 0 and len(missing_recommended) == 0:
+                match_level = 'perfect'
+                message = "🎯 Perfect match! You have completed all required training."
+            elif len(missing_required) == 0:
+                match_level = 'good'
+                message = "✅ Good match! You have completed required training."
+            elif score >= 50:
+                match_level = 'caution'
+                message = f"⚠️ Missing {len(missing_required)} required training module(s)."
+            else:
+                match_level = 'not_recommended'
+                message = f"❌ Complete required training before accepting this rescue."
+    
+        # Generate training badges and requirements
+        badges = []
+        training_requirements = []
+    
+        # Add urgency badge
+        if urgency in ['EMERGENCY', 'HIGH']:
+            badges.append({'type': 'urgency', 'text': f'{urgency} RESCUE', 'color': 'red'})
+    
+        # Add training requirement badges
+        for training_slug in required_trainings:
+            training_info = TRAINING_MODULES.get(training_slug, {})
+            training_name = training_info.get('name', training_slug)
+        
+            if training_slug in completed_trainings:
+                badges.append({
+                    'type': 'training_completed', 
+                    'text': f'✓ {training_name}', 
+                    'color': 'green'
+                })
+            else:
+                badges.append({
+                    'type': 'training_required', 
+                    'text': f'Required: {training_name}', 
+                    'color': 'orange'
+                })
+                training_requirements.append({
+                    'slug': training_slug,
+                    'name': training_name,
+                    'level': training_info.get('level', 'unknown'),
+                    'duration': training_info.get('duration', 'Unknown'),
+                    'required': True
+                })
+    
+        # Add recommended training badges (limit to 2)
+        for training_slug in list(recommended_trainings)[:2]:
+            if training_slug not in required_trainings and training_slug not in completed_trainings:
+                training_info = TRAINING_MODULES.get(training_slug, {})
+                training_name = training_info.get('name', training_slug)
+                badges.append({
+                    'type': 'training_recommended', 
+                    'text': f'Recommended: {training_name}', 
+                    'color': 'blue'
+                })
+                training_requirements.append({
+                    'slug': training_slug,
+                    'name': training_name,
+                    'level': training_info.get('level', 'unknown'),
+                    'duration': training_info.get('duration', 'Unknown'),
+                    'required': False
+                })
+    
+        return {
+            'match_level': match_level,
+            'score': score,
+            'required_trainings': list(missing_required),
+            'recommended_trainings': list(missing_recommended),
+            'completed_trainings': list(completed_trainings),
+            'training_requirements': training_requirements,
+            'badges': badges,
+            'message': message,
+            'critical_missing': critical_missing
+        }
+
+    def detect_rescue_animal_type(self, report):
+        """Extract animal type for skill matching"""
+        if hasattr(report, 'animal_type') and report.animal_type:
+            return report.animal_type.upper()
+    
+        if hasattr(report, 'animal') and report.animal and hasattr(report.animal, 'animal_type'):
+            return report.animal.animal_type.upper()
+    
+        if report.description:
+            desc_lower = report.description.lower()
+            if any(word in desc_lower for word in ['dog', 'puppy', 'canine']):
+                return 'DOG'
+            elif any(word in desc_lower for word in ['cat', 'kitten', 'feline']):
+                return 'CAT'
+            elif any(word in desc_lower for word in ['bird', 'chicken', 'duck']):
+                return 'BIRD'
+    
+        return 'UNKNOWN'
+
+    def detect_rescue_condition(self, report):
+        """Extract animal condition for skill matching"""
+        # Check structured condition first
+        if hasattr(report, 'animal_condition_choice') and report.animal_condition_choice:
+            return report.animal_condition_choice.lower()
+    
+        # Check text condition
+        if hasattr(report, 'animal_condition') and report.animal_condition:
+            condition_lower = report.animal_condition.lower()
+            if any(word in condition_lower for word in ['injured', 'bleeding', 'hurt']):
+                return 'injured'
+            elif any(word in condition_lower for word in ['sick', 'ill']):
+                return 'sick'
+            elif any(word in condition_lower for word in ['aggressive', 'attacking']):
+                return 'aggressive'
+    
+        # Analyze description
+        if report.description:
+            desc_lower = report.description.lower()
+            if any(word in desc_lower for word in ['injured', 'bleeding', 'hurt', 'wound']):
+                return 'injured'
+            elif any(word in desc_lower for word in ['sick', 'ill', 'weak']):
+                return 'sick'
+            elif any(word in desc_lower for word in ['aggressive', 'attacking', 'biting']):
+                return 'aggressive'
+            elif any(word in desc_lower for word in ['pregnant', 'babies', 'puppies']):
+                return 'pregnant'
+    
+        return 'unknown'
     
     @action(detail=False, methods=['post'])
     def accept_rescue(self, request):
@@ -712,6 +991,7 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
                     animal_type = 'Animal'
         
             # Create completion notification
+        if assignment.report.reporter:
             create_notification(
                 recipient=assignment.report.reporter,
                 notification_type='RESCUE_UPDATE',
@@ -742,6 +1022,84 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
         assignments = RescueVolunteerAssignment.objects.filter(volunteer=request.user).order_by('-assigned_at')
         serializer = self.get_serializer(assignments, many=True)
         return Response(serializer.data)
+    
+
+
+    @action(detail=False, methods=['get'], permission_classes=[permissions.IsAuthenticated])
+    def my_training_status(self, request):
+        """Get current user's training status and qualifications"""
+        try:
+            volunteer_profile = request.user.volunteer_profile
+        
+            # Get all training progress
+            training_progress = volunteer_profile.training_progress.all()
+            training_data = []
+        
+            for progress in training_progress:
+                training_data.append({
+                    'training_slug': progress.training_slug,
+                    'training_title': progress.training_title,
+                    'completed': bool(progress.completed_date),
+                    'score': progress.score,
+                    'completed_date': progress.completed_date
+                })
+        
+            # Get certifications
+            certifications = volunteer_profile.certifications.filter(is_active=True)
+            cert_data = []
+        
+            for cert in certifications:
+                cert_data.append({
+                    'skill_name': cert.skill_name,
+                    'certified_date': cert.certified_date,
+                    'score_achieved': cert.score_achieved,
+                    'is_expired': cert.is_expired()
+                })
+        
+            return Response({
+                'training_progress': training_data,
+                'certifications': cert_data,
+                'total_completed': len([t for t in training_data if t['completed']]),
+                'is_rescue_qualified': volunteer_profile.is_available_for_rescue()
+            })
+        
+        except VolunteerProfile.DoesNotExist:
+            return Response({
+                'training_progress': [],
+                'certifications': [],
+                'total_completed': 0,
+                'is_rescue_qualified': False
+            })
+
+    @action(detail=False, methods=['post'], permission_classes=[permissions.IsAuthenticated])  
+    def refresh_qualifications(self, request):
+        """Manually refresh volunteer qualifications after training completion"""
+        try:
+            volunteer_profile, created = VolunteerProfile.objects.get_or_create(
+                user=request.user
+            )
+        
+            # Force refresh training status
+            training_count = volunteer_profile.training_progress.filter(
+                completed_date__isnull=False
+            ).count()
+        
+            cert_count = volunteer_profile.certifications.filter(
+                is_active=True
+            ).count()
+        
+            return Response({
+                'success': True,
+                'message': f'Qualifications refreshed: {training_count} training modules, {cert_count} certifications',
+                'training_count': training_count,
+                'certification_count': cert_count
+            })
+        
+        except Exception as e:
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=400)
     
     @action(detail=False, methods=['get'])
     def activity_dashboard(self, request):
@@ -801,6 +1159,9 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
                 'total_participants': len(rescue_leaderboard)
             }
         })
+
+        
+    
 
 class VolunteerTrainingProgressViewSet(viewsets.ModelViewSet):
     queryset = VolunteerTrainingProgress.objects.all()

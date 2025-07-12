@@ -35,6 +35,7 @@ import {
 import {
   Emergency as EmergencyIcon,
   Event as EventIcon,
+  Refresh as RefreshIcon,
   LocationOn as LocationIcon,
   AccessTime as TimerIcon,
   People as PeopleIcon,
@@ -89,6 +90,7 @@ function VolunteerHub() {
   const [completionNotes, setCompletionNotes] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [qualificationRefreshTime, setQualificationRefreshTime] = useState(null);
 
   useEffect(() => {
     fetchAllData();
@@ -185,6 +187,30 @@ function VolunteerHub() {
       setRegularAssignments([]);
     }
   };
+
+  const refreshVolunteerQualifications = async () => {
+      try {
+        console.log('🔄 Refreshing volunteer qualifications...');
+      
+        const response = await api.post('/volunteers/rescue-assignments/refresh_qualifications/');
+      
+        if (response.data.success) {
+          console.log('✅ Qualifications refreshed:', response.data);
+          setQualificationRefreshTime(new Date());
+        
+          // Refresh all rescue data to get updated qualifications
+          await fetchRescues(); 
+        
+          // Show success message
+          setError(`✅ ${response.data.message}`);
+          setTimeout(() => setError(''), 5000);
+        }
+      } catch (error) {
+        console.error('Error refreshing qualifications:', error);
+        setError('Could not refresh qualifications. Please try again.');
+        setTimeout(() => setError(''), 3000);
+      }
+    };
 
 
   const extractAnimalTypeFromDescription = (description) => {
@@ -428,29 +454,151 @@ function VolunteerHub() {
               />
             </Box>
           )}
+
+          {rescue.training_requirements && rescue.training_requirements.length > 0 && (
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+              <strong>Training Requirements:</strong>
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              {rescue.training_requirements.map((training, index) => (
+                <Box 
+                  key={index}
+                  sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between',
+                    p: 1, 
+                    borderRadius: 1,
+                    backgroundColor: training.required ? '#fff3e0' : '#e3f2fd',
+                    border: `1px solid ${training.required ? '#ff9800' : '#2196f3'}`
+                  }}
+                >
+                  <Box sx={{ flex: 1 }}>
+                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: training.required ? '#ef6c00' : '#1565c0' }}>
+                      {training.required ? '⚠️ Required:' : '💡 Recommended:'} {training.name}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {training.level} • {training.duration}
+                    </Typography>
+                  </Box>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color={training.required ? 'warning' : 'primary'}
+                    onClick={() => {
+                      window.open(`/interactive-learning`, '_blank');
+                    }}
+                    sx={{ ml: 1, fontSize: '0.7rem' }}
+                  >
+                    Start Training
+                  </Button>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        )}
+
+        {rescue.skill_badges && rescue.skill_badges.length > 0 && (
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+              <strong>Qualifications:</strong>
+            </Typography>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {rescue.skill_badges.map((badge, index) => (
+                <Chip
+                  key={index}
+                  label={badge.text}
+                  size="small"
+                  icon={
+                    badge.type === 'training_completed' ? <CheckIcon fontSize="small" /> :
+                    badge.type === 'training_required' ? <WarningIcon fontSize="small" /> :
+                    badge.type === 'urgency' ? <EmergencyIcon fontSize="small" /> : null
+                  }
+                  sx={{
+                    fontSize: '0.7rem',
+                    backgroundColor: 
+                    badge.color === 'green' ? '#e8f5e8' :
+                    badge.color === 'orange' ? '#fff3e0' :
+                    badge.color === 'blue' ? '#e3f2fd' :
+                    badge.color === 'red' ? '#ffebee' : '#f5f5f5',
+                  color:
+                    badge.color === 'green' ? '#2e7d32' :
+                    badge.color === 'orange' ? '#ef6c00' :
+                    badge.color === 'blue' ? '#1565c0' :
+                    badge.color === 'red' ? '#c62828' : '#666',
+                  border: `1px solid ${
+                    badge.color === 'green' ? '#4caf50' :
+                    badge.color === 'orange' ? '#ff9800' :
+                    badge.color === 'blue' ? '#2196f3' :
+                    badge.color === 'red' ? '#f44336' : '#ccc'
+                  }`
+                }}
+              />
+            ))}
+          </Box>
+        </Box>
+      )}
+
+      {rescue.qualification_message && (
+        <Alert 
+          severity={
+          rescue.skill_match === 'perfect' ? 'success' :
+          rescue.skill_match === 'good' ? 'info' :
+          rescue.skill_match === 'caution' ? 'warning' : 'error'
+        } 
+        sx={{ mt: 1, mb: 1, fontSize: '0.8rem' }}
+      >
+        {rescue.qualification_message}
+      </Alert>
+    )}
+
+
         </CardContent>
         
         <CardActions>
           <Button
             variant="contained"
-            color={rescue.urgency === 'EMERGENCY' ? 'error' : 'primary'}
+
+            color={
+              rescue.skill_match === 'not_recommended' ? 'error' :
+              rescue.urgency === 'EMERGENCY' ? 'error' : 'primary'
+            }
             onClick={() => {
+              // 🔧 CRITICAL: Block action if not qualified
+              if (rescue.skill_match === 'not_recommended') {
+                setError(`❌ Training required: ${rescue.required_trainings?.map(t => 
+                  rescue.training_requirements?.find(tr => tr.slug === t)?.name || t
+                ).join(', ')}`);
+                setTimeout(() => setError(''), 5000);
+                return; // ← This prevents the dialog from opening
+              }
               setSelectedItem(rescue);
               setAcceptDialogOpen(true);
             }}
-            startIcon={<EmergencyIcon />}
+            startIcon={rescue.skill_match === 'not_recommended' ? <WarningIcon /> : <EmergencyIcon />}
             fullWidth
+            disabled={rescue.skill_match === 'not_recommended'} // ← This line is CRITICAL
             sx={{
-              ...(rescue.urgency === 'EMERGENCY' && {
+              ...(rescue.urgency === 'EMERGENCY' && rescue.skill_match !== 'not_recommended' && {
                 background: 'linear-gradient(45deg, #f44336 30%, #ff1744 90%)',
                 fontWeight: 'bold',
                 '&:hover': {
                   background: 'linear-gradient(45deg, #d32f2f 30%, #f44336 90%)',
                 }
+              }),
+              ...(rescue.skill_match === 'not_recommended' && {
+                backgroundColor: '#ffcdd2 !important',
+                color: '#c62828 !important',
+                cursor: 'not-allowed',
+                '&:hover': {
+                  backgroundColor: '#ffcdd2 !important',
+                }
               })
             }}
           >
-            {rescue.urgency === 'EMERGENCY' ? 'RESPOND NOW' : 'ACCEPT RESCUE'}
+            {rescue.skill_match === 'not_recommended' ? 'COMPLETE TRAINING FIRST' :
+             rescue.urgency === 'EMERGENCY' ? 'RESPOND NOW' : 'ACCEPT RESCUE'}
           </Button>
         </CardActions>
       </Card>
@@ -712,13 +860,22 @@ function VolunteerHub() {
       </Box>
 
       <TabPanel value={tabValue} index={0}>
-        <Typography variant="h6" gutterBottom sx={{ color: '#f44336', display: 'flex', alignItems: 'center' }}>
-          <WarningIcon sx={{ mr: 1 }} />
-          Emergency Animal Rescues
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-          Immediate response needed for animals in distress. GPS tracking will be enabled during rescue operations.
-        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography variant="h6" sx={{ color: '#f44336', display: 'flex', alignItems: 'center' }}>
+           <WarningIcon sx={{ mr: 1 }} />
+           Emergency Animal Rescues
+          </Typography>
+  
+          <Button
+            variant="outlined"
+            onClick={refreshVolunteerQualifications}
+            startIcon={<RefreshIcon />}
+            size="small"
+            sx={{ minWidth: 'auto' }}
+          >
+            Refresh Qualifications
+          </Button>
+        </Box>
         
         {rescues.length === 0 ? (
           <Alert severity="info">
