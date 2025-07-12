@@ -41,6 +41,25 @@ class Report(models.Model):
         ('WITH_BABIES', 'With Babies'),
         ('UNKNOWN', 'Unknown'),
     )
+
+    # NEW: Animal size choices for volunteer safety
+    SIZE_CHOICES = (
+        ('SMALL', 'Small (under 25 lbs)'),
+        ('MEDIUM', 'Medium (25-60 lbs)'), 
+        ('LARGE', 'Large (60-100 lbs)'),
+        ('EXTRA_LARGE', 'Extra Large (over 100 lbs)'),
+        ('UNKNOWN', 'Size Unknown'),
+    )
+
+    # NEW: Behavior/aggression choices for volunteer safety  
+    BEHAVIOR_CHOICES = (
+        ('FRIENDLY', 'Friendly/Approachable'),
+        ('NEUTRAL', 'Calm/Neutral'),
+        ('SCARED', 'Scared/Timid'),
+        ('DEFENSIVE', 'Defensive/Protective'),
+        ('AGGRESSIVE', 'Aggressive/Dangerous'),
+        ('UNKNOWN', 'Behavior Unknown'),
+    )
     
     # Your existing fields (KEEP EXACTLY AS IS)
     reporter = models.ForeignKey(
@@ -122,6 +141,26 @@ class Report(models.Model):
         blank=True,
         null=True,
         help_text="Structured animal condition (supplements text field)"
+    )
+
+    animal_size = models.CharField(
+        max_length=15, 
+        choices=SIZE_CHOICES, 
+        default='UNKNOWN',
+        help_text="Animal size for volunteer safety assessment"
+    )
+
+    animal_behavior = models.CharField(
+        max_length=15, 
+        choices=BEHAVIOR_CHOICES, 
+        default='UNKNOWN', 
+        help_text="Animal behavior for volunteer safety assessment"
+    )
+
+    special_handling_notes = models.TextField(
+        blank=True, 
+        null=True,
+        help_text="Special equipment or handling requirements"
     )
     
     # Additional rescue fields
@@ -233,6 +272,9 @@ class Report(models.Model):
     # NEW: Add rescue-related methods
     def save(self, *args, **kwargs):
         is_new = self.pk is None
+
+        if is_new and not self.animal_type:
+            self.animal_type = self.detect_animal_type()
         
         # Set urgency based on condition if not explicitly set
         if is_new and self.urgency_level == 'NORMAL':
@@ -279,6 +321,31 @@ class Report(models.Model):
                 return 'HIGH'
         
         return 'NORMAL'
+
+    def detect_animal_type(self):
+        """Auto-detect animal type from description and condition"""
+        # Check description for animal keywords
+        text_to_check = []
+        if self.description:
+            text_to_check.append(self.description.lower())
+        if self.animal_condition:
+            text_to_check.append(self.animal_condition.lower())
+    
+        combined_text = ' '.join(text_to_check)
+    
+        # Animal type detection
+        if any(word in combined_text for word in ['dog', 'puppy', 'canine', 'pup']):
+            return 'DOG'
+        elif any(word in combined_text for word in ['cat', 'kitten', 'feline', 'kitty']):
+            return 'CAT'
+        elif any(word in combined_text for word in ['bird', 'chicken', 'duck', 'pigeon']):
+            return 'BIRD'
+        elif any(word in combined_text for word in ['rabbit', 'bunny']):
+            return 'RABBIT'
+    
+        return 'OTHER'  # Default fallback
+
+    
     
     def auto_assign_volunteers(self):
         """Automatically assign volunteers to high-priority reports"""
