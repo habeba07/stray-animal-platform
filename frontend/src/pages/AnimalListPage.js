@@ -66,6 +66,8 @@ function AnimalListPage() {
   const [genderFilter, setGenderFilter] = useState('');
   const [priorityFilter, setPriorityFilter] = useState(''); // NEW
   const [showFilters, setShowFilters] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetchAnimals();
@@ -76,11 +78,13 @@ function AnimalListPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animals, searchTerm, animalTypeFilter, statusFilter, genderFilter, priorityFilter, user]);
 
-  const fetchAnimals = async () => {
+  const fetchAnimals = async (url = '/animals/') => {
     try {
       setLoading(true);
-      const response = await api.get('/animals/');
+      const response = await api.get(url);
       console.log('Animals data received:', response.data);
+
+      setApiResponse(response.data);
       setAnimals(response.data.results || []);
       setLoading(false);
     } catch (err) {
@@ -89,6 +93,20 @@ function AnimalListPage() {
       setLoading(false);
     }
   };
+
+  const fetchPage = (pageUrl) => {
+    if (pageUrl) {
+       // Extract just the path and query from the full URL
+       const url = pageUrl.replace('https://pawrescue-backend.onrender.com/api', '');
+       fetchAnimals(url);
+    
+       // Update current page number
+       const pageMatch = pageUrl.match(/page=(\d+)/);
+       if (pageMatch) {
+         setCurrentPage(parseInt(pageMatch[1]));
+       }
+     }
+   };
 
   const applyFilters = () => {
     let filtered = [...animals];
@@ -380,7 +398,10 @@ function AnimalListPage() {
 
       {/* Results Count */}
       <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-        Showing {filteredAnimals.length} of {animals.length} animals
+        Showing {filteredAnimals.length} of {apiResponse?.count || animals.length} animals
+        {apiResponse && apiResponse.count > 20 && (
+          <span> (Page {currentPage} of {Math.ceil(apiResponse.count / 20)})</span>
+        )}
         {user?.user_type === 'SHELTER' && getUrgentCount() > 0 && (
           <Chip 
             label={`${getUrgentCount()} URGENT`} 
@@ -390,6 +411,31 @@ function AnimalListPage() {
           />
         )}
       </Typography>
+
+      {/* Pagination Controls */}
+      {apiResponse && (apiResponse.next || apiResponse.previous) && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
+          <Button
+            variant="outlined"
+            disabled={!apiResponse.previous}
+            onClick={() => fetchPage(apiResponse.previous)}
+            sx={{ mr: 2 }}
+          >
+            Previous Page
+          </Button>
+          <Typography variant="body2" sx={{ mx: 2 }}>
+            Page {currentPage} of {Math.ceil(apiResponse.count / 20)}
+          </Typography>
+          <Button
+            variant="outlined"
+            disabled={!apiResponse.next}
+            onClick={() => fetchPage(apiResponse.next)}
+          >
+            Next Page
+          </Button>
+        </Box>
+      )}
+
 
       {/* Animals Grid */}
       {filteredAnimals.length === 0 ? (
