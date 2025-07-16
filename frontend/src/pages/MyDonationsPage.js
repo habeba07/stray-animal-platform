@@ -459,7 +459,7 @@ function MyDonationsPage() {
                 gap: 2
               }}
             >
-              <MoneyIcon sx={{ fontSize: '1.2em', color: customTheme.primary }} />
+            
               My Donations
             </Typography>
             <Typography 
