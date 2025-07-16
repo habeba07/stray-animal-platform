@@ -230,6 +230,49 @@ function VolunteerEmergencyReport() {
     }
   };
 
+  const handleEmergencyCall = async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.post('/volunteers/rescue-assignments/emergency_call/', {
+        message: 'Emergency assistance needed during field operation',
+        location: formData.location_details || `${position?.lat}, ${position?.lng}` || 'Current location'
+      });
+    
+      if (response.data.success) {
+        setSuccess(true);
+        alert(`Emergency call sent! ${response.data.coordinators_notified} coordinators notified.`);
+      }
+    } catch (error) {
+      console.error('Error sending emergency call:', error);
+      setError('Failed to send emergency call. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleBackupRequest = async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.post('/volunteers/rescue-assignments/request_backup/', {
+        message: 'Need backup assistance for current rescue operation',
+        location: formData.location_details || `${position?.lat}, ${position?.lng}` || 'Current location',
+        equipment_needed: formData.equipment_needed,
+        report_id: formData.related_assignment_id || null
+      });
+    
+      if (response.data.success) {
+        setSuccess(true);
+        setFormData(prev => ({ ...prev, backup_requested: true }));
+        alert(`Backup request sent! ${response.data.volunteers_notified} volunteers notified.`);
+      }
+    } catch (error) {
+      console.error('Error requesting backup:', error);
+      setError('Failed to request backup. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Box sx={{ 
       minHeight: '100vh', 
@@ -575,6 +618,8 @@ function VolunteerEmergencyReport() {
                       <Button
                         fullWidth
                         variant="contained"
+                        onClick={handleEmergencyCall}
+                        disabled={isLoading}
                         sx={{ 
                           py: 2,
                           backgroundColor: 'rgba(255,255,255,0.2)',
@@ -591,14 +636,15 @@ function VolunteerEmergencyReport() {
                       <Button
                         fullWidth
                         variant="contained"
+                        onClick={handleBackupRequest}
+                        disabled={isLoading}
                         sx={{ 
                           py: 2,
-                          backgroundColor: 'rgba(255,255,255,0.2)',
+                          backgroundColor: formData.backup_requested ? 'rgba(76,175,80,0.8)' : 'rgba(255,255,255,0.2)',
                           color: 'white',
-                          '&:hover': { backgroundColor: 'rgba(255,255,255,0.3)' }
+                          '&:hover': { backgroundColor: formData.backup_requested ? 'rgba(76,175,80,0.9)' : 'rgba(255,255,255,0.3)' }
                         }}
                         startIcon={<WarningIcon />}
-                        onClick={() => setFormData(prev => ({ ...prev, backup_requested: !prev.backup_requested }))}
                       >
                         {formData.backup_requested ? '✅ Backup Requested' : 'Request Backup'}
                       </Button>

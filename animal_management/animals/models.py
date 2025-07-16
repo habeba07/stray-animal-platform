@@ -85,6 +85,7 @@ class Animal(models.Model):
     
     # Media (EXISTING - keep as is)
     photos = models.JSONField(blank=True, null=True)
+    documents = models.JSONField(blank=True, null=True, help_text="Medical records, certificates, and other documents")
     
     # Timestamps (EXISTING - keep as is)
     created_at = models.DateTimeField(auto_now_add=True)

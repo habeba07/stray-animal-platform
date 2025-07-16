@@ -12,6 +12,8 @@ import {
   MenuItem,
   Grid,
   Alert,
+  Typography,
+  Divider,
 } from '@mui/material';
 
 const ANIMAL_TYPES = [
@@ -26,6 +28,28 @@ const GENDER_TYPES = [
   { value: 'UNKNOWN', label: 'Unknown' },
 ];
 
+// NEW: Status options for shelter workflow
+const STATUS_TYPES = [
+  { value: 'REPORTED', label: 'Reported' },
+  { value: 'RESCUED', label: 'Rescued' },
+  { value: 'IN_SHELTER', label: 'In Shelter' },
+  { value: 'UNDER_TREATMENT', label: 'Under Treatment' },
+  { value: 'QUARANTINE', label: 'In Quarantine' },
+  { value: 'URGENT_MEDICAL', label: 'Urgent Medical Attention' },
+  { value: 'READY_FOR_TRANSFER', label: 'Ready for Transfer' },
+  { value: 'AVAILABLE', label: 'Available for Adoption' },
+  { value: 'ADOPTED', label: 'Adopted' },
+  { value: 'RETURNED', label: 'Returned to Owner' },
+];
+
+// NEW: Priority levels for medical/emergency cases
+const PRIORITY_LEVELS = [
+  { value: 'LOW', label: 'Low Priority' },
+  { value: 'NORMAL', label: 'Normal Priority' },
+  { value: 'HIGH', label: 'High Priority' },
+  { value: 'EMERGENCY', label: 'Emergency' },
+];
+
 function EditAnimalForm({ open, onClose, animal, onSave }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -35,6 +59,8 @@ function EditAnimalForm({ open, onClose, animal, onSave }) {
     age_estimate: '',
     weight: '',
     color: '',
+    status: '', // NEW: Animal status
+    priority_level: '', // NEW: Priority level
     health_status: '',
     behavior_notes: '',
     special_needs: '',
@@ -53,6 +79,8 @@ function EditAnimalForm({ open, onClose, animal, onSave }) {
         age_estimate: animal.age_estimate || '',
         weight: animal.weight || '',
         color: animal.color || '',
+        status: animal.status || '', // NEW: Include status
+        priority_level: animal.priority_level || '', // NEW: Include priority
         health_status: animal.health_status || '',
         behavior_notes: animal.behavior_notes || '',
         special_needs: animal.special_needs || '',
@@ -112,6 +140,56 @@ function EditAnimalForm({ open, onClose, animal, onSave }) {
           )}
           
           <Grid container spacing={2}>
+            {/* STATUS AND PRIORITY SECTION - NEW */}
+            <Grid item xs={12}>
+              <Typography variant="h6" sx={{ mb: 1, color: '#d32f2f' }}>
+                🏥 Status & Priority Management
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth variant="outlined" required>
+                <InputLabel>Animal Status</InputLabel>
+                <Select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  label="Animal Status"
+                >
+                  {STATUS_TYPES.map((status) => (
+                    <MenuItem key={status.value} value={status.value}>
+                      {status.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth variant="outlined" required>
+                <InputLabel>Priority Level</InputLabel>
+                <Select
+                  name="priority_level"
+                  value={formData.priority_level}
+                  onChange={handleChange}
+                  label="Priority Level"
+                >
+                  {PRIORITY_LEVELS.map((priority) => (
+                    <MenuItem key={priority.value} value={priority.value}>
+                      {priority.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Divider sx={{ my: 2 }} />
+              <Typography variant="h6" sx={{ mb: 1 }}>
+                📋 Basic Information
+              </Typography>
+            </Grid>
+
             {/* Basic Information */}
             <Grid item xs={12} sm={6}>
               <TextField
@@ -220,6 +298,13 @@ function EditAnimalForm({ open, onClose, animal, onSave }) {
               />
             </Grid>
 
+            <Grid item xs={12}>
+              <Divider sx={{ my: 2 }} />
+              <Typography variant="h6" sx={{ mb: 1 }}>
+                🏥 Health & Behavior Information
+              </Typography>
+            </Grid>
+
             {/* Health and Behavior */}
             <Grid item xs={12}>
               <TextField
@@ -231,6 +316,7 @@ function EditAnimalForm({ open, onClose, animal, onSave }) {
                 variant="outlined"
                 multiline
                 rows={2}
+                placeholder="Current health condition, treatments, medications..."
               />
             </Grid>
 

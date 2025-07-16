@@ -9,6 +9,8 @@ class Notification(models.Model):
         ('DONATION_RECEIVED', 'Donation Received'),
         ('ANIMAL_UPDATE', 'Animal Status Update'),
         ('SYSTEM_MESSAGE', 'System Message'),
+        ('EMERGENCY_RESCUE', 'Emergency Rescue Alert'),
+        ('EMERGENCY_UPDATE', 'Emergency Update'),
     )
 
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notifications')

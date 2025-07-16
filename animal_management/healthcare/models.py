@@ -210,3 +210,51 @@ def consume_medical_supply_inventory(sender, instance, created, **kwargs):
                 print(f"Warning: Insufficient inventory for {instance.inventory_item.name}")
         except Exception as e:
             print(f"Error consuming medical supply inventory: {e}")
+
+class DailyCareLog(models.Model):
+    CARE_TYPES = (
+        ('FEEDING', 'Feeding'),
+        ('EXERCISE', 'Exercise/Walk'),
+        ('GROOMING', 'Grooming'),
+        ('OBSERVATION', 'Daily Observation'),
+        ('CLEANING', 'Kennel/Area Cleaning'),
+        ('MEDICATION', 'Medication Administration'),
+        ('SOCIALIZATION', 'Socialization Activity'),
+        ('OTHER', 'Other Care Activity'),
+    )
+    
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='daily_care_logs')
+    staff_member = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE,
+        related_name='care_logs_created'
+    )
+    care_type = models.CharField(max_length=20, choices=CARE_TYPES)
+    date_time = models.DateTimeField(default=timezone.now)
+    
+    # Optional fields depending on care type
+    duration_minutes = models.PositiveIntegerField(
+        null=True, 
+        blank=True,
+        help_text="Duration in minutes (for exercise, grooming, etc.)"
+    )
+    amount = models.CharField(
+        max_length=100, 
+        blank=True, 
+        null=True,
+        help_text="Amount given (for feeding, medication, etc.)"
+    )
+    notes = models.TextField(
+        blank=True,
+        help_text="Detailed notes about the care activity"
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-date_time']
+        verbose_name_plural = "Daily care logs"
+        
+    def __str__(self):
+        return f"{self.animal.name or 'Unnamed'} - {self.get_care_type_display()} - {self.date_time.strftime('%Y-%m-%d %H:%M')}"

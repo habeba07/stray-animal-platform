@@ -18,12 +18,16 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  Tooltip,
   Alert,
   Badge,
   InputAdornment,
   Paper,
-  CircularProgress
+  CircularProgress,
+  Container,
+  Grid,
+  Fade,
+  Slide,
+  alpha,
 } from '@mui/material';
 import {
   CheckCircle as ApproveIcon,
@@ -36,15 +40,35 @@ import {
   Warning as WarningIcon,
   Phone as PhoneIcon
 } from '@mui/icons-material';
+import { keyframes } from '@mui/system';
 
+// Custom theme colors
 const customTheme = {
-  primary: '#8d6e63',
-  secondary: '#81c784',
-  success: '#4caf50',
-  grey: '#f3e5ab',
-  accent: '#ff8a65',
-  background: '#fff8e1',
+  primary: '#8d6e63', // Warm Brown
+  secondary: '#81c784', // Soft Green
+  success: '#4caf50', // Fresh Green
+  grey: '#f3e5ab', // Warm Cream
+  accent: '#ff8a65', // Gentle Orange
+  background: '#fff8e1', // Soft Cream
 };
+
+// Keyframe animations
+const float = keyframes`
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+`;
+
+const slideInUp = keyframes`
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+`;
 
 const EnhancedAdoptionApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -90,7 +114,7 @@ const EnhancedAdoptionApplications = () => {
     if (!score) return '#9e9e9e';
     if (score >= 90) return customTheme.success;
     if (score >= 75) return customTheme.secondary;
-    if (score >= 60) return '#ff9800';
+    if (score >= 60) return customTheme.accent;
     return '#f44336';
   };
 
@@ -128,7 +152,7 @@ const EnhancedAdoptionApplications = () => {
   const getPriorityIcon = (priority) => {
     switch (priority) {
       case 'urgent': return <WarningIcon sx={{ color: '#f44336', fontSize: 20 }} />;
-      case 'high': return <StarIcon sx={{ color: '#ff9800', fontSize: 20 }} />;
+      case 'high': return <StarIcon sx={{ color: customTheme.accent, fontSize: 20 }} />;
       default: return null;
     }
   };
@@ -216,250 +240,536 @@ const EnhancedAdoptionApplications = () => {
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
-        <CircularProgress />
+      <Box 
+        sx={{ 
+          minHeight: '100vh',
+          background: `
+            radial-gradient(circle at 20% 80%, ${alpha(customTheme.accent, 0.2)} 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, ${alpha(customTheme.secondary, 0.2)} 0%, transparent 50%),
+            linear-gradient(135deg, ${customTheme.background} 0%, ${alpha(customTheme.grey, 0.3)} 100%)
+          `,
+          display: 'flex', 
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <Box sx={{ textAlign: 'center' }}>
+          <CircularProgress 
+            size={60} 
+            thickness={4}
+            sx={{ color: customTheme.primary, mb: 2 }}
+          />
+          <Typography variant="h6" sx={{ color: customTheme.primary, fontWeight: 500 }}>
+            Loading applications...
+          </Typography>
+        </Box>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      {/* Header with search and stats - Staff Only */}
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          {isStaff ? 'All Adoption Applications' : 'Adoption Applications'}
-        </Typography>
-        
-        {isStaff && (
-          <>
-            {/* Quick Stats */}
-            <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
-              <Chip 
-                label={`${applications.filter(a => a.status === 'PENDING').length} Pending Review`}
-                color="warning"
-                icon={<WarningIcon />}
-              />
-              <Chip 
-                label={`${applications.filter(a => a.status === 'APPROVED').length} Approved`}
-                color="success"
-                icon={<CheckCircle />}
-              />
-              <Chip 
-                label={`${applications.filter(a => a.compatibility_score >= 90).length} High Match (90%+)`}
-                color="primary"
-                icon={<StarIcon />}
-              />
-            </Box>
-
-            {/* Search */}
-            <TextField
-              fullWidth
-              placeholder="Search by animal name or applicant..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{ maxWidth: 400 }}
-            />
-          </>
-        )}
+    <Box sx={{ 
+      minHeight: '100vh',
+      background: `
+        radial-gradient(circle at 20% 80%, ${alpha(customTheme.accent, 0.2)} 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, ${alpha(customTheme.secondary, 0.2)} 0%, transparent 50%),
+        linear-gradient(135deg, ${customTheme.background} 0%, ${alpha(customTheme.grey, 0.3)} 100%)
+      `,
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Floating Background Elements */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '5%',
+          right: '5%',
+          animation: `${float} 8s ease-in-out infinite`,
+          opacity: 0.3,
+          zIndex: 0
+        }}
+      >
+        <CheckCircle sx={{ fontSize: 40, color: customTheme.success, transform: 'rotate(15deg)' }} />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '3%',
+          animation: `${float} 12s ease-in-out infinite`,
+          animationDelay: '2s',
+          opacity: 0.3,
+          zIndex: 0
+        }}
+      >
+        <StarIcon sx={{ fontSize: 35, color: customTheme.accent, transform: 'rotate(-20deg)' }} />
       </Box>
 
-      {!isStaff && (
-        <Alert severity="info" sx={{ mb: 3 }}>
-          You are viewing adoption applications in read-only mode. Contact staff for application processing.
-        </Alert>
-      )}
-
-      {/* Applications Table */}
-      <TableContainer component={Paper} sx={{ backgroundColor: customTheme.background }}>
-        <Table>
-          <TableHead>
-            <TableRow sx={{ backgroundColor: customTheme.primary }}>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Priority</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>ID</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Animal</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Applicant</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Status</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Match Score</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Days Waiting</TableCell>
-              <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedApplications.map((app) => {
-              const priority = getPriorityLevel(app);
-              const daysWaiting = calculateDaysWaiting(app.created_at);
-              const isPending = app.status === 'PENDING';
-              
-              return (
-                <TableRow 
-                  key={app.id}
-                  sx={{
-                    backgroundColor: isPending ? '#fff3e0' : 'transparent',
-                    '&:hover': { backgroundColor: '#f5f5f5' },
-                    borderLeft: priority === 'urgent' ? '4px solid #f44336' : 
-                               priority === 'high' ? '4px solid #ff9800' : 'none'
-                  }}
-                >
-                  <TableCell>
-                    {getPriorityIcon(priority)}
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Typography variant="body2" fontWeight="bold">
-                      #{app.id}
-                    </Typography>
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Typography variant="body2">
-                      {app.animal_details?.name || 'Unknown'}({app.animal_details?.animal_type || app.animal_details?.type || 'Unknown'})
-                    </Typography>
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Typography variant="body2">
-                      {app.applicant_details?.username || app.applicant_details?.name || 'Unknown'}
-                    </Typography>
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Chip
-                      label={app.status}
-                      color={app.status === 'PENDING' ? 'warning' : 
-                             app.status === 'APPROVED' ? 'success' : 'default'}
-                      size="small"
-                    />
-                  </TableCell>
-                  
-                  <TableCell>
-                    {app.compatibility_score ? (
-                      <Tooltip title={getCompatibilityTooltip(app.compatibility_score, app)}>
-                        <Chip
-                          label={`${app.compatibility_score}%`}
-                          size="small"
+      <Container maxWidth="lg" sx={{ py: 4, position: 'relative', zIndex: 1 }}>
+        {/* Header Section */}
+        <Fade in timeout={800}>
+          <Box sx={{ mb: 4 }}>
+            <Typography 
+              variant="h3" 
+              component="h1" 
+              sx={{ 
+                fontWeight: 800,
+                background: `linear-gradient(45deg, ${customTheme.primary} 30%, ${customTheme.accent} 90%)`,
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                mb: 2,
+                textAlign: 'center'
+              }}
+            >
+              {isStaff ? 'Adoption Applications Management' : 'Adoption Applications'}
+            </Typography>
+            
+            {isStaff && (
+              <>
+                {/* Quick Stats */}
+                <Slide direction="up" in timeout={1000}>
+                  <Grid container spacing={3} sx={{ mb: 4, justifyContent: 'center' }}>
+                    <Grid item>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 2,
+                          borderRadius: 3,
+                          background: `linear-gradient(135deg, ${alpha(customTheme.accent, 0.1)} 0%, ${alpha(customTheme.background, 0.8)} 100%)`,
+                          border: `1px solid ${alpha(customTheme.accent, 0.3)}`,
+                          textAlign: 'center',
+                          minWidth: 140,
+                          '&:hover': {
+                            transform: 'translateY(-2px)',
+                            boxShadow: `0 8px 25px ${alpha(customTheme.accent, 0.2)}`
+                          },
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        <Chip 
+                          label={`${applications.filter(a => a.status === 'PENDING').length} Pending Review`}
+                          icon={<WarningIcon />}
                           sx={{
-                            backgroundColor: getCompatibilityColor(app.compatibility_score),
-                            color: 'white',
-                            fontWeight: 'bold'
+                            backgroundColor: customTheme.accent,
+                            color: '#ffffff',
+                            fontWeight: 600,
+                            '& .MuiChip-icon': { color: '#ffffff' }
                           }}
                         />
-                      </Tooltip>
-                    ) : (
-                      <Typography variant="body2" color="text.secondary">N/A</Typography>
-                    )}
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Typography 
-                      variant="body2" 
-                      color={daysWaiting > 14 ? 'error' : daysWaiting > 7 ? 'warning.main' : 'text.primary'}
-                      fontWeight={daysWaiting > 7 ? 'bold' : 'normal'}
-                    >
-                      {daysWaiting} days
-                    </Typography>
-                  </TableCell>
-                  
-                  <TableCell>
-                    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                      {isStaff && isPending && (
-                        <>
-                          <Tooltip title="Quick Approve">
-                            <IconButton
-                              size="small"
-                              onClick={() => handleQuickAction('approve', app)}
-                              sx={{ 
-                                color: customTheme.success,
-                                '&:hover': { backgroundColor: customTheme.success + '20' }
-                              }}
-                            >
-                              <ApproveIcon />
-                            </IconButton>
-                          </Tooltip>
-                          
-                          <Tooltip title="Quick Reject">
-                            <IconButton
-                              size="small"
-                              onClick={() => handleQuickAction('reject', app)}
-                              sx={{ 
-                                color: '#f44336',
-                                '&:hover': { backgroundColor: '#f4433620' }
-                              }}
-                            >
-                              <RejectIcon />
-                            </IconButton>
-                          </Tooltip>
-                        </>
-                      )}
-                      
-                      <Tooltip title="View Details">
-                        <IconButton
-                          size="small"
-                          onClick={() => window.open(`/adoption/applications/${app.id}`, '_blank')}
-                          sx={{ 
-                            color: customTheme.primary,
-                            '&:hover': { backgroundColor: customTheme.primary + '20' }
+                      </Paper>
+                    </Grid>
+                    
+                    <Grid item>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 2,
+                          borderRadius: 3,
+                          background: `linear-gradient(135deg, ${alpha(customTheme.success, 0.1)} 0%, ${alpha(customTheme.background, 0.8)} 100%)`,
+                          border: `1px solid ${alpha(customTheme.success, 0.3)}`,
+                          textAlign: 'center',
+                          minWidth: 140,
+                          '&:hover': {
+                            transform: 'translateY(-2px)',
+                            boxShadow: `0 8px 25px ${alpha(customTheme.success, 0.2)}`
+                          },
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        <Chip 
+                          label={`${applications.filter(a => a.status === 'APPROVED').length} Approved`}
+                          icon={<CheckCircle />}
+                          sx={{
+                            backgroundColor: customTheme.success,
+                            color: '#ffffff',
+                            fontWeight: 600,
+                            '& .MuiChip-icon': { color: '#ffffff' }
                           }}
-                        >
-                          <ViewIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Box>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                        />
+                      </Paper>
+                    </Grid>
+                    
+                    <Grid item>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 2,
+                          borderRadius: 3,
+                          background: `linear-gradient(135deg, ${alpha(customTheme.secondary, 0.1)} 0%, ${alpha(customTheme.background, 0.8)} 100%)`,
+                          border: `1px solid ${alpha(customTheme.secondary, 0.3)}`,
+                          textAlign: 'center',
+                          minWidth: 140,
+                          '&:hover': {
+                            transform: 'translateY(-2px)',
+                            boxShadow: `0 8px 25px ${alpha(customTheme.secondary, 0.2)}`
+                          },
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        <Chip 
+                          label={`${applications.filter(a => a.compatibility_score >= 90).length} High Match (90%+)`}
+                          icon={<StarIcon />}
+                          sx={{
+                            backgroundColor: customTheme.secondary,
+                            color: '#ffffff',
+                            fontWeight: 600,
+                            '& .MuiChip-icon': { color: '#ffffff' }
+                          }}
+                        />
+                      </Paper>
+                    </Grid>
+                  </Grid>
+                </Slide>
 
-      {/* Action Confirmation Dialog */}
-      <Dialog open={actionDialog.open} onClose={() => setActionDialog({ open: false, type: '', app: null })}>
-        <DialogTitle>
-          {actionDialog.type === 'approve' ? 'Approve Application' : 'Reject Application'}
-        </DialogTitle>
-        <DialogContent>
-          <Typography variant="body1" gutterBottom>
-            {actionDialog.type === 'approve' 
-              ? `Approve adoption application for ${actionDialog.app?.animal_details?.name || 'this animal'}?`
-              : `Reject adoption application for ${actionDialog.app?.animal_details?.name || 'this animal'}?`
-            }
-          </Typography>
-          <TextField
-            fullWidth
-            multiline
-            rows={3}
-            label="Review Notes"
-            placeholder={actionDialog.type === 'approve' 
-              ? "Add any approval notes or conditions..."
-              : "Reason for rejection..."
-            }
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            sx={{ mt: 2 }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setActionDialog({ open: false, type: '', app: null })}>
-            Cancel
-          </Button>
-          <Button
-            onClick={confirmAction}
-            disabled={updating}
-            variant="contained"
-            color={actionDialog.type === 'approve' ? 'success' : 'error'}
+                {/* Search */}
+                <Fade in timeout={1200}>
+                  <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center' }}>
+                    <TextField
+                      placeholder="Search by animal name or applicant..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <SearchIcon sx={{ color: customTheme.primary }} />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{ 
+                        maxWidth: 400,
+                        '& .MuiOutlinedInput-root': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                          borderRadius: 3,
+                          '& fieldset': {
+                            borderColor: alpha(customTheme.primary, 0.3),
+                            borderWidth: 2
+                          },
+                          '&:hover fieldset': {
+                            borderColor: customTheme.primary
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: customTheme.primary
+                          }
+                        }
+                      }}
+                    />
+                  </Box>
+                </Fade>
+              </>
+            )}
+          </Box>
+        </Fade>
+
+        {!isStaff && (
+          <Fade in timeout={800}>
+            <Alert 
+              severity="info" 
+              sx={{ 
+                mb: 4,
+                borderRadius: 3,
+                backgroundColor: alpha(customTheme.secondary, 0.1),
+                border: `1px solid ${alpha(customTheme.secondary, 0.3)}`,
+                '& .MuiAlert-icon': { color: customTheme.secondary }
+              }}
+            >
+              <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                You are viewing adoption applications in read-only mode. Contact staff for application processing.
+              </Typography>
+            </Alert>
+          </Fade>
+        )}
+
+        {/* Applications Table */}
+        <Slide direction="up" in timeout={1000}>
+          <Card
+            elevation={0}
+            sx={{
+              borderRadius: 4,
+              background: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(20px)',
+              border: `2px solid ${alpha(customTheme.primary, 0.1)}`,
+              overflow: 'hidden'
+            }}
           >
-            {updating ? <CircularProgress size={20} /> : 
-             (actionDialog.type === 'approve' ? 'Approve' : 'Reject')}
-          </Button>
-        </DialogActions>
-      </Dialog>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow 
+                    sx={{ 
+                      background: `linear-gradient(135deg, ${customTheme.primary} 0%, ${alpha(customTheme.primary, 0.8)} 100%)`,
+                    }}
+                  >
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Priority</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>ID</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Animal</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Applicant</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Status</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Match Score</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Days Waiting</TableCell>
+                    <TableCell sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1rem' }}>Actions</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {sortedApplications.map((app, index) => {
+                    const priority = getPriorityLevel(app);
+                    const daysWaiting = calculateDaysWaiting(app.created_at);
+                    const isPending = app.status === 'PENDING';
+                    
+                    return (
+                      <TableRow 
+                        key={app.id}
+                        sx={{
+                          backgroundColor: isPending ? alpha(customTheme.accent, 0.08) : 'transparent',
+                          borderLeft: priority === 'urgent' ? `4px solid #f44336` : 
+                                     priority === 'high' ? `4px solid ${customTheme.accent}` : 'none',
+                          '&:hover': { 
+                            backgroundColor: alpha(customTheme.primary, 0.05),
+                            transform: 'translateX(2px)',
+                          },
+                          transition: 'all 0.3s ease',
+                          animation: `${slideInUp} ${0.5 + index * 0.1}s ease-out`
+                        }}
+                      >
+                        <TableCell>
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {getPriorityIcon(priority)}
+                          </Box>
+                        </TableCell>
+                        
+                        <TableCell>
+                          <Chip
+                            label={`#${app.id}`}
+                            size="small"
+                            sx={{
+                              backgroundColor: alpha(customTheme.primary, 0.1),
+                              color: customTheme.primary,
+                              fontWeight: 600
+                            }}
+                          />
+                        </TableCell>
+                        
+                        <TableCell>
+                          <Typography variant="body1" sx={{ fontWeight: 600, color: customTheme.primary }}>
+                            {app.animal_details?.name || 'Unknown'}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: alpha(customTheme.primary, 0.7) }}>
+                            ({app.animal_details?.animal_type || app.animal_details?.type || 'Unknown'})
+                          </Typography>
+                        </TableCell>
+                        
+                        <TableCell>
+                          <Typography variant="body1" sx={{ fontWeight: 500, color: customTheme.primary }}>
+                            {app.applicant_details?.username || app.applicant_details?.name || 'Unknown'}
+                          </Typography>
+                        </TableCell>
+                        
+                        <TableCell>
+                          <Chip
+                            label={app.status}
+                            size="small"
+                            sx={{
+                              backgroundColor: app.status === 'PENDING' ? customTheme.accent : 
+                                             app.status === 'APPROVED' ? customTheme.success : '#9e9e9e',
+                              color: '#ffffff',
+                              fontWeight: 600
+                            }}
+                          />
+                        </TableCell>
+                        
+                        <TableCell>
+                          {app.compatibility_score ? (
+                            <Chip
+                              label={`${app.compatibility_score}%`}
+                              size="small"
+                              sx={{
+                                backgroundColor: getCompatibilityColor(app.compatibility_score),
+                                color: '#ffffff',
+                                fontWeight: 700
+                              }}
+                            />
+                          ) : (
+                            <Typography variant="body2" sx={{ color: alpha(customTheme.primary, 0.5) }}>
+                              N/A
+                            </Typography>
+                          )}
+                        </TableCell>
+                        
+                        <TableCell>
+                          <Typography 
+                            variant="body1" 
+                            sx={{
+                              color: daysWaiting > 14 ? '#f44336' : 
+                                     daysWaiting > 7 ? customTheme.accent : customTheme.primary,
+                              fontWeight: daysWaiting > 7 ? 700 : 500
+                            }}
+                          >
+                            {daysWaiting} days
+                          </Typography>
+                        </TableCell>
+                        
+                        <TableCell>
+                          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                            {isStaff && isPending && (
+                              <>
+                                <IconButton
+                                  size="small"
+                                  onClick={() => handleQuickAction('approve', app)}
+                                  sx={{ 
+                                    backgroundColor: alpha(customTheme.success, 0.1),
+                                    color: customTheme.success,
+                                    '&:hover': { 
+                                      backgroundColor: customTheme.success,
+                                      color: '#ffffff',
+                                      transform: 'scale(1.1)'
+                                    },
+                                    transition: 'all 0.3s ease'
+                                  }}
+                                >
+                                  <ApproveIcon />
+                                </IconButton>
+                                
+                                <IconButton
+                                  size="small"
+                                  onClick={() => handleQuickAction('reject', app)}
+                                  sx={{ 
+                                    backgroundColor: alpha('#f44336', 0.1),
+                                    color: '#f44336',
+                                    '&:hover': { 
+                                      backgroundColor: '#f44336',
+                                      color: '#ffffff',
+                                      transform: 'scale(1.1)'
+                                    },
+                                    transition: 'all 0.3s ease'
+                                  }}
+                                >
+                                  <RejectIcon />
+                                </IconButton>
+                              </>
+                            )}
+                            
+                            <IconButton
+                              size="small"
+                              onClick={() => window.open(`/adoption/applications/${app.id}`, '_blank')}
+                              sx={{ 
+                                backgroundColor: alpha(customTheme.primary, 0.1),
+                                color: customTheme.primary,
+                                '&:hover': { 
+                                  backgroundColor: customTheme.primary,
+                                  color: '#ffffff',
+                                  transform: 'scale(1.1)'
+                                },
+                                transition: 'all 0.3s ease'
+                              }}
+                            >
+                              <ViewIcon />
+                            </IconButton>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Card>
+        </Slide>
+
+        {/* Action Confirmation Dialog */}
+        <Dialog 
+          open={actionDialog.open} 
+          onClose={() => setActionDialog({ open: false, type: '', app: null })}
+          PaperProps={{
+            sx: {
+              borderRadius: 4,
+              background: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(20px)',
+              border: `1px solid ${alpha(customTheme.primary, 0.2)}`
+            }
+          }}
+        >
+          <DialogTitle
+            sx={{
+              background: `linear-gradient(135deg, ${customTheme.primary} 0%, ${customTheme.accent} 100%)`,
+              color: '#ffffff',
+              fontWeight: 700
+            }}
+          >
+            {actionDialog.type === 'approve' ? 'Approve Application' : 'Reject Application'}
+          </DialogTitle>
+          <DialogContent sx={{ mt: 2 }}>
+            <Typography variant="body1" gutterBottom sx={{ color: customTheme.primary, fontWeight: 500 }}>
+              {actionDialog.type === 'approve' 
+                ? `Approve adoption application for ${actionDialog.app?.animal_details?.name || 'this animal'}?`
+                : `Reject adoption application for ${actionDialog.app?.animal_details?.name || 'this animal'}?`
+              }
+            </Typography>
+            <TextField
+              fullWidth
+              multiline
+              rows={3}
+              label="Review Notes"
+              placeholder={actionDialog.type === 'approve' 
+                ? "Add any approval notes or conditions..."
+                : "Reason for rejection..."
+              }
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              sx={{ 
+                mt: 2,
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: alpha(customTheme.primary, 0.3),
+                    borderWidth: 2
+                  },
+                  '&:hover fieldset': {
+                    borderColor: customTheme.primary
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: customTheme.primary
+                  }
+                },
+                '& .MuiInputLabel-root': {
+                  color: customTheme.primary,
+                  '&.Mui-focused': { color: customTheme.primary }
+                }
+              }}
+            />
+          </DialogContent>
+          <DialogActions sx={{ p: 3, pt: 1 }}>
+            <Button 
+              onClick={() => setActionDialog({ open: false, type: '', app: null })}
+              sx={{
+                color: customTheme.primary,
+                fontWeight: 600,
+                '&:hover': { backgroundColor: alpha(customTheme.primary, 0.05) }
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={confirmAction}
+              disabled={updating}
+              variant="contained"
+              sx={{
+                backgroundColor: actionDialog.type === 'approve' ? customTheme.success : '#f44336',
+                fontWeight: 700,
+                px: 3,
+                '&:hover': {
+                  backgroundColor: actionDialog.type === 'approve' ? 
+                    alpha(customTheme.success, 0.8) : alpha('#f44336', 0.8)
+                }
+              }}
+            >
+              {updating ? (
+                <CircularProgress size={20} sx={{ color: '#ffffff' }} />
+              ) : (
+                actionDialog.type === 'approve' ? 'Approve' : 'Reject'
+              )}
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
     </Box>
   );
 };

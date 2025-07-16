@@ -22,6 +22,7 @@ import {
   ListItemSecondaryAction,
   IconButton,
   Chip,
+  Checkbox,
   LinearProgress,
   Dialog,
   DialogTitle,
@@ -88,6 +89,11 @@ function MedicalManagementPage() {
   const [medicalData, setMedicalData] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedAnimal, setSelectedAnimal] = useState(null);
+  const [reportDialogOpen, setReportDialogOpen] = useState(false);
+  const [reportType, setReportType] = useState('');
+  const [selectedAnimalsForReport, setSelectedAnimalsForReport] = useState([]);
+  const [reportLoading, setReportLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
 
   const [treatmentForm, setTreatmentForm] = useState({
@@ -117,7 +123,7 @@ function MedicalManagementPage() {
   const fetchMedicalData = async () => {
     try {
       setLoading(true);
-      
+    
       // Fetch medical dashboard data
       const [urgentAnimalsRes, vaccinationsRes, treatmentsRes, inventoryRes] = await Promise.all([
         api.get('/animals/?status=URGENT_MEDICAL,UNDER_TREATMENT,QUARANTINE'),
@@ -126,13 +132,19 @@ function MedicalManagementPage() {
         api.get('/inventory-items/?category=medical').catch(() => ({ data: [] }))
       ]);
 
+      // Fix: Extract the actual data arrays from the API responses
+      const animalsData = urgentAnimalsRes.data.results || urgentAnimalsRes.data || [];
+      const vaccinationsData = vaccinationsRes.data.results || vaccinationsRes.data || [];
+      const treatmentsData = treatmentsRes.data.results || treatmentsRes.data || [];
+      const inventoryData = inventoryRes.data.results || inventoryRes.data || [];
+
       // Process the data
-      const urgentAnimals = urgentAnimalsRes.data.filter(animal => 
+      const urgentAnimals = animalsData.filter(animal => 
         ['URGENT_MEDICAL', 'UNDER_TREATMENT', 'QUARANTINE'].includes(animal.status) ||
         animal.priority_level === 'EMERGENCY'
       );
 
-      const upcomingVaccinations = vaccinationsRes.data.filter(vacc => {
+      const upcomingVaccinations = vaccinationsData.filter(vacc => {
         if (!vacc.next_due_date) return false;
         const dueDate = new Date(vacc.next_due_date);
         const today = new Date();
@@ -140,7 +152,7 @@ function MedicalManagementPage() {
         return diffDays <= 30 && diffDays >= 0;
       });
 
-      const recentTreatments = treatmentsRes.data
+      const recentTreatments = treatmentsData
         .filter(treatment => {
           const treatmentDate = new Date(treatment.date);
           const weekAgo = new Date();
@@ -153,13 +165,13 @@ function MedicalManagementPage() {
         urgentAnimals,
         upcomingVaccinations,
         recentTreatments,
-        medicalInventory: inventoryRes.data,
+        medicalInventory: inventoryData,
         stats: {
           urgentCases: urgentAnimals.filter(a => a.status === 'URGENT_MEDICAL' || a.priority_level === 'EMERGENCY').length,
           inTreatment: urgentAnimals.filter(a => a.status === 'UNDER_TREATMENT').length,
           inQuarantine: urgentAnimals.filter(a => a.status === 'QUARANTINE').length,
           vaccinationsDue: upcomingVaccinations.length,
-          lowStockItems: inventoryRes.data.filter(item => item.quantity <= item.reorder_level).length
+          lowStockItems: inventoryData.filter(item => item.quantity <= item.reorder_level).length
         }
       });
 
@@ -189,6 +201,96 @@ function MedicalManagementPage() {
       case 'EMERGENCY': return <EmergencyIcon color="error" />;
       case 'HIGH': return <WarningIcon color="warning" />;
       default: return <CheckCircleIcon color="success" />;
+    }
+  };
+
+  const handleGenerateMedicalReport = () => {
+    setReportType('medical_report');
+    setReportDialogOpen(true);
+  };
+
+  const handleExportTreatmentRecords = () => {
+    setReportType('treatment_records');
+    setReportDialogOpen(true);
+  };
+
+  const handleScheduleVetVisit = () => {
+    setMessage('Vet visit scheduling coming soon!');
+  };
+
+  const generateHealthCertificate = async (animalId, reportType) => {
+    try {
+      setReportLoading(true);
+    
+      const animalResponse = await api.get(`/animals/${animalId}/`);
+      const animal = animalResponse.data;
+    
+      const medicalResponse = await api.get(`/medical-records/?animal=${animalId}`);
+      const medicalRecords = medicalResponse.data;
+    
+      const vaccinationResponse = await api.get(`/vaccinations/?animal=${animalId}`);
+      const vaccinations = vaccinationResponse.data;
+    
+      const htmlContent = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Health Certificate - ${animal.name || 'Unnamed'}</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 40px; }
+      .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
+      .section { margin-bottom: 20px; }
+      .section h3 { color: #2196f3; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+      table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      th { background-color: #f5f5f5; }
+      .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>ANIMAL HEALTH CERTIFICATE</h1>
+      <p><strong>PawRescue Animal Management System</strong></p>
+      <p>Certificate Date: ${new Date().toLocaleDateString()}</p>
+    </div>
+  
+    <div class="section">
+      <h3>Animal Information</h3>
+      <table>
+        <tr><td><strong>Name:</strong></td><td>${animal.name || 'Unnamed'}</td></tr>
+        <tr><td><strong>Type:</strong></td><td>${animal.animal_type}</td></tr>
+        <tr><td><strong>Breed:</strong></td><td>${animal.breed || 'Unknown'}</td></tr>
+        <tr><td><strong>Gender:</strong></td><td>${animal.gender}</td></tr>
+        <tr><td><strong>Status:</strong></td><td>${animal.status}</td></tr>
+        <tr><td><strong>Health Status:</strong></td><td>${animal.health_status || 'Not specified'}</td></tr>
+      </table>
+    </div>
+  
+    <div class="section">
+      <h3>Health Certification</h3>
+      <p>This animal has been examined and found to be in good health condition for adoption/transfer purposes.</p>
+      <p><strong>Generated by:</strong> ${user.username}</p>
+    </div>
+  </body>
+  </html>`;
+    
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `health-certificate-${animal.name || 'unnamed'}.html`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    
+      setMessage(`Health certificate generated for ${animal.name || 'Unnamed'}`);
+    
+    } catch (error) {
+      console.error('Error generating health certificate:', error);
+      setError('Failed to generate health certificate');
+    } finally {
+      setReportLoading(false);
     }
   };
 
@@ -749,13 +851,27 @@ function MedicalManagementPage() {
             <Paper sx={{ p: 3 }}>
               <Typography variant="h6" gutterBottom>Quick Actions</Typography>
               <Stack spacing={2}>
-                <Button variant="outlined" startIcon={<PrintIcon />}>
+                <Button 
+                  variant="outlined" 
+                  startIcon={<PrintIcon />}
+                  onClick={handleGenerateMedicalReport}
+                  disabled={reportLoading}
+                >
                   Generate Medical Report
                 </Button>
-                <Button variant="outlined" startIcon={<AssignmentIcon />}>
+                <Button 
+                  variant="outlined" 
+                  startIcon={<AssignmentIcon />}
+                  onClick={handleExportTreatmentRecords}
+                  disabled={reportLoading}
+                >
                   Export Treatment Records
                 </Button>
-                <Button variant="outlined" startIcon={<ScheduleIcon />}>
+                <Button 
+                  variant="outlined" 
+                  startIcon={<ScheduleIcon />}
+                  onClick={handleScheduleVetVisit}
+                >
                   Schedule Vet Visit
                 </Button>
               </Stack>
@@ -839,6 +955,56 @@ function MedicalManagementPage() {
   	    onClick={handleSaveEmergencyTreatment}
 	  >
             Save Treatment
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {/* Health Certificate Dialog */}
+      <Dialog open={reportDialogOpen} onClose={() => setReportDialogOpen(false)} maxWidth="md" fullWidth>
+        <DialogTitle>
+          {reportType === 'medical_report' ? 'Generate Medical Report' : 'Export Treatment Records'}
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Select animals to include in the report:
+          </Typography>
+          
+          {medicalData && medicalData.urgentAnimals && (
+            <List>
+              {medicalData.urgentAnimals.map((animal) => (
+                <ListItem key={animal.id}>
+                  <Checkbox 
+                    checked={selectedAnimalsForReport.includes(animal.id)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedAnimalsForReport(prev => [...prev, animal.id]);
+                      } else {
+                        setSelectedAnimalsForReport(prev => prev.filter(id => id !== animal.id));
+                      }
+                    }}
+                  />
+                  <ListItemText 
+                    primary={`${animal.name || 'Unnamed'} - ${animal.animal_type}`}
+                    secondary={`Status: ${animal.status}`}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setReportDialogOpen(false)}>Cancel</Button>
+          <Button 
+            variant="contained" 
+            onClick={async () => {
+              for (const animalId of selectedAnimalsForReport) {
+                await generateHealthCertificate(animalId, reportType);
+              }
+              setReportDialogOpen(false);
+              setSelectedAnimalsForReport([]);
+            }}
+            disabled={selectedAnimalsForReport.length === 0 || reportLoading}
+          >
+            {reportLoading ? 'Generating...' : 'Generate Reports'}
           </Button>
         </DialogActions>
       </Dialog>

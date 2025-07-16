@@ -647,7 +647,7 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
             if not volunteer_profile.available_for_emergency:
                 critical_missing.append({
                     'type': 'authorization',
-                    'name': 'Emergency Response Authorization',
+                    'name': 'Setup needed: Enable animal handling experience, emergency availability, and GPS consent in your volunteer profile',
                     'action': 'Enable emergency availability in your profile settings'
                 })
             recommended_trainings.append('emergency-scene-management')
@@ -1124,17 +1124,22 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
             profile_data = {}
 
         # Get recent achievements
-        recent_achievements = request.user.achievements.order_by('-earned_at')[:5]
-        achievement_data = [
-            {
-                'name': ua.achievement.name,
-                'description': ua.achievement.description,
-                'category': ua.achievement.category,
-                'earned_at': ua.earned_at,
-                'points_reward': ua.achievement.points_reward
-            }
-            for ua in recent_achievements
-        ]
+
+        try:
+            recent_achievements = request.user.achievements.order_by('-earned_at')[:5]
+            achievement_data = [
+                {
+                    'name': ua.achievement.name,
+                    'description': ua.achievement.description,
+                    'category': ua.achievement.category,
+                    'earned_at': ua.earned_at.isoformat() if ua.earned_at else None,
+                    'points_reward': ua.achievement.points_reward
+                }
+                for ua in recent_achievements
+            ]
+        except Exception as e:
+            print(f"Error fetching achievements: {e}")
+            achievement_data = []
 
         # Get leaderboard position
         from community.services import get_leaderboard
@@ -1153,6 +1158,7 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
                 'week': stats_7_days,
                 'month': stats_30_days
             },
+
             'recent_achievements': achievement_data,
             'leaderboard_position': {
                 'rescue_rank': user_rank,
@@ -1160,8 +1166,176 @@ class RescueVolunteerAssignmentViewSet(viewsets.ModelViewSet):
             }
         })
 
+    @action(detail=False, methods=['post'])
+    def emergency_call(self, request):
+        """Handle emergency call requests"""
+        try:
+            message = request.data.get('message', 'Emergency assistance requested')
+            location = request.data.get('location', 'Unknown location')
         
-    
+            # Log emergency call
+            logger.info(f"Emergency call from volunteer {request.user.username}: {message}")
+        
+            # Create high-priority notification for all emergency coordinators
+            from django.contrib.auth import get_user_model
+            User = get_user_model()
+        
+            coordinators = User.objects.filter(
+                user_type__in=['STAFF', 'SHELTER']
+            )
+        
+            for coordinator in coordinators:
+                create_notification(
+                    recipient=coordinator,
+                    notification_type='EMERGENCY_RESCUE',
+                    title='🚨 EMERGENCY CALL FROM VOLUNTEER',
+                    message=f'Volunteer {request.user.username} needs immediate assistance at {location}. Message: {message}',
+                    related_object=None
+                )
+        
+            # Send emergency broadcast
+            from notifications.services import send_emergency_broadcast
+            send_emergency_broadcast(
+                f"Emergency call from {request.user.username} at {location}: {message}",
+                urgency="EMERGENCY"
+            )
+        
+            return Response({
+                'success': True,
+                'message': 'Emergency call sent to coordinators',
+                'coordinators_notified': coordinators.count()
+            })
+        
+        except Exception as e:
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=500)
+
+    @action(detail=False, methods=['post'])
+    def request_backup(self, request):
+        """Handle backup requests"""
+        try:
+            report_id = request.data.get('report_id')
+            message = request.data.get('message', 'Backup assistance needed')
+            location = request.data.get('location', 'Unknown location')
+            equipment_needed = request.data.get('equipment_needed', '')
+        
+            # Find nearby available volunteers
+            if report_id:
+                try:
+                    from reports.models import Report
+                    report = Report.objects.get(id=report_id)
+                
+                    # Update report to indicate backup requested
+                    report.backup_requested = True
+                    report.equipment_needed = equipment_needed
+                    report.save()
+                
+                    # Find available volunteers
+                    nearby_volunteers = RescueVolunteerService.find_nearby_volunteers(
+                        report, max_distance_km=20, limit=5
+                    )
+                
+                    backup_requests_sent = 0
+                    for volunteer_profile, distance in nearby_volunteers:
+                        # Skip the requesting volunteer
+                        if volunteer_profile.user == request.user:
+                            continue
+                        
+                        create_notification(
+                            recipient=volunteer_profile.user,
+                            notification_type='EMERGENCY_RESCUE',
+                            title='🆘 BACKUP NEEDED',
+                            message=f'Fellow volunteer needs backup at {location}. Distance: {distance:.1f}km. {message}',
+                            related_object=report
+                        )
+                        backup_requests_sent += 1
+                
+                    return Response({
+                        'success': True,
+                        'message': f'Backup request sent to {backup_requests_sent} volunteers',
+                        'volunteers_notified': backup_requests_sent
+                    })
+                
+                except Report.DoesNotExist:
+                    return Response({'error': 'Report not found'}, status=404)
+            else:
+                # General backup request
+                available_volunteers = VolunteerProfile.objects.filter(
+                    available_for_emergency=True,
+                    user__is_active=True
+                ).exclude(user=request.user)
+            
+                backup_requests_sent = 0
+                for volunteer_profile in available_volunteers[:10]:  # Limit to 10
+                    create_notification(
+                        recipient=volunteer_profile.user,
+                        notification_type='EMERGENCY_RESCUE',
+                        title='🆘 BACKUP REQUESTED',
+                        message=f'Volunteer {request.user.username} needs backup assistance at {location}. {message}',
+                        related_object=None
+                    )
+                    backup_requests_sent += 1
+            
+                return Response({
+                    'success': True,
+                    'message': f'General backup request sent to {backup_requests_sent} volunteers',
+                    'volunteers_notified': backup_requests_sent
+                })
+            
+        except Exception as e:
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=500)
+
+    @action(detail=False, methods=['post'])
+    def send_team_message(self, request):
+        """Send message to rescue coordinators"""
+        try:
+            report_id = request.data.get('report_id')
+            message = request.data.get('message', '')
+            
+            if not report_id or not message:
+                return Response({'error': 'report_id and message required'}, status=400)
+            
+            from reports.models import Report
+            report = Report.objects.get(id=report_id)
+            
+            # Get all staff/coordinators instead of team volunteers
+            from django.contrib.auth import get_user_model
+            User = get_user_model()
+            
+            coordinators = User.objects.filter(
+                user_type__in=['STAFF', 'SHELTER'],
+                is_active=True
+            )
+            
+            messages_sent = 0
+            for coordinator in coordinators:
+                create_notification(
+                    recipient=coordinator,
+                    notification_type='RESCUE_UPDATE',
+                    title=f'📞 Message from Volunteer {request.user.username}',
+                    message=f'Rescue update: {message}',
+                    related_object=report
+                )
+                messages_sent += 1
+            
+            return Response({
+                'success': True,
+                'message': f'Message sent to {messages_sent} coordinators',
+                'coordinators_notified': messages_sent
+            })
+            
+        except Report.DoesNotExist:
+            return Response({'error': 'Report not found'}, status=404)
+        except Exception as e:
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=500)
 
 class VolunteerTrainingProgressViewSet(viewsets.ModelViewSet):
     queryset = VolunteerTrainingProgress.objects.all()

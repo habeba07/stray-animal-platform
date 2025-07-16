@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import ClockInOut from '../TimeTracking/ClockInOut';
 import {
   Container,
   Paper,
@@ -246,6 +247,13 @@ function ActivityFeed() {
             </Card>
           </Grid>
         </Grid>
+      )}
+
+      {/* Clock In/Out Section - Only for STAFF users */}
+      {isStaff && (
+        <Box sx={{ mb: 3 }}>
+          <ClockInOut />
+        </Box>
       )}
 
       <Paper sx={{ p: 3, backgroundColor: customTheme.background }}>

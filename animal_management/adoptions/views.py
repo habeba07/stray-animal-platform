@@ -20,6 +20,16 @@ from notifications.services import create_notification
 from .ml_matching import MLAdoptionMatcher
 from community.services import award_points
 
+class IsShelterStaffOrAdmin(permissions.BasePermission):
+    """Custom permission to allow STAFF, SHELTER users, or Django admin users."""
+    def has_permission(self, request, view):
+        if not request.user or not request.user.is_authenticated:
+            return False
+        return (
+            request.user.is_staff or 
+            getattr(request.user, 'user_type', '').upper() in ['STAFF', 'SHELTER']
+        )
+
 class AdopterProfileViewSet(viewsets.ModelViewSet):
     queryset = AdopterProfile.objects.all()
     serializer_class = AdopterProfileSerializer
@@ -60,7 +70,7 @@ class AnimalBehaviorProfileViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         # Only staff can create/update/delete behavior profiles
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAdminUser()]
+            return [IsShelterStaffOrAdmin()]
         return [permissions.IsAuthenticated()]
 
 

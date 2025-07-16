@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import VaccinationRecord, MedicalRecord, HealthStatus
+from .models import VaccinationRecord, MedicalRecord, HealthStatus, DailyCareLog
 from animals.models import Animal
 
 class VaccinationRecordSerializer(serializers.ModelSerializer):
@@ -88,3 +88,16 @@ class AnimalHealthSummarySerializer(serializers.ModelSerializer):
         model = Animal
         fields = ['id', 'name', 'animal_type', 'health_status_record', 
                   'vaccinations', 'medical_records']
+
+class DailyCareLogSerializer(serializers.ModelSerializer):
+    staff_member_name = serializers.CharField(source='staff_member.get_full_name', read_only=True)
+    care_type_display = serializers.CharField(source='get_care_type_display', read_only=True)
+    
+    class Meta:
+        model = DailyCareLog
+        fields = [
+            'id', 'animal', 'staff_member', 'staff_member_name', 'care_type', 
+            'care_type_display', 'date_time', 'duration_minutes', 'amount', 
+            'notes', 'created_at', 'updated_at'
+        ]
+        read_only_fields = ['id', 'staff_member', 'created_at', 'updated_at']

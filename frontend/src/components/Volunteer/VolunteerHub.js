@@ -1,6 +1,7 @@
 // Complete Enhanced VolunteerHub.js - Replace your entire file with this version
 
 import React, { useState, useEffect } from 'react';
+import TeamMessageDialog from './TeamMessageDialog';
 import {
   Container,
   Typography,
@@ -46,6 +47,7 @@ import {
   Edit as EditIcon,
   CheckCircle as CompleteIcon,
   Cancel as CancelIcon,
+  Message as MessageIcon,
 } from '@mui/icons-material';
 import { format } from 'date-fns';
 import api from '../../redux/api';
@@ -91,6 +93,9 @@ function VolunteerHub() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [qualificationRefreshTime, setQualificationRefreshTime] = useState(null);
+  // Team messaging states
+  const [messageDialogOpen, setMessageDialogOpen] = useState(false);
+  const [selectedAssignmentForMessage, setSelectedAssignmentForMessage] = useState(null);
 
   useEffect(() => {
     fetchAllData();
@@ -103,6 +108,9 @@ function VolunteerHub() {
   const fetchAllData = async () => {
     setLoading(true);
     try {
+
+      await refreshVolunteerQualifications();
+
       await Promise.all([
         fetchRescues(),
         fetchOpportunities(), 
@@ -385,6 +393,16 @@ function VolunteerHub() {
     }
   };
 
+  const handleSendTeamMessage = (assignment) => {
+    setSelectedAssignmentForMessage(assignment);
+    setMessageDialogOpen(true);
+  };
+
+  const handleCloseMessageDialog = () => {
+    setMessageDialogOpen(false);
+    setSelectedAssignmentForMessage(null);
+  };
+
   // 🔥 FIXED: Render rescue cards with real data and enhanced styling
   const renderRescueCard = (rescue) => (
     <Grid item xs={12} md={6} lg={4} key={rescue.id}>
@@ -597,7 +615,7 @@ function VolunteerHub() {
               })
             }}
           >
-            {rescue.skill_match === 'not_recommended' ? 'COMPLETE TRAINING FIRST' :
+            {rescue.skill_match === 'not_recommended' ? 'COMPLETE TRAINING/PROFILE SETUP FIRST' :
              rescue.urgency === 'EMERGENCY' ? 'RESPOND NOW' : 'ACCEPT RESCUE'}
           </Button>
         </CardActions>
@@ -628,7 +646,7 @@ function VolunteerHub() {
           
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1, display: 'flex', alignItems: 'center' }}>
             <PeopleIcon fontSize="small" sx={{ mr: 1 }} />
-            Volunteers: {opportunity.current_volunteers || 0} / {opportunity.max_volunteers}
+            Volunteers: {opportunity.assigned_count || 0} / {opportunity.max_volunteers}
           </Typography>
           
           <Typography variant="body2" sx={{ mb: 2 }}>
@@ -751,24 +769,39 @@ function VolunteerHub() {
             )}
           </CardContent>
 
-          {/* ENHANCED: CardActions for completion */}
+          {/* ENHANCED: CardActions for completion and team messaging */}
           <CardActions sx={{ p: 2, pt: 0 }}>
             {canComplete && (
-              <Button
-                variant="contained"
-                color="success"
-                onClick={() => handleCompleteAssignment(assignment, isRescue)}
-                startIcon={<CompleteIcon />}
-                fullWidth
-                sx={{
-                  background: 'linear-gradient(45deg, #4caf50 30%, #66bb6a 90%)',
-                  '&:hover': {
-                    background: 'linear-gradient(45deg, #388e3c 30%, #4caf50 90%)',
-                  }
-                }}
-              >
-                {isRescue ? 'Complete Rescue' : 'Complete Assignment'}
-              </Button>
+              <>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => handleCompleteAssignment(assignment, isRescue)}
+                  startIcon={<CompleteIcon />}
+                  sx={{
+                    flex: 1,
+                    mr: 1,
+                    background: 'linear-gradient(45deg, #4caf50 30%, #66bb6a 90%)',
+                    '&:hover': {
+                      background: 'linear-gradient(45deg, #388e3c 30%, #4caf50 90%)',
+                    }
+                  }}
+                >
+                  {isRescue ? 'Complete Rescue' : 'Complete Assignment'}
+                </Button>
+                
+                {isRescue && (
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => handleSendTeamMessage(assignment)}
+                    startIcon={<MessageIcon />}
+                    sx={{ minWidth: 'auto' }}
+                  >
+                    Message Coordinators
+                  </Button>
+                )}
+              </>
             )}
             
             {isCompleted && (
@@ -1001,7 +1034,7 @@ function VolunteerHub() {
                 fullWidth
                 multiline
                 rows={3}
-                label="Notes (optional)"
+                label="Notes (required)"
                 value={volunteerNotes}
                 onChange={(e) => setVolunteerNotes(e.target.value)}
                 placeholder="Any relevant information about your response..."
@@ -1037,8 +1070,11 @@ function VolunteerHub() {
             <>
               <Typography variant="h6" gutterBottom>
                 {selectedAssignment.isRescue ? 
-                  (selectedAssignment.report_details?.animal_type || 'Animal Rescue') : 
-                  (selectedAssignment.opportunity_details?.title || selectedAssignment.title)
+                  (selectedAssignment.report_details?.animal_type !== 'Unknown' 
+                    ? selectedAssignment.report_details?.animal_type 
+                    : extractAnimalTypeFromDescription(selectedAssignment.report_details?.description) || 'Animal Rescue'
+                    ) : 
+                    (selectedAssignment.opportunity_details?.title || selectedAssignment.title)
                 }
               </Typography>
               
@@ -1136,6 +1172,14 @@ function VolunteerHub() {
           {snackbarMessage}
         </MuiAlert>
       </Snackbar>
+
+      {/* Team Message Dialog */}
+      <TeamMessageDialog
+        open={messageDialogOpen}
+        onClose={handleCloseMessageDialog}
+        assignment={selectedAssignmentForMessage}
+      />
+
     </Container>
   );
 }

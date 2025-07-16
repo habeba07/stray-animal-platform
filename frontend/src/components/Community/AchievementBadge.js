@@ -3,12 +3,20 @@ import { Box, Typography, Tooltip } from '@mui/material';
 import * as MuiIcons from '@mui/icons-material';
 
 function AchievementBadge({ achievement, earned = false, small = false }) {
-  // Dynamically get the icon component
-  const iconName = achievement.icon.charAt(0).toUpperCase() + achievement.icon.slice(1);
+  // Add null checking for achievement and achievement.icon
+  if (!achievement) {
+    return null; // Don't render anything if achievement is undefined
+  }
+
+  // Safely get the icon with fallback
+  const iconName = achievement.icon ? 
+    achievement.icon.charAt(0).toUpperCase() + achievement.icon.slice(1) : 
+    'EmojiEvents'; // Default fallback icon
+    
   const IconComponent = MuiIcons[iconName] || MuiIcons.EmojiEvents;
 
   return (
-    <Tooltip title={achievement.description}>
+    <Tooltip title={achievement.description || 'Achievement'}>
       <Box
         sx={{
           display: 'flex',
@@ -40,9 +48,9 @@ function AchievementBadge({ achievement, earned = false, small = false }) {
           align="center"
           sx={{ mt: 1 }}
         >
-          {achievement.name}
+          {achievement.name || 'Achievement'}
         </Typography>
-        {!small && achievement.points_reward > 0 && (
+        {!small && (achievement.points_reward || 0) > 0 && (
           <Typography variant="caption" color="primary">
             +{achievement.points_reward} points
           </Typography>

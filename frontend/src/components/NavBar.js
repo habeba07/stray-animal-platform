@@ -1,4 +1,4 @@
-// components/NavBar.js - ENHANCED VERSION with Medical Management for SHELTER users
+// components/NavBar.js - ENHANCED VERSION with Dropdown Navigation for ALL user types
 
 import React, { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -16,10 +16,13 @@ import {
   Button,
   Tooltip,
   MenuItem,
+  Divider,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import PetsIcon from '@mui/icons-material/Pets';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices'; // NEW: Medical icon
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PointsDisplay from './Community/PointsDisplay';
 import NotificationBell from './Notifications/NotificationBell';
 
@@ -35,7 +38,7 @@ const customTheme = {
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  const [dropdownMenus, setDropdownMenus] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -56,6 +59,20 @@ function NavBar() {
     setAnchorElUser(null);
   };
 
+  const handleDropdownOpen = (event, menuKey) => {
+    setDropdownMenus(prev => ({
+      ...prev,
+      [menuKey]: event.currentTarget
+    }));
+  };
+
+  const handleDropdownClose = (menuKey) => {
+    setDropdownMenus(prev => ({
+      ...prev,
+      [menuKey]: null
+    }));
+  };
+
   // Logout function using Redux
   const handleLogout = () => {
     console.log('Logging out...');
@@ -64,110 +81,228 @@ function NavBar() {
     navigate('/login');
   };
 
-  // Navigation items for users that are not logged in
-  const publicPages = [
-    { title: 'Home', path: '/' },
-    { title: 'Adoptable Animals', path: '/animals' },
-    { title: 'Report Animal', path: '/report-animal' },
-    { title: 'Resources', path: '/resources' },
-    { title: 'Interactive Learning', path: '/interactive-learning' }, 
-  ];
-
-  const getRoleBasedPages = (userType) => {
-    const basePages = [
-      { title: 'Home', path: '/' },
-      { title: 'Animal Management', path: '/animals' }, // Changed from "Adoptable Animals" for broader scope
-    ];
-
+  // Get grouped navigation items based on user type
+  const getGroupedNavigation = (userType) => {
     switch (userType) {
       case 'PUBLIC':
-        return [
-          ...basePages,
-          { title: 'Report Animal', path: '/report-animal' },
-          { title: 'My Reports', path: '/reports' },
-          { title: 'My Applications', path: '/adoption/applications' },
-          { title: 'Resources', path: '/resources' }, // Educational content
-          { title: 'Interactive Learning', path: '/interactive-learning' }, 
-          { title: 'Adoption Matches', path: '/adoption/matches' }, 
-          { title: 'Adopter Profile', path: '/adoption/profile' }, 
-          { title: 'Donate', path: '/donations' },
-          { title: 'My Donations', path: '/my-donations' }, 
-          { title: 'Rewards', path: '/rewards' }, 
-          { title: 'My Virtual Adoptions', path: '/virtual-adoptions/my' },
-          { title: 'Forum', path: '/forum' }, 
-          { title: 'Impact Dashboard', path: '/impact-dashboard' },
-        ];
+        return {
+          standalone: [
+            { title: 'Home', path: '/' }
+          ],
+          dropdowns: {
+            'Animals & Adoption': [
+              { title: 'Adoptable Animals', path: '/animals' },
+              { title: 'Adoption Matches', path: '/adoption/matches' },
+              { title: 'Adopter Profile', path: '/adoption/profile' },
+              { title: 'My Applications', path: '/adoption/applications' },
+            ],
+            'My Account': [
+              { title: 'My Reports', path: '/reports' },
+              { title: 'My Donations', path: '/my-donations' },
+              { title: 'My Virtual Adoptions', path: '/virtual-adoptions/my' },
+              { title: 'Rewards', path: '/rewards' },
+            ],
+            'Take Action': [
+              { title: 'Report Animal', path: '/report-animal' },
+              { title: 'Donate', path: '/donations' },
+            ],
+            'Learn & Connect': [
+              { title: 'Resources', path: '/resources' },
+              { title: 'Interactive Learning', path: '/interactive-learning' },
+              { title: 'Forum', path: '/forum' },
+              { title: 'Impact Dashboard', path: '/impact-dashboard' },
+            ]
+          }
+        };
 
       case 'SHELTER':
-        return [
-          ...basePages,
-          { title: 'Dashboard', path: '/dashboard' }, 
-          
-          
-          { title: 'Medical Management', path: '/medical-management' },
-
-          { title: 'Staff Management', path: '/staff-management' },
-          { title: 'Report Animal', path: '/report-animal' }, 
-          { title: 'All Reports', path: '/reports' }, 
-          { title: 'Volunteer Management', path: '/shelter/volunteer-management' },
-          { title: 'Inventory', path: '/inventory/dashboard' }, 
-          { title: 'Impact Dashboard', path: '/impact-dashboard' }, 
-          { title: 'Predictions', path: '/predictive-dashboard' }, 
-          { title: 'All Applications', path: '/adoption/applications' }, // Changed from "My Applications"
-          { title: 'Forum', path: '/forum' }, 
-        ];
+        return {
+          standalone: [
+            { title: 'Home', path: '/' }
+          ],
+          dropdowns: {
+            'Operations': [
+              { title: 'Dashboard', path: '/dashboard' },
+              { title: 'Budget Management', path: '/budget-management' },
+              { title: 'Staff Management', path: '/staff-management' },
+              { title: 'Volunteer Management', path: '/shelter/volunteer-management' },
+            ],
+            'Animal Care': [
+              { title: 'Animal Management', path: '/animals' },
+              { title: 'Medical Management', path: '/medical-management' },
+              { title: 'All Applications', path: '/adoption/applications' },
+            ],
+            'Reports & Data': [
+              { title: 'Report Animal', path: '/report-animal' },
+              { title: 'All Reports', path: '/reports' },
+              { title: 'Impact Dashboard', path: '/impact-dashboard' },
+              { title: 'Predictions', path: '/predictive-dashboard' },
+            ],
+            'Resources': [
+              { title: 'Inventory', path: '/inventory/dashboard' },
+              { title: 'Forum', path: '/forum' },
+            ]
+          }
+        };
 
       case 'VOLUNTEER':
-        return [
-          { title: 'Home', path: '/' },
-          { title: 'Emergency Report', path: '/volunteer/emergency-report' },
-          { title: 'Volunteer Hub', path: '/volunteer/hub' }, 
-          { title: 'Training Center', path: '/interactive-learning' },
-          { title: 'Community', path: '/forum' },
-          { title: 'My Progress', path: '/achievements' }, 
-        ];
+        return {
+          standalone: [
+            { title: 'Home', path: '/' }
+          ],
+          dropdowns: {
+            'Volunteer Work': [
+              { title: 'Volunteer Hub', path: '/volunteer/hub' },
+              { title: 'Emergency Report', path: '/volunteer/emergency-report' },
+            ],
+            'Learning & Growth': [
+              { title: 'Training Center', path: '/interactive-learning' },
+              { title: 'My Progress', path: '/achievements' },
+              { title: 'Community', path: '/forum' },
+            ]
+          }
+        };
 
-      case 'AUTHORITY':  
-        return [
-          { title: 'Strategic Dashboard', path: '/dashboard' }, 
-          { title: 'Impact Analysis', path: '/impact-dashboard' },
-          { title: 'Predictions', path: '/predictive-dashboard' },
-          { title: 'Reports Overview', path: '/reports' }, 
-          { title: 'Policy Resources', path: '/resources' }, // Resource planning data
-        ];
+      case 'AUTHORITY':
+        return {
+          standalone: [
+            { title: 'Home', path: '/' }
+          ],
+          dropdowns: {
+            'Analytics & Insights': [
+              { title: 'Strategic Dashboard', path: '/dashboard' },
+              { title: 'Impact Analysis', path: '/impact-dashboard' },
+              { title: 'Predictions', path: '/predictive-dashboard' },
+            ],
+            'Policy & Oversight': [
+              { title: 'Reports Overview', path: '/reports' },
+              { title: 'Policy Resources', path: '/resources' },
+            ]
+          }
+        };
 
       case 'STAFF':
-        return [
-          ...basePages,
-          { title: 'Dashboard', path: '/dashboard' },
-          
-          // NEW: Medical Management for STAFF as well
-          { 
-            title: 'Medical Management', 
-            path: '/medical-management',
-            icon: <MedicalServicesIcon />,
-            isNew: true 
-          },
-          
-          { title: 'Reports', path: '/reports' }, // Monitor animals in direct care
-          { title: 'Applications', path: '/adoption/applications' }, 
-          { title: 'Activities', path: '/activities' }, // Monitor medical treatments
-          { title: 'Staff Wellness', path: '/staff-wellness' },
-          { title: 'Inventory', path: '/inventory/dashboard' },
-          { title: 'Forum', path: '/forum' }, // Staff communication
-        ];
+        return {
+          standalone: [
+            { title: 'Home', path: '/' }
+          ],
+          dropdowns: {
+            'Operations': [
+              { title: 'Dashboard', path: '/dashboard' },
+              { title: 'Animal Management', path: '/animals' },
+              { title: 'Applications', path: '/adoption/applications' },
+              { title: 'Inventory', path: '/inventory/dashboard' },
+              { title: 'Reports', path: '/reports' },
+              { title: 'Activities', path: '/activities' },
+            ],
+            'Medical & Care': [
+              { title: 'Medical Management', path: '/staff/medical-management' },
+              { title: 'Transfer Management', path: '/transfer-management' },
+            ],
+            'Personal & Wellness': [
+              { title: 'Staff Wellness', path: '/staff-wellness' },
+              { title: 'Forum', path: '/forum' },
+            ]
+          }
+        };
 
       default:
-        return basePages;
+        return {
+          standalone: [
+            { title: 'Home', path: '/' }
+          ],
+          dropdowns: {
+            'Explore': [
+              { title: 'Adoptable Animals', path: '/animals' },
+              { title: 'Report Animal', path: '/report-animal' },
+              { title: 'Resources', path: '/resources' },
+              { title: 'Interactive Learning', path: '/interactive-learning' },
+            ]
+          }
+        };
     }
   };
 
-  const privatePages = user ? getRoleBasedPages(user.user_type) : [];
-
-  // Determine which navigation items to show based on authentication status
-  const navItems = user ? privatePages : publicPages;
+  // Get navigation structure based on user type
+  const navStructure = user ? getGroupedNavigation(user.user_type) : getGroupedNavigation('default');
 
   console.log('NavBar render - user:', !!user, user?.username);
+
+  // Render dropdown menu
+  const renderDropdownMenu = (dropdownKey, items) => (
+    <Menu
+      anchorEl={dropdownMenus[dropdownKey]}
+      open={Boolean(dropdownMenus[dropdownKey])}
+      onClose={() => handleDropdownClose(dropdownKey)}
+      MenuListProps={{
+        'aria-labelledby': `${dropdownKey}-button`,
+      }}
+      sx={{
+        '& .MuiMenu-paper': {
+          backgroundColor: customTheme.background,
+          boxShadow: '0 4px 20px rgba(141, 110, 99, 0.15)',
+          borderRadius: '8px',
+          minWidth: '220px',
+          border: `1px solid ${customTheme.grey}`,
+        }
+      }}
+    >
+      {items.map((item, index) => (
+        <MenuItem
+          key={item.title}
+          component={RouterLink}
+          to={item.path}
+          onClick={() => handleDropdownClose(dropdownKey)}
+          sx={{
+            '&:hover': {
+              backgroundColor: customTheme.secondary,
+              color: 'white',
+            },
+            py: 1.5,
+            px: 2,
+            color: customTheme.primary,
+            fontWeight: 500,
+          }}
+        >
+          {item.icon && <ListItemIcon sx={{ minWidth: '32px' }}>{item.icon}</ListItemIcon>}
+          <ListItemText primary={item.title} />
+        </MenuItem>
+      ))}
+    </Menu>
+  );
+
+  // Render mobile menu items
+  const renderMobileMenuItems = () => {
+    const allItems = [
+      ...navStructure.standalone,
+      ...Object.entries(navStructure.dropdowns).flatMap(([category, items]) => 
+        items.map(item => ({ ...item, category }))
+      )
+    ];
+
+    return allItems.map((item, index) => (
+      <MenuItem
+        key={item.title}
+        onClick={handleCloseNavMenu}
+        component={RouterLink}
+        to={item.path}
+        sx={{
+          ...(item.category && {
+            pl: 4,
+            fontSize: '0.9rem',
+            color: 'text.secondary'
+          })
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          {item.icon && <Box sx={{ mr: 1 }}>{item.icon}</Box>}
+          <Typography textAlign="center">
+            {item.category ? `${item.category}: ${item.title}` : item.title}
+          </Typography>
+        </Box>
+      </MenuItem>
+    ));
+  };
 
   return (
     <AppBar 
@@ -229,44 +364,7 @@ function NavBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {navItems.map((page) => (
-                <MenuItem 
-                  key={page.title} 
-                  onClick={handleCloseNavMenu}
-                  component={RouterLink}
-                  to={page.path}
-                  sx={{
-                    // NEW: Special styling for Medical Management in mobile
-                    ...(page.isNew && {
-                      backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                      '&:hover': {
-                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
-                      }
-                    })
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    {page.icon && <Box sx={{ mr: 1 }}>{page.icon}</Box>}
-                    <Typography textAlign="center">{page.title}</Typography>
-                    {page.isNew && (
-                      <Typography 
-                        variant="caption" 
-                        sx={{ 
-                          ml: 1, 
-                          px: 1, 
-                          py: 0.25, 
-                          backgroundColor: '#4caf50', 
-                          color: 'white', 
-                          borderRadius: 1,
-                          fontSize: '0.6rem'
-                        }}
-                      >
-                        NEW
-                      </Typography>
-                    )}
-                  </Box>
-                </MenuItem>
-              ))}
+              {renderMobileMenuItems()}
             </Menu>
           </Box>
 
@@ -291,72 +389,78 @@ function NavBar() {
             PAWRESCUE
           </Typography>
 
-          {/* Desktop menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {navItems.map((page) => (
+          {/* Desktop menu with dropdowns */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'space-evenly', px: 2 }}>
+            {/* Standalone items */}
+            {navStructure.standalone.map((item) => (
               <Button
-                key={page.title}
+                key={item.title}
                 component={RouterLink}
-                to={page.path}
+                to={item.path}
                 sx={{ 
                   my: 2, 
                   color: 'white', 
                   display: 'flex',
                   alignItems: 'center',
-                  
-                  // ⭐ Special styling for emergency operations to make it stand out
-                  ...(page.title.includes('Emergency Report') && {
-                    backgroundColor: 'rgba(244, 67, 54, 0.2)', // Red emergency tint
-                    '&:hover': {
-                      backgroundColor: 'rgba(244, 67, 54, 0.3)',
-                    },
-                    fontWeight: 'bold',
-                  }),
-                  
-                  // NEW: Special styling for Medical Management
-                  ...(page.isNew && {
-                    backgroundColor: 'rgba(76, 175, 80, 0.2)', // Green medical tint
-                    '&:hover': {
-                      backgroundColor: 'rgba(76, 175, 80, 0.3)',
-                    },
-                    fontWeight: 'bold',
-                    border: '1px solid rgba(76, 175, 80, 0.3)',
-                    borderRadius: 1,
-                    mx: 0.5,
-                  })
+                  mx: 2,
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    transform: 'translateY(-1px)',
+                  },
+                  transition: 'all 0.2s ease',
                 }}
               >
-                {page.icon && <Box sx={{ mr: 0.5 }}>{page.icon}</Box>}
-                {page.title}
-                {page.isNew && (
-                  <Typography 
-                    variant="caption" 
-                    sx={{ 
-                      ml: 0.5, 
-                      px: 0.5, 
-                      py: 0.125, 
-                      backgroundColor: '#4caf50', 
-                      color: 'white', 
-                      borderRadius: 0.5,
-                      fontSize: '0.6rem',
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    NEW
-                  </Typography>
-                )}
+                {item.icon && <Box sx={{ mr: 0.5 }}>{item.icon}</Box>}
+                {item.title}
               </Button>
+            ))}
+
+            {/* Dropdown menus */}
+            {Object.entries(navStructure.dropdowns).map(([dropdownKey, items]) => (
+              <Box key={dropdownKey}>
+                <Button
+                  id={`${dropdownKey}-button`}
+                  aria-controls={Boolean(dropdownMenus[dropdownKey]) ? `${dropdownKey}-menu` : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={Boolean(dropdownMenus[dropdownKey]) ? 'true' : undefined}
+                  onClick={(event) => handleDropdownOpen(event, dropdownKey)}
+                  sx={{ 
+                    my: 2, 
+                    color: 'white', 
+                    display: 'flex',
+                    alignItems: 'center',
+                    mx: 2,
+                    fontSize: '1rem',
+                    fontWeight: 600,
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                      transform: 'translateY(-1px)',
+                    },
+                    transition: 'all 0.2s ease',
+                  }}
+                  endIcon={<KeyboardArrowDownIcon />}
+                >
+                  {dropdownKey}
+                </Button>
+                {renderDropdownMenu(dropdownKey, items)}
+              </Box>
             ))}
           </Box>
 
           {/* User menu or login/register buttons */}
-          <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
-            {user && <NotificationBell />}
+          <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 2 }}>
             {user ? (
               <>
-                {!['STAFF', 'SHELTER'].includes(user.user_type) && <PointsDisplay />}
+                <NotificationBell />
+                {!['STAFF', 'SHELTER'].includes(user.user_type) && (
+                  <Box sx={{ mx: 1 }}>
+                    <PointsDisplay />
+                  </Box>
+                )}
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ml: 1 }}>
                     <Avatar alt={user.username} src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
@@ -389,11 +493,17 @@ function NavBar() {
                 </Menu>
               </>
             ) : (
-              <Box sx={{ display: 'flex', gap: 1 }}>
+              <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button 
                   color="inherit" 
                   component={RouterLink} 
                   to="/login"
+                  sx={{
+                    fontWeight: 600,
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    }
+                  }}
                 >
                   Login
                 </Button>
@@ -404,7 +514,11 @@ function NavBar() {
                   to="/register"
                   sx={{ 
                     borderColor: 'white',
-                    '&:hover': { borderColor: 'white', backgroundColor: 'rgba(255, 255, 255, 0.1)' }
+                    fontWeight: 600,
+                    '&:hover': { 
+                      borderColor: 'white', 
+                      backgroundColor: 'rgba(255, 255, 255, 0.15)' 
+                    }
                   }}
                 >
                   Register

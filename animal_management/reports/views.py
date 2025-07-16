@@ -17,6 +17,7 @@ from .models import Report
 from .serializers import ReportSerializer
 from animals.models import Animal
 from community.services import award_points
+from notifications.services import send_emergency_notification_to_volunteers
 
 User = get_user_model()
 
@@ -84,17 +85,33 @@ class ReportViewSet(viewsets.ModelViewSet):
             # Link the animal to the report
             report.animal = animal
             report.save()
+
+            description_lower = (report.description or '').lower()
+            emergency_keywords = ['emergency', 'urgent', 'injured', 'bleeding', 'hit by car', 'dying', 'trapped', 'accident', 'help immediately']
             
+            is_emergency = False
+            if hasattr(report, 'urgency_level') and report.urgency_level in ['EMERGENCY', 'HIGH']:
+                is_emergency = True
+            elif any(keyword in description_lower for keyword in emergency_keywords):
+                is_emergency = True
+            
+            if is_emergency:
+                try:
+                    send_emergency_notification_to_volunteers(report)
+                    print(f"🚨 Emergency notification sent for report {report.id}")
+                except Exception as e:
+                    print(f"❌ Failed to send emergency notification: {e}")
+        
             if reporter:
-            	award_points(reporter, 'REPORT_ANIMAL', report)
-            	if reporter.reports.count() == 1:
+                award_points(reporter, 'REPORT_ANIMAL', report)
+                if reporter.reports.count() == 1:
                     award_points(reporter, 'FIRST_REPORT', report)
-            
+        
             # Handle photos if they exist
             self._handle_report_photos(report)
-            
+        
             print(f"Report creation completed successfully")
-            
+        
         except Exception as e:
             print(f"Error in perform_create: {str(e)}")
             raise

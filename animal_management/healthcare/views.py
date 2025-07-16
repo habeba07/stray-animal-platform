@@ -3,12 +3,13 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
-from .models import VaccinationRecord, MedicalRecord, HealthStatus
+from .models import VaccinationRecord, MedicalRecord, HealthStatus, DailyCareLog
 from .serializers import (
     VaccinationRecordSerializer, 
     MedicalRecordSerializer, 
     HealthStatusSerializer,
-    AnimalHealthSummarySerializer
+    AnimalHealthSummarySerializer,
+    DailyCareLogSerializer
 )
 from animals.models import Animal
 
@@ -81,3 +82,18 @@ class AnimalHealthViewSet(viewsets.ViewSet):
         )
         serializer = VaccinationRecordSerializer(due_vaccinations, many=True)
         return Response(serializer.data)
+
+class DailyCareLogViewSet(viewsets.ModelViewSet):
+    queryset = DailyCareLog.objects.all()
+    serializer_class = DailyCareLogSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = DailyCareLog.objects.all()
+        animal_id = self.request.query_params.get('animal', None)
+        if animal_id is not None:
+            queryset = queryset.filter(animal_id=animal_id)
+        return queryset
+    
+    def perform_create(self, serializer):
+        serializer.save(staff_member=self.request.user)

@@ -30,7 +30,7 @@ class AnimalSerializer(serializers.ModelSerializer):
             'last_location_json', 'current_shelter', 'current_shelter_details', 
             'vaccinated', 'neutered_spayed', 'microchipped', 'health_status', 
             'behavior_notes', 'special_needs', 'adoption_fee', 
-            'photos', 'created_at', 'updated_at',
+            'photos', 'documents', 'created_at', 'updated_at',
             
             # NEW: Enhanced fields for SHELTER operations
             'priority_level', 'estimated_medical_cost', 'quarantine_end_date',

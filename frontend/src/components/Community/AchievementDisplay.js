@@ -40,6 +40,7 @@ function AchievementDisplay() {
         api.get('/achievements/available/')
       ]);
       
+
       setMyAchievements(myRes.data);
       setAvailableAchievements(availableRes.data);
     } catch (err) {
@@ -56,6 +57,7 @@ function AchievementDisplay() {
       </Container>
     );
   }
+
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
@@ -85,7 +87,12 @@ function AchievementDisplay() {
               {myAchievements.map((userAchievement) => (
                 <Grid item xs={6} sm={4} md={3} key={userAchievement.id}>
                   <AchievementBadge 
-                    achievement={userAchievement.achievement_details} 
+                    achievement={{
+                    name: userAchievement.achievement_name,
+                    description: userAchievement.achievement_description,
+                    icon: userAchievement.achievement_icon,
+                    points_reward: userAchievement.achievement_points || 0
+                  }} 
                     earned={true} 
                   />
                 </Grid>

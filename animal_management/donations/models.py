@@ -415,3 +415,67 @@ class RecurringDonation(models.Model):
             self.next_payment_date = self.calculate_next_payment_date()
             self.save()
 
+class Budget(models.Model):
+    impact_category = models.ForeignKey(ImpactCategory, on_delete=models.CASCADE, related_name='budgets')
+    year = models.IntegerField()
+    quarter = models.CharField(max_length=2, choices=[('Q1', 'Q1'), ('Q2', 'Q2'), ('Q3', 'Q3'), ('Q4', 'Q4')])
+    allocated_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together = ['impact_category', 'year', 'quarter']
+    
+    def __str__(self):
+        return f"{self.impact_category.name} {self.year} {self.quarter} - ${self.allocated_amount}"
+    
+    @property
+    def spent_amount(self):
+        # Calculate from existing DonationImpact records
+        from django.db.models import Sum
+        spent = DonationImpact.objects.filter(
+            impact_category=self.impact_category,
+            date_achieved__year=self.year,
+            date_achieved__quarter=self.get_quarter_number()
+        ).aggregate(total=Sum('amount_allocated'))['total'] or 0
+        return spent
+    
+    @property
+    def remaining_budget(self):
+        return self.allocated_amount - self.spent_amount
+    
+    @property
+    def budget_utilization(self):
+        if self.allocated_amount > 0:
+            return (self.spent_amount / self.allocated_amount) * 100
+        return 0
+    
+    def get_quarter_number(self):
+        return int(self.quarter[1])  # Extract number from Q1, Q2, etc.
+
+class FinancialReport(models.Model):
+    REPORT_TYPES = (
+        ('MONTHLY', 'Monthly Report'),
+        ('QUARTERLY', 'Quarterly Report'),
+        ('ANNUAL', 'Annual Report'),
+        ('BUDGET_VS_ACTUAL', 'Budget vs Actual'),
+    )
+    
+    name = models.CharField(max_length=200)
+    report_type = models.CharField(max_length=20, choices=REPORT_TYPES)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    
+    # Report data (JSON field to store flexible report data)
+    report_data = models.JSONField(default=dict)
+    
+    generated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    generated_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-generated_at']
+    
+    def __str__(self):
+        return f"{self.name} ({self.start_date} to {self.end_date})"
+

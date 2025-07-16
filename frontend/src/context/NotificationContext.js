@@ -26,6 +26,7 @@ export const NotificationProvider = ({ children }) => {
   useEffect(() => {
     if (realtimeNotifications.length > 0) {
       const latestNotification = realtimeNotifications[0];
+      showBrowserNotification(latestNotification);
       
       // Add to notifications list (avoiding duplicates)
       setNotifications(prevNotifications => {
@@ -121,6 +122,37 @@ export const NotificationProvider = ({ children }) => {
       console.error('Error marking all notifications as read:', error);
     }
   };
+
+  // Browser notification functions
+  const showBrowserNotification = (notification) => {
+    // Request permission if not granted
+    if (Notification.permission === 'default') {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          createBrowserNotification(notification);
+        }
+      });
+    } else if (Notification.permission === 'granted') {
+      createBrowserNotification(notification);
+    }
+  };
+
+  const createBrowserNotification = (notification) => {
+    const browserNotification = new Notification(notification.title, {
+      body: notification.body,
+      icon: '/favicon.ico',
+      tag: 'emergency-alert',
+      requireInteraction: true,
+    });
+  
+    setTimeout(() => browserNotification.close(), 10000);
+  
+    browserNotification.onclick = () => {
+      window.focus();
+      browserNotification.close();
+    };
+  };
+
 
   const value = {
     notifications,

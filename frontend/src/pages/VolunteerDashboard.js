@@ -140,7 +140,7 @@ const VolunteerDashboard = () => {
 
   const fetchRecentActivity = async () => {
     try {
-      const response = await api.get('/community/activities/', {
+      const response = await api.get('/activities/activities/', {
         params: { limit: 10, user: user.id }
       });
       setRecentActivity(response.data?.results?.slice(0, 5) || []);

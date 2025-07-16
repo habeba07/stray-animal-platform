@@ -252,16 +252,25 @@ def get_user_activity_stats(user, days=30):
         if points > 0:
             point_breakdown[activity_type] = points
     
-    # Recent activities
-    recent_activities = activities.order_by('-created_at')[:10]
-    
+
+    # Recent activities - convert to serializable format
+    recent_activities = [
+        {
+            'activity_type': activity.activity_type,
+            'description': activity.description,
+            'points_earned': activity.points_earned,
+            'created_at': activity.created_at.isoformat() if activity.created_at else None
+        }
+        for activity in activities.order_by('-created_at')[:10]
+    ]
+
     return {
         'total_points_period': activities.aggregate(Sum('points_earned'))['points_earned__sum'] or 0,
         'total_activities': activities.count(),
         'rescue_stats': rescue_stats,
         'training_stats': training_stats,
         'point_breakdown': point_breakdown,
-        'recent_activities': recent_activities,
+        'recent_activities': recent_activities,  # NOW SERIALIZABLE
         'period_days': days
     }
 

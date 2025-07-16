@@ -176,7 +176,11 @@ class VolunteerOpportunity(models.Model):
         # Check experience level
         experience_levels = ['BEGINNER', 'INTERMEDIATE', 'EXPERIENCED', 'PROFESSIONAL']
         min_level_index = experience_levels.index(self.minimum_experience)
-        volunteer_level_index = experience_levels.index(volunteer_profile.experience_level)
+        try:
+            volunteer_level_index = experience_levels.index(volunteer_profile.experience_level)
+        except ValueError:
+            # Default to BEGINNER if experience level is empty or invalid
+            volunteer_level_index = 0  # BEGINNER
         
         if volunteer_level_index < min_level_index:
             return False

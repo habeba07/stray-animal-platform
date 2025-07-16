@@ -188,6 +188,7 @@ const InteractiveLearningPage = () => {
           // Optional: Navigate back to volunteer hub to see new opportunities
           setTimeout(() => {
             if (window.confirm('Training completed! Would you like to check for new rescue opportunities?')) {
+
               window.location.href = '/volunteer/hub';
             }
           }, 3000);
@@ -505,7 +506,10 @@ const InteractiveLearningPage = () => {
                     {/* Prerequisites Warning */}
                     {isLocked && (
                       <Alert severity="info" sx={{ mt: 2 }}>
-                        Complete "Animal Rescue Fundamentals" first
+                        {resource.title.includes('Large Animal') || resource.title.includes('Scene Management') 
+                          ? 'Complete intermediate training (First Aid or Behavior) first'
+                          : 'Complete "Animal Rescue Fundamentals" first'
+                        }
                       </Alert>
                     )}
                   </CardContent>
@@ -692,7 +696,15 @@ const InteractiveLearningPage = () => {
             onClick={() => {
               setShowWelcome(false);
               if (resources.length > 0) {
-                setSelectedResource(resources[0].slug);
+                // Find the first module that meets prerequisites (should be Fundamentals)
+                const startingModule = resources.find(resource => 
+                  resource.title.includes('Fundamentals') || isPrerequisiteMet(resource)
+                );
+                if (startingModule) {
+                  setSelectedResource(startingModule.slug);
+                } else {
+                  setSelectedResource(resources[0].slug); // Fallback
+                }
               }
             }}
             startIcon={<PlayIcon />}

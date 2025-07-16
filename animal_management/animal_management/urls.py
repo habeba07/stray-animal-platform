@@ -13,12 +13,13 @@ from users.views import UserViewSet
 from animals.views import AnimalViewSet
 from reports.views import ReportViewSet
 from users.auth import login_view
-from donations.views import ImpactDashboardViewSet, DonationCampaignViewSet, DonationViewSet, RecurringDonationViewSet
+from donations.views import ImpactDashboardViewSet, DonationCampaignViewSet, DonationViewSet, RecurringDonationViewSet, BudgetViewSet, FinancialReportViewSet, ImpactCategoryViewSet
 from healthcare.views import (
     VaccinationRecordViewSet, 
     MedicalRecordViewSet, 
     HealthStatusViewSet, 
-    AnimalHealthViewSet
+    AnimalHealthViewSet,
+    DailyCareLogViewSet
 )
 from adoptions.views import (
     AdopterProfileViewSet,
@@ -91,6 +92,7 @@ router.register(r'vaccinations', VaccinationRecordViewSet)
 router.register(r'medical-records', MedicalRecordViewSet)
 router.register(r'health-status', HealthStatusViewSet)
 router.register(r'animal-health', AnimalHealthViewSet, basename='animal-health')
+router.register(r'daily-care-logs', DailyCareLogViewSet)
 router.register(r'adopter-profiles', AdopterProfileViewSet)
 router.register(r'animal-behavior-profiles', AnimalBehaviorProfileViewSet)
 router.register(r'adoption-applications', AdoptionApplicationViewSet)
@@ -98,6 +100,9 @@ router.register(r'adoption-matches', AdoptionMatchViewSet)
 router.register(r'donation-campaigns', DonationCampaignViewSet)
 router.register(r'recurring-donations', RecurringDonationViewSet)
 router.register(r'donations', DonationViewSet)
+router.register(r'impact-categories', ImpactCategoryViewSet)
+router.register(r'budgets', BudgetViewSet)
+router.register(r'financial-reports', FinancialReportViewSet)
 router.register(r'activities', UserActivityViewSet)
 router.register(r'rewards', RewardViewSet)
 router.register(r'resource-categories', ResourceCategoryViewSet)
@@ -474,6 +479,7 @@ urlpatterns = [
     path('api/resources/', include('resources.urls')),
     path('api/volunteers/', include('volunteers.urls')),
     path('api/reports/', include('reports.urls')), 
+    path('', include('staff_management.urls')),
 ]
 
 # Serve media files in development

@@ -104,6 +104,7 @@ INSTALLED_APPS = [
     'mental_health',
     'inventory',
     'analytics', 
+    'staff_management',
 ]
 
 MIDDLEWARE = [

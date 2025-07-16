@@ -57,6 +57,7 @@ import ImpactDashboard from './pages/ImpactDashboard';
 import PredictiveDashboard from './pages/PredictiveDashboard';
 
 import InteractiveLearningPage from './pages/InteractiveLearningPage';
+import AddStaffForm from './pages/AddStaffForm';
 
 import HealthTrackingTab from './components/HealthTracking/HealthTrackingTab';
 import VaccinationForm from './components/HealthTracking/VaccinationForm';
@@ -74,6 +75,9 @@ import UserDashboard from './pages/UserDashboard';
 
 import MyDonationsPage from './pages/MyDonationsPage';
 
+import TransferManagement from './components/Transfer/TransferManagement';
+import BudgetManagementPage from './pages/BudgetManagementPage';
+import VirtualAdoptionCertificatePage from './pages/VirtualAdoptionCertificatePage';
 
 
 // Create a theme
@@ -142,11 +146,12 @@ const ProtectedRoute = ({ children, requiredUserType = null, adminOnly = false }
 function AppContent() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-
   // Initialize user from localStorage on app start
   useEffect(() => {
     console.log('App useEffect - initializing auth state');
+
     dispatch(setUserFromStorage());
+
   }, [dispatch]);
 
   console.log('App render - user from Redux:', !!user);
@@ -394,6 +399,12 @@ function AppContent() {
   		</ProtectedRoute>
 	      } />
 
+              <Route path="/staff/medical-management" element={
+                <ProtectedRoute requiredUserType="STAFF">
+                  <MedicalManagementPage />
+                </ProtectedRoute>
+              } />
+
 	     <Route path="/staff-management" element={
   	       <ProtectedRoute requiredUserType="SHELTER">
     		 <StaffManagementPage />
@@ -415,10 +426,32 @@ function AppContent() {
            <Route path="/my-donations" element={
              <ProtectedRoute>
                <MyDonationsPage />
-           </ProtectedRoute>
-         } />
-          
+             </ProtectedRoute>
+           } />
 
+           <Route path="/transfer-management" element={
+             <ProtectedRoute requiredUserType="STAFF">
+               <TransferManagement />
+             </ProtectedRoute>
+           } />
+
+           <Route path="/staff/add" element={
+             <ProtectedRoute requiredUserType="SHELTER">
+               <AddStaffForm />
+             </ProtectedRoute>
+           } />
+
+          <Route path="/budget-management" element={
+            <ProtectedRoute requiredUserType="SHELTER">
+              <BudgetManagementPage />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/virtual-adoptions/certificate/:adoptionId" element={
+            <ProtectedRoute>
+              <VirtualAdoptionCertificatePage />
+            </ProtectedRoute>
+          } />
             </Routes>
           </Container>
         </Router>

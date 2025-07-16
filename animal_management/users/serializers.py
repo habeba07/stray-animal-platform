@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 import uuid
 from .models import User
+from .models import User, TimeSheet
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -104,4 +105,56 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError('Must include username and password')
     
         data['user'] = user
+        return data
+
+class TimeSheetSerializer(serializers.ModelSerializer):
+    staff_member_name = serializers.CharField(source='staff_member.get_full_name', read_only=True)
+    is_clocked_in = serializers.BooleanField(read_only=True)
+    
+    class Meta:
+        model = TimeSheet
+        fields = [
+            'id', 'staff_member', 'staff_member_name', 'clock_in_time', 
+            'clock_out_time', 'total_hours', 'notes', 'created_at', 
+            'is_clocked_in'
+        ]
+        read_only_fields = ['id', 'total_hours', 'created_at']
+
+class ClockInSerializer(serializers.Serializer):
+    notes = serializers.CharField(required=False, allow_blank=True, max_length=500)
+    
+    def validate(self, data):
+        user = self.context['request'].user
+        
+        if user.user_type not in ['STAFF', 'SHELTER']:
+            raise serializers.ValidationError("Only staff members can use time tracking.")
+        
+        active_shift = TimeSheet.objects.filter(
+            staff_member=user,
+            clock_out_time__isnull=True
+        ).first()
+        
+        if active_shift:
+            raise serializers.ValidationError("You are already clocked in. Please clock out first.")
+        
+        return data
+
+class ClockOutSerializer(serializers.Serializer):
+    notes = serializers.CharField(required=False, allow_blank=True, max_length=500)
+    
+    def validate(self, data):
+        user = self.context['request'].user
+        
+        if user.user_type not in ['STAFF', 'SHELTER']:
+            raise serializers.ValidationError("Only staff members can use time tracking.")
+        
+        active_shift = TimeSheet.objects.filter(
+            staff_member=user,
+            clock_out_time__isnull=True
+        ).first()
+        
+        if not active_shift:
+            raise serializers.ValidationError("You are not currently clocked in.")
+        
+        data['active_shift'] = active_shift
         return data

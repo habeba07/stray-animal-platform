@@ -74,6 +74,36 @@ class UserActivityViewSet(viewsets.ModelViewSet):
             })
         
         return Response(leaderboard_data)
+    
+    @action(detail=False, methods=['get'])
+    def activities(self, request):
+        """Get recent community activities for public display"""
+        try:
+            limit = int(request.query_params.get('limit', 10))
+        
+            # Get recent activities for public display
+            activities = UserActivity.objects.select_related('user').order_by('-created_at')[:limit]
+        
+            activity_data = [
+                {
+                    'id': activity.id,
+                    'activity_type': activity.activity_type,
+                    'description': activity.description,
+                    'points_earned': activity.points_earned,
+                    'user': {
+                        'username': activity.user.username,
+                        'user_type': activity.user.user_type
+                    } if activity.user else None,
+                    'created_at': activity.created_at.isoformat() if activity.created_at else None
+                }
+                for activity in activities
+            ]
+        
+            return Response(activity_data)
+        
+        except Exception as e:
+            print(f"Error fetching community activities: {e}")
+            return Response([], status=200)  # Return empty list if error
 
 
 class RewardViewSet(viewsets.ModelViewSet):

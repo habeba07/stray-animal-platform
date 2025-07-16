@@ -10,9 +10,10 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from rest_framework.permissions import IsAuthenticated
 from .models import (
     Donation, DonationCampaign, ImpactCategory, DonationImpact,
-    SuccessStory, ImpactMetrics, DonorImpactSummary, RecurringDonation
+    SuccessStory, ImpactMetrics, DonorImpactSummary, RecurringDonation, Budget, 
+    FinancialReport, ImpactCategory
 )
-from .serializers import DonationCampaignSerializer, DonationSerializer, RecurringDonationSerializer
+from .serializers import DonationCampaignSerializer, DonationSerializer, RecurringDonationSerializer, BudgetSerializer, FinancialReportSerializer, ImpactCategorySerializer
 import uuid
 from decimal import Decimal
 from community.services import award_points
@@ -702,3 +703,55 @@ class ImpactDashboardViewSet(viewsets.ViewSet):
             'progress_percentage': progress,
             'amount_to_next_level': remaining
         }
+
+class BudgetViewSet(viewsets.ModelViewSet):
+    queryset = Budget.objects.all()
+    serializer_class = BudgetSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = Budget.objects.select_related('impact_category')
+        year = self.request.query_params.get('year')
+        quarter = self.request.query_params.get('quarter')
+        
+        if year:
+            queryset = queryset.filter(year=year)
+        if quarter:
+            queryset = queryset.filter(quarter=quarter)
+            
+        return queryset
+    
+    @action(detail=False, methods=['get'])
+    def budget_overview(self, request):
+        """Get budget overview with totals and utilization"""
+        current_year = datetime.now().year
+        current_quarter = f"Q{(datetime.now().month - 1) // 3 + 1}"
+    
+        budgets = Budget.objects.filter(year=current_year, quarter=current_quarter)
+    
+        total_allocated = budgets.aggregate(total=Sum('allocated_amount'))['total'] or 0
+        total_spent = sum([budget.spent_amount for budget in budgets])
+    
+        overview = {
+            'total_allocated': total_allocated,
+            'total_spent': total_spent,
+            'remaining': total_allocated - total_spent,
+            'utilization_rate': (total_spent / total_allocated * 100) if total_allocated > 0 else 0,
+            'current_period': f"{current_year} {current_quarter}",
+            'budgets_by_category': BudgetSerializer(budgets, many=True).data
+        }
+    
+        return Response(overview)
+
+class FinancialReportViewSet(viewsets.ModelViewSet):
+    queryset = FinancialReport.objects.all()
+    serializer_class = FinancialReportSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        serializer.save(generated_by=self.request.user)
+
+class ImpactCategoryViewSet(viewsets.ModelViewSet):
+    queryset = ImpactCategory.objects.all()
+    serializer_class = ImpactCategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
