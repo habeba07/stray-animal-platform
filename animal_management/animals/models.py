@@ -48,6 +48,13 @@ class Animal(models.Model):
     age_estimate = models.CharField(max_length=50, blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
     color = models.CharField(max_length=100, blank=True, null=True)
+
+    other_animal_type = models.CharField(
+        max_length=100, 
+        blank=True, 
+        null=True,
+        help_text="Custom animal type when 'Other' is selected"
+    )
     
     # Status and tracking (ENHANCED)
     status = models.CharField(max_length=20, choices=STATUS_TYPES, default='REPORTED')

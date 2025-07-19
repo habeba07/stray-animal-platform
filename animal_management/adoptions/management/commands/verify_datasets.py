@@ -26,7 +26,7 @@ class Command(BaseCommand):
         self.verify_training_data()
     
     def verify_kaggle_data_usage(self):
-        """Check if animals actually have Kaggle dataset characteristics"""
+
         self.stdout.write('\n📊 TEST 1: Kaggle Dataset Usage')
         self.stdout.write('-' * 35)
         
@@ -39,7 +39,7 @@ class Command(BaseCommand):
         if animals_with_kaggle:
             self.stdout.write(f'✅ Found {len(animals_with_kaggle)} animals with Kaggle data')
             
-            # Check what Kaggle data looks like
+
             for i, animal in enumerate(animals_with_kaggle):
                 kaggle_data = animal.last_location_json.get('kaggle_data', {})
                 
@@ -50,10 +50,10 @@ class Command(BaseCommand):
                 self.stdout.write(f'    Health Condition: {kaggle_data.get("health_condition", "N/A")}')
                 self.stdout.write(f'    Adoption Likelihood: {kaggle_data.get("adoption_likelihood", "N/A")}')
                 
-                if i >= 2:  # Show first 3
+                if i >= 2:
                     break
             
-            # Check if this looks like real Kaggle data
+
             sample_animal = animals_with_kaggle[0]
             sample_kaggle = sample_animal.last_location_json.get('kaggle_data', {})
             

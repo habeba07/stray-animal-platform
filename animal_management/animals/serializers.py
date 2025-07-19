@@ -25,7 +25,8 @@ class AnimalSerializer(serializers.ModelSerializer):
         model = Animal
         fields = [
             # Basic information (existing)
-            'id', 'name', 'animal_type', 'breed', 'gender', 'age_estimate', 
+            'id', 'name', 'animal_type', 'other_animal_type',  # ADD other_animal_type HERE
+            'breed', 'gender', 'age_estimate', 
             'weight', 'color', 'status', 'intake_date', 'location',
             'last_location_json', 'current_shelter', 'current_shelter_details', 
             'vaccinated', 'neutered_spayed', 'microchipped', 'health_status', 

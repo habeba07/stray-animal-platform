@@ -1,4 +1,4 @@
-# adoptions/management/commands/load_real_datasets.py
+
 from django.core.management.base import BaseCommand
 from django.db import transaction
 import random
@@ -43,12 +43,12 @@ class Command(BaseCommand):
         self.verify_data_quality()
     
     def load_austin_patterns(self):
-        """Load Austin Animal Center dataset patterns (Based on 83,700 intake records)"""
+
         self.stdout.write('\n🏢 Loading Austin Animal Center Patterns...')
         
         from animals.models import Animal
         
-        # Austin Animal Center actual characteristics from research
+
         austin_patterns = {
             'species_distribution': {'DOG': 0.65, 'CAT': 0.35},  # 65% dogs, 35% cats
             'breeds': {
@@ -72,7 +72,7 @@ class Command(BaseCommand):
             ]
         }
         
-        # Apply Austin patterns to existing animals
+
         updated_count = 0
         animals = Animal.objects.all()[:200]  # Process first 200
         
@@ -117,12 +117,12 @@ class Command(BaseCommand):
         self.stdout.write(f'✅ Applied Austin patterns to {updated_count} animals')
     
     def load_kaggle_patterns(self):
-        """Load Kaggle dataset patterns (Based on 15,000+ pet adoption records)"""
+
         self.stdout.write('\n📊 Loading Kaggle Adoption Patterns...')
         
         from animals.models import Animal
         
-        # Kaggle dataset actual characteristics from research  
+
         kaggle_patterns = {
             'sizes': {
                 'Small': 0.25,
@@ -142,7 +142,7 @@ class Command(BaseCommand):
                 2: 0.05   # Major issues
             },
             'adoption_likelihood_factors': {
-                # Based on real Kaggle dataset analysis
+
                 'small_young_healthy': 0.85,
                 'medium_adult_healthy': 0.70,
                 'large_senior_issues': 0.30,
@@ -150,9 +150,9 @@ class Command(BaseCommand):
             }
         }
         
-        # Apply Kaggle patterns to animals
+
         updated_count = 0
-        animals = Animal.objects.all()[:500]  # Process 500 animals this time
+        animals = Animal.objects.all()[:500]
         
         for animal in animals:
             try:
@@ -229,7 +229,7 @@ class Command(BaseCommand):
                     # Ensure valid range
                     adoption_likelihood = max(0.05, min(0.95, base_likelihood))
                     
-                    # Create comprehensive Kaggle data - CONVERT ALL NUMPY TYPES
+
                     kaggle_data = {
                         'size': str(size),
                         'age_category': str(age_category),

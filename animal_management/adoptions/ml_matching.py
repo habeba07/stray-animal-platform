@@ -12,16 +12,11 @@ from .models import AdopterProfile, AnimalBehaviorProfile, AdoptionApplication
 from animals.models import Animal
 
 class MLAdoptionMatcher:
-    """
-    ENHANCED ML-based adoption matching system
-    Now uses advanced 89.5% accuracy model with collaborative filtering
-    """
-    
     def __init__(self):
         self.compatibility_model = None
         self.adoption_likelihood_model = None
-        self.advanced_model = None  # NEW: Advanced 89.5% model
-        self.collaborative_model = None  # NEW: Collaborative filtering
+        self.advanced_model = None
+        self.collaborative_model = None
         self.scaler = StandardScaler()
         self.likelihood_scaler = StandardScaler()
         self.label_encoders = {}
@@ -61,7 +56,7 @@ class MLAdoptionMatcher:
         return False
     
     def encode_categorical(self, feature_name, value):
-        """Convert text values to numbers for ML"""
+
         if feature_name not in self.label_encoders:
             self.label_encoders[feature_name] = LabelEncoder()
             known_categories = self.get_known_categories(feature_name)
@@ -87,7 +82,7 @@ class MLAdoptionMatcher:
         return categories.get(feature_name, ['DEFAULT'])
     
     def prepare_features(self, adopter_profile, animal_behavior_profile):
-        """Convert adopter and animal data into numbers for ML"""
+
         
         def safe_bool_to_int(value):
             if isinstance(value, str):
@@ -124,8 +119,7 @@ class MLAdoptionMatcher:
         return list(features.values())
 
     def _extract_animal_features_for_likelihood(self, animal, kaggle_data):
-        """Extract features for advanced model (same as training)"""
-        
+
         def categorize_age(age_str):
             if not age_str:
                 return 'Adult'
@@ -330,7 +324,7 @@ class MLAdoptionMatcher:
         return basic_result
     
     def _get_basic_compatibility(self, adopter_profile, animal_behavior_profile):
-        """Get basic compatibility score"""
+
         if self.compatibility_model:
             try:
                 features = self.prepare_features(adopter_profile, animal_behavior_profile)
@@ -372,7 +366,7 @@ class MLAdoptionMatcher:
             return False
     
     def _train_compatibility_model(self):
-        """Train compatibility model"""
+
         successful_adoptions = AdoptionApplication.objects.filter(status='APPROVED')
         
         if len(successful_adoptions) < 5:
@@ -425,7 +419,7 @@ class MLAdoptionMatcher:
         return True
     
     def train_adoption_likelihood_model(self):
-        """Train adoption likelihood model"""
+
         animals_with_kaggle = Animal.objects.filter(
             last_location_json__kaggle_data__isnull=False
         )

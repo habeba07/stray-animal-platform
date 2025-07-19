@@ -72,6 +72,7 @@ class ReportViewSet(viewsets.ModelViewSet):
             # Create an animal associated with this report
             animal_data = {
                 'animal_type': self.request.data.get('animal_type', 'DOG'),
+                'other_animal_type': self.request.data.get('other_animal_type', ''),
                 'gender': self.request.data.get('gender', 'UNKNOWN'),
                 'color': self.request.data.get('color', ''),
                 'status': 'REPORTED',
