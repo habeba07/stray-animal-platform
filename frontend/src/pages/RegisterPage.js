@@ -111,6 +111,10 @@ function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
+  
+  // NEW: Enhanced validation states
+  const [validationErrors, setValidationErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -136,17 +140,91 @@ function RegisterPage() {
     }
   }, [formData.password, formData.password_confirm]);
 
+  // NEW: Real-time form validation check
+  useEffect(() => {
+    const requiredFields = ['username', 'email', 'password', 'password_confirm'];
+    const isValid = requiredFields.every(field => formData[field].trim()) &&
+                    formData.password === formData.password_confirm &&
+                    (formData.user_type !== 'SHELTER' || formData.organization_name.trim());
+    setIsFormValid(isValid);
+  }, [formData]);
+
+  // NEW: Comprehensive validation function
+  const validateForm = () => {
+    const errors = {};
+    
+    // Check required fields
+    if (!formData.username.trim()) {
+      errors.username = 'Username is required';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.password.trim()) {
+      errors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long';
+    }
+    
+    if (!formData.password_confirm.trim()) {
+      errors.password_confirm = 'Please confirm your password';
+    }
+    
+    if (formData.password && formData.password_confirm && formData.password !== formData.password_confirm) {
+      errors.password_confirm = 'Passwords do not match';
+    }
+    
+    // Check SHELTER-specific requirements
+    if (formData.user_type === 'SHELTER' && !formData.organization_name.trim()) {
+      errors.organization_name = 'Organization name is required for shelter accounts';
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // NEW: Enhanced handleChange with error clearing
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value,
     }));
+    
+    // Clear validation error for the field being changed
+    if (validationErrors[name]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+    
+    // Clear password mismatch error when either password field changes
+    if ((name === 'password' || name === 'password_confirm') && validationErrors.password_confirm) {
+      setValidationErrors(prev => ({
+        ...prev,
+        password_confirm: ''
+      }));
+    }
   };
 
+  // NEW: Enhanced handleSubmit with validation
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // Clear previous validation errors
+    setValidationErrors({});
+    
+    // Client-side validation
+    if (!validateForm()) {
+      return;
+    }
+    
+    // Additional password mismatch check with alert (for TC14)
     if (formData.password !== formData.password_confirm) {
       alert('Passwords do not match');
       return;
@@ -386,8 +464,8 @@ function RegisterPage() {
               </Typography>
             </Box>
 
-            {/* Error Alert */}
-            {isError && (
+            {/* Enhanced Error Alert */}
+            {(isError || Object.keys(validationErrors).length > 0) && (
               <Slide direction="down" in timeout={800}>
                 <Alert 
                   severity="error" 
@@ -404,7 +482,7 @@ function RegisterPage() {
                   }}
                 >
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                    {message}
+                    {isError ? message : 'Please correct the errors below'}
                   </Typography>
                 </Alert>
               </Slide>
@@ -506,6 +584,8 @@ function RegisterPage() {
                                   autoComplete="username"
                                   value={formData.username}
                                   onChange={handleChange}
+                                  error={!!validationErrors.username}
+                                  helperText={validationErrors.username}
                                   sx={fieldStyles}
                                   InputProps={{
                                     startAdornment: (
@@ -525,9 +605,12 @@ function RegisterPage() {
                                   id="email"
                                   label="Email Address"
                                   name="email"
+                                  type="email"
                                   autoComplete="email"
                                   value={formData.email}
                                   onChange={handleChange}
+                                  error={!!validationErrors.email}
+                                  helperText={validationErrors.email}
                                   sx={fieldStyles}
                                   InputProps={{
                                     startAdornment: (
@@ -606,6 +689,8 @@ function RegisterPage() {
                                   id="password"
                                   value={formData.password}
                                   onChange={handleChange}
+                                  error={!!validationErrors.password}
+                                  helperText={validationErrors.password}
                                   sx={fieldStyles}
                                   InputProps={{
                                     startAdornment: (
@@ -646,8 +731,8 @@ function RegisterPage() {
                                   id="password_confirm"
                                   value={formData.password_confirm}
                                   onChange={handleChange}
-                                  error={!passwordMatch && formData.password_confirm}
-                                  helperText={!passwordMatch && formData.password_confirm ? "Passwords don't match" : ""}
+                                  error={!!validationErrors.password_confirm || (!passwordMatch && formData.password_confirm)}
+                                  helperText={validationErrors.password_confirm || (!passwordMatch && formData.password_confirm ? "Passwords don't match" : "")}
                                   sx={fieldStyles}
                                   InputProps={{
                                     startAdornment: (
@@ -842,12 +927,15 @@ function RegisterPage() {
                               <Collapse in={formData.user_type === 'SHELTER'} timeout="auto" unmountOnExit>
                                 <Grid item xs={12} sx={{ mt: 3 }}>
                                   <TextField
+                                    required={formData.user_type === 'SHELTER'}
                                     fullWidth
                                     name="organization_name"
                                     label="Organization Name"
                                     id="organization_name"
                                     value={formData.organization_name}
                                     onChange={handleChange}
+                                    error={!!validationErrors.organization_name}
+                                    helperText={validationErrors.organization_name}
                                     sx={fieldStyles}
                                     InputProps={{
                                       startAdornment: (
@@ -883,20 +971,22 @@ function RegisterPage() {
                         fullWidth
                         variant="contained"
                         size="large"
-                        disabled={isLoading || !passwordMatch}
+                        disabled={isLoading || !isFormValid}
                         startIcon={isLoading ? <CircularProgress size={24} color="inherit" /> : <PersonAddIcon />}
                         sx={{ 
                           py: 3,
                           borderRadius: 4,
                           fontSize: '1.3rem',
                           fontWeight: 800,
-                          background: isLoading || !passwordMatch ? 
-                            `linear-gradient(45deg, ${alpha(customTheme.primary, 0.3)} 30%, ${alpha(customTheme.primary, 0.2)} 90%)` :
-                            `linear-gradient(45deg, ${customTheme.accent} 30%, ${customTheme.secondary} 90%)`,
-                          boxShadow: !isLoading && passwordMatch ? 
-                            `0 8px 30px ${alpha(customTheme.accent, 0.4)}` : 
-                            'none',
-                          color: '#ffffff',
+                          background: !isFormValid ? 
+                            '#ccc' :
+                            (isLoading ? 
+                              `linear-gradient(45deg, ${alpha(customTheme.primary, 0.3)} 30%, ${alpha(customTheme.primary, 0.2)} 90%)` :
+                              `linear-gradient(45deg, ${customTheme.accent} 30%, ${customTheme.secondary} 90%)`
+                            ),
+                          boxShadow: !isFormValid ? 'none' :
+                            (!isLoading ? `0 8px 30px ${alpha(customTheme.accent, 0.4)}` : 'none'),
+                          color: !isFormValid ? '#888' : '#ffffff',
                           textTransform: 'none',
                           position: 'relative',
                           overflow: 'hidden',
@@ -921,11 +1011,13 @@ function RegisterPage() {
                           },
                           '&:disabled': {
                             color: alpha('#ffffff', 0.6),
-                            cursor: 'not-allowed'
+                            cursor: 'not-allowed',
+                            background: '#ccc',
                           }
                         }}
                       >
-                        {isLoading ? 'Creating Account...' : 'Create Account'}
+                        {isLoading ? 'Creating Account...' : 
+                         !isFormValid ? 'Please fill all required fields' : 'Create Account'}
                       </Button>
                     </Slide>
                     

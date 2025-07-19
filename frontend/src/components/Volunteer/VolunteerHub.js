@@ -338,36 +338,43 @@ function VolunteerHub() {
   };
 
   const submitCompletion = async () => {
-    if (!selectedAssignment) return;
+  if (!selectedAssignment) return;
 
-    setCompleting(true);
-    try {
-      if (selectedAssignment.isRescue) {
-        await api.post(`/volunteers/rescue-assignments/${selectedAssignment.id}/complete_rescue/`, {
-          completion_notes: completionNotes,
-          rescue_outcome: completionOutcome
-        });
-        setSnackbarMessage('Rescue completed successfully! Points awarded.');
-      } else {
-        await api.patch(`/volunteers/assignments/${selectedAssignment.id}/`, {
-          status: 'COMPLETED',
-          completion_notes: completionNotes,
-          completed_at: new Date().toISOString()
-        });
-        setSnackbarMessage('Assignment completed successfully!');
-      }
-
-      await fetchAssignments();
-      setCompleteDialogOpen(false);
-      setSnackbarOpen(true);
-      
-    } catch (err) {
-      console.error('Error completing assignment:', err);
-      setError('Failed to complete assignment. Please try again.');
-    } finally {
-      setCompleting(false);
+  setCompleting(true);
+  try {
+    if (selectedAssignment.isRescue) {
+      await api.post(`/volunteers/rescue-assignments/${selectedAssignment.id}/complete_rescue/`, {
+        completion_notes: completionNotes,
+        rescue_outcome: completionOutcome
+      });
+      setSnackbarMessage('Rescue completed successfully! Points awarded.');
+    } else {
+      await api.patch(`/volunteers/assignments/${selectedAssignment.id}/`, {
+        status: 'COMPLETED',
+        completion_notes: completionNotes,
+        completed_at: new Date().toISOString()
+      });
+      setSnackbarMessage('Assignment completed successfully!');
     }
-  };
+
+    await fetchAllData();
+    setCompleteDialogOpen(false);
+    setSnackbarOpen(true);
+    
+  } catch (err) {
+    console.error('Error completing assignment:', err);
+    
+    // Better error message
+    const errorMsg = err.response?.data?.detail || 
+                     err.response?.data?.message || 
+                     err.message || 
+                     'Failed to complete assignment';
+    setError(`Error: ${errorMsg}`);
+    
+  } finally {
+    setCompleting(false);
+  }
+};
 
   const resetDialog = () => {
     setSelectedItem(null);

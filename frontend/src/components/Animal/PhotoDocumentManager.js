@@ -7,7 +7,6 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActions,
   TextField,
   Select,
   MenuItem,
@@ -20,11 +19,13 @@ import {
   DialogContent,
   DialogActions,
   Paper,
-  Chip,
   Fade,
   Zoom,
   IconButton,
-  Tooltip,
+  CardMedia,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
 } from '@mui/material';
 import {
   PhotoCamera,
@@ -34,6 +35,8 @@ import {
   Image as ImageIcon,
   Description as DescriptionIcon,
   CloudUpload as CloudUploadIcon,
+  Fullscreen as FullscreenIcon,
+  Close as CloseIcon,
 } from '@mui/icons-material';
 import api from '../../redux/api';
 
@@ -54,29 +57,75 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
   const [success, setSuccess] = useState('');
   const [documentType, setDocumentType] = useState('medical');
   const [documentDescription, setDocumentDescription] = useState('');
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
+  // Enhanced photo upload with multiple files and validation
   const handlePhotoUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+    const files = Array.from(event.target.files);
+    if (!files.length) return;
+
+    // Check if adding these photos would exceed the limit
+    const currentPhotoCount = animal.photos ? animal.photos.length : 0;
+    const totalPhotos = currentPhotoCount + files.length;
+
+    if (totalPhotos > 5) {
+      setError('Maximum 5 photos allowed');
+      return;
+    }
+
+    // Validate each file
+    for (let file of files) {
+      // Check file type
+      if (!file.type.startsWith('image/')) {
+        setError('Invalid file type, only images allowed');
+        return;
+      }
+
+      // Check file size (10MB limit)
+      if (file.size > 10 * 1024 * 1024) {
+        setError('File size too large, maximum 10MB allowed');
+        return;
+      }
+    }
 
     setUploading(true);
     setError('');
 
-    const formData = new FormData();
-    formData.append('photo', file);
+    try {
+      // Upload each file individually
+      for (let file of files) {
+        const formData = new FormData();
+        formData.append('photo', file);
+
+        await api.post(`/animals/${animal.id}/upload_photo/`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+      }
+
+      setSuccess(`${files.length} photo(s) uploaded successfully!`);
+      onUpdate(); // Refresh animal data
+    } catch (error) {
+      setError('Failed to upload photos');
+      console.error('Photo upload error:', error);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handlePhotoDelete = async (photoIndex) => {
+    if (!window.confirm('Are you sure you want to delete this photo?')) {
+      return;
+    }
 
     try {
-      const response = await api.post(`/animals/${animal.id}/upload_photo/`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
-
-      if (response.data.success) {
-        setSuccess('Photo uploaded successfully!');
-        onUpdate(); // Refresh animal data
-      }
+      setUploading(true);
+      await api.delete(`/animals/${animal.id}/photos/${photoIndex}/`);
+      setSuccess('Photo deleted successfully!');
+      onUpdate(); // Refresh animal data
     } catch (error) {
-      setError('Failed to upload photo');
-      console.error('Photo upload error:', error);
+      setError('Failed to delete photo');
+      console.error('Photo delete error:', error);
     } finally {
       setUploading(false);
     }
@@ -114,6 +163,42 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
       console.error('Document upload error:', error);
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleDocumentDelete = async (documentIndex) => {
+    if (!window.confirm('Are you sure you want to delete this document?')) {
+      return;
+    }
+
+    try {
+      setUploading(true);
+      await api.delete(`/animals/${animal.id}/documents/${documentIndex}/`);
+      setSuccess('Document deleted successfully!');
+      onUpdate(); // Refresh animal data
+    } catch (error) {
+      setError('Failed to delete document');
+      console.error('Document delete error:', error);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const openGallery = (index) => {
+    setSelectedPhotoIndex(index);
+    setGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+  };
+
+  const navigatePhoto = (direction) => {
+    const photoCount = animal.photos ? animal.photos.length : 0;
+    if (direction === 'next') {
+      setSelectedPhotoIndex((prev) => (prev + 1) % photoCount);
+    } else {
+      setSelectedPhotoIndex((prev) => (prev - 1 + photoCount) % photoCount);
     }
   };
 
@@ -219,7 +304,7 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
                   gap: 1
                 }}>
                   <PhotoCamera sx={{ color: theme.secondary, fontSize: 28 }} />
-                  Animal Photos
+                  Animal Photos ({animal.photos ? animal.photos.length : 0}/5)
                 </Typography>
                 
                 {user?.user_type !== 'PUBLIC' && (
@@ -227,127 +312,123 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
                     <Button
                       variant="contained"
                       component="label"
-                      disabled={uploading}
+                      disabled={uploading || (animal.photos && animal.photos.length >= 5)}
                       startIcon={uploading ? <CircularProgress size={20} /> : <CloudUploadIcon />}
                       sx={{
-                        background: `linear-gradient(135deg, ${theme.secondary}, ${theme.success})`,
-                        fontWeight: 'bold',
+                        background: (animal.photos && animal.photos.length >= 5) 
+                          ? '#ccc' 
+                          : `linear-gradient(135deg, ${theme.secondary}, ${theme.accent})`,
+                        color: 'white',
                         borderRadius: 3,
-                        px: 3,
+                        px: 4,
                         py: 1.5,
-                        boxShadow: '0 4px 15px rgba(129, 199, 132, 0.4)',
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                        boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
                         '&:hover': {
-                          background: `linear-gradient(135deg, ${theme.success}, ${theme.secondary})`,
+                          background: (animal.photos && animal.photos.length >= 5) 
+                            ? '#ccc' 
+                            : `linear-gradient(135deg, ${theme.secondary}dd, ${theme.accent}dd)`,
                           transform: 'translateY(-2px)',
-                          boxShadow: '0 6px 20px rgba(129, 199, 132, 0.5)',
+                          boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
                         },
                         '&:disabled': {
                           background: '#ccc',
+                          color: 'white',
                         }
                       }}
                     >
-                      {uploading ? 'Uploading...' : 'Upload Photo'}
+                      {uploading ? 'Uploading...' : (animal.photos && animal.photos.length >= 5) ? 'Photo Limit Reached' : 'Upload Photos'}
                       <input
                         type="file"
+                        hidden
+                        multiple
                         accept="image/*"
                         onChange={handlePhotoUpload}
-                        hidden
                       />
                     </Button>
+                    <Typography variant="caption" sx={{ 
+                      display: 'block', 
+                      mt: 1, 
+                      color: theme.primary, 
+                      opacity: 0.7 
+                    }}>
+                      Multiple selection allowed.
+                    </Typography>
                   </Box>
                 )}
 
-                <Paper sx={{ 
-                  p: 2, 
-                  backgroundColor: theme.background,
-                  borderRadius: 3,
-                  border: `1px solid ${theme.secondary}30`,
-                  mb: 3
-                }}>
-                  <Typography variant="body1" sx={{ 
-                    color: theme.primary, 
-                    fontWeight: 'bold',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1
-                  }}>
-                    <ImageIcon sx={{ color: theme.accent }} />
-                    Current photos: {animal.photos ? animal.photos.length : 0}
-                  </Typography>
-                </Paper>
-
-                {/* Display existing photos */}
+                {/* Enhanced Gallery View */}
                 {animal.photos && animal.photos.length > 0 && (
                   <Box>
                     <Typography variant="h6" sx={{ 
+                      mb: 2, 
                       color: theme.primary, 
-                      fontWeight: 'bold', 
-                      mb: 2 
+                      fontWeight: 'bold' 
                     }}>
                       Photo Gallery
                     </Typography>
-                    <Grid container spacing={2}>
+                    <ImageList variant="masonry" cols={2} gap={8}>
                       {animal.photos.map((photo, index) => (
-                        <Grid item xs={6} sm={4} key={index}>
-                          <Zoom in timeout={300 + index * 100}>
-                            <Paper sx={{
-                              position: 'relative',
-                              borderRadius: 3,
-                              overflow: 'hidden',
-                              boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-                              border: `2px solid ${theme.secondary}30`,
+                        <ImageListItem key={index}>
+                          <CardMedia
+                            component="img"
+                            image={photo}
+                            alt={`${animal.name || 'Animal'} photo ${index + 1}`}
+                            sx={{
+                              borderRadius: 2,
+                              cursor: 'pointer',
+                              transition: 'transform 0.3s ease',
                               '&:hover': {
                                 transform: 'scale(1.05)',
-                                transition: 'transform 0.3s ease',
-                                boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
                               }
-                            }}>
-                              <img
-                                src={photo}
-                                alt={`${animal.name} photo ${index + 1}`}
-                                style={{ 
-                                  width: '100%', 
-                                  height: '120px', 
-                                  objectFit: 'cover',
-                                }}
-                              />
-                              <Box sx={{
-                                position: 'absolute',
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
-                                p: 1,
-                              }}>
-                                <Typography variant="caption" sx={{ 
-                                  color: 'white', 
-                                  fontWeight: 'bold',
-                                  fontSize: '0.7rem'
-                                }}>
-                                  Photo {index + 1}
-                                </Typography>
+                            }}
+                            onClick={() => openGallery(index)}
+                          />
+                          <ImageListItemBar
+                            title={`Photo ${index + 1}`}
+                            actionIcon={
+                              <Box sx={{ display: 'flex', gap: 1 }}>
+                                <IconButton
+                                  sx={{ color: 'white' }}
+                                  onClick={() => openGallery(index)}
+                                >
+                                  <FullscreenIcon />
+                                </IconButton>
+                                {user?.user_type !== 'PUBLIC' && (
+                                  <IconButton
+                                    sx={{ color: 'white' }}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handlePhotoDelete(index);
+                                    }}
+                                    disabled={uploading}
+                                  >
+                                    <DeleteIcon />
+                                  </IconButton>
+                                )}
                               </Box>
-                            </Paper>
-                          </Zoom>
-                        </Grid>
+                            }
+                          />
+                        </ImageListItem>
                       ))}
-                    </Grid>
+                    </ImageList>
                   </Box>
                 )}
 
                 {(!animal.photos || animal.photos.length === 0) && (
-                  <Paper sx={{ 
-                    p: 4, 
-                    textAlign: 'center',
-                    backgroundColor: theme.background,
+                  <Box sx={{ 
+                    textAlign: 'center', 
+                    py: 4,
+                    border: `2px dashed ${theme.secondary}30`,
                     borderRadius: 3,
-                    border: `1px solid ${theme.secondary}30`,
+                    backgroundColor: theme.background 
                   }}>
-                    <PhotoCamera sx={{ fontSize: 48, color: theme.primary, opacity: 0.5, mb: 1 }} />
-                    <Typography sx={{ color: theme.primary, opacity: 0.7 }}>
+                    <ImageIcon sx={{ fontSize: 60, color: theme.primary, opacity: 0.3, mb: 2 }} />
+                    <Typography variant="body1" sx={{ color: theme.primary, opacity: 0.7 }}>
                       No photos uploaded yet
                     </Typography>
-                  </Paper>
+                  </Box>
                 )}
               </CardContent>
             </Card>
@@ -356,7 +437,7 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
 
         {/* Document Upload Section */}
         <Grid item xs={12} md={6}>
-          <Zoom in timeout={700}>
+          <Zoom in timeout={600}>
             <Card sx={{
               background: `linear-gradient(135deg, white 0%, ${theme.grey}30 100%)`,
               backdropFilter: 'blur(10px)',
@@ -375,7 +456,7 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
                 left: 0,
                 right: 0,
                 height: 4,
-                background: `linear-gradient(90deg, ${theme.accent}, #ff7043)`,
+                background: `linear-gradient(90deg, ${theme.accent}, ${theme.secondary})`,
               }
             }}>
               <CardContent sx={{ flexGrow: 1, p: 4, pt: 5 }}>
@@ -390,97 +471,55 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
                   <AttachFile sx={{ color: theme.accent, fontSize: 28 }} />
                   Documents
                 </Typography>
-
+                
                 {user?.user_type !== 'PUBLIC' && (
                   <Box sx={{ mb: 3 }}>
                     <FormControl fullWidth sx={{ mb: 2 }}>
-                      <InputLabel sx={{ 
-                        color: theme.primary,
-                        fontWeight: 'bold',
-                        '&.Mui-focused': { color: theme.primary }
-                      }}>
-                        Document Type
-                      </InputLabel>
+                      <InputLabel>Document Type</InputLabel>
                       <Select
                         value={documentType}
                         onChange={(e) => setDocumentType(e.target.value)}
-                        label="Document Type"
-                        sx={{
-                          backgroundColor: 'white',
-                          borderRadius: 3,
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: theme.secondary,
-                            borderWidth: 2,
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: theme.primary,
-                          },
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: theme.primary,
-                            boxShadow: `0 0 0 3px ${theme.primary}20`,
-                          },
-                        }}
+                        sx={{ borderRadius: 3 }}
                       >
                         <MenuItem value="medical">Medical Record</MenuItem>
-                        <MenuItem value="vaccination">Vaccination Certificate</MenuItem>
-                        <MenuItem value="adoption">Adoption Document</MenuItem>
-                        <MenuItem value="intake">Intake Form</MenuItem>
+                        <MenuItem value="vaccination">Vaccination Record</MenuItem>
+                        <MenuItem value="adoption">Adoption Papers</MenuItem>
                         <MenuItem value="other">Other</MenuItem>
                       </Select>
                     </FormControl>
-
+                    
                     <TextField
                       fullWidth
                       label="Document Description"
                       value={documentDescription}
                       onChange={(e) => setDocumentDescription(e.target.value)}
+                      sx={{ mb: 2 }}
                       multiline
-                      rows={3}
-                      sx={{ 
-                        mb: 2,
-                        '& .MuiOutlinedInput-root': {
-                          backgroundColor: 'white',
-                          borderRadius: 3,
-                          '& fieldset': {
-                            borderColor: theme.secondary,
-                            borderWidth: 2,
-                          },
-                          '&:hover fieldset': {
-                            borderColor: theme.primary,
-                          },
-                          '&.Mui-focused fieldset': {
-                            borderColor: theme.primary,
-                            boxShadow: `0 0 0 3px ${theme.primary}20`,
-                          },
-                        },
-                        '& .MuiInputLabel-root': {
-                          color: theme.primary,
-                          fontWeight: 'bold',
-                          '&.Mui-focused': { color: theme.primary }
-                        }
-                      }}
-                      placeholder="Describe this document..."
+                      rows={2}
                     />
-
+                    
                     <Button
                       variant="contained"
                       component="label"
                       disabled={uploading || !documentDescription.trim()}
                       startIcon={uploading ? <CircularProgress size={20} /> : <CloudUploadIcon />}
                       sx={{
-                        background: `linear-gradient(135deg, ${theme.accent}, #ff7043)`,
-                        fontWeight: 'bold',
+                        background: `linear-gradient(135deg, ${theme.accent}, ${theme.secondary})`,
+                        color: 'white',
                         borderRadius: 3,
-                        px: 3,
+                        px: 4,
                         py: 1.5,
-                        boxShadow: '0 4px 15px rgba(255, 138, 101, 0.4)',
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                        boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
                         '&:hover': {
-                          background: `linear-gradient(135deg, #ff7043, ${theme.accent})`,
+                          background: `linear-gradient(135deg, ${theme.accent}dd, ${theme.secondary}dd)`,
                           transform: 'translateY(-2px)',
-                          boxShadow: '0 6px 20px rgba(255, 138, 101, 0.5)',
+                          boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
                         },
                         '&:disabled': {
                           background: '#ccc',
+                          color: 'white',
                         }
                       }}
                     >
@@ -495,118 +534,165 @@ const PhotoDocumentManager = ({ animal, onUpdate }) => {
                   </Box>
                 )}
 
+                {/* Document List - UPDATED SECTION */}
                 <Paper sx={{ 
                   p: 2, 
                   backgroundColor: theme.background,
                   borderRadius: 3,
                   border: `1px solid ${theme.secondary}30`,
-                  mb: 3
                 }}>
                   <Typography variant="body1" sx={{ 
                     color: theme.primary, 
                     fontWeight: 'bold',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 1
+                    gap: 1,
+                    mb: 2
                   }}>
                     <DescriptionIcon sx={{ color: theme.accent }} />
-                    Current documents: {animal.documents ? animal.documents.length : 0}
+                    Documents: {animal.documents ? animal.documents.length : 0}
                   </Typography>
-                </Paper>
-
-                {/* Display existing documents */}
-                {animal.documents && animal.documents.length > 0 && (
-                  <Box>
-                    <Typography variant="h6" sx={{ 
-                      color: theme.primary, 
-                      fontWeight: 'bold', 
-                      mb: 2 
-                    }}>
-                      Document Library
-                    </Typography>
-                    <Box sx={{ maxHeight: 300, overflowY: 'auto', pr: 1 }}>
+                  
+                  {animal.documents && animal.documents.length > 0 ? (
+                    <Box sx={{ mt: 2 }}>
                       {animal.documents.map((doc, index) => (
-                        <Fade in timeout={300 + index * 100} key={index}>
-                          <Paper sx={{ 
-                            p: 2, 
-                            mb: 2,
-                            background: `linear-gradient(135deg, white 0%, ${theme.background}50 100%)`,
-                            border: `1px solid ${theme.secondary}30`,
-                            borderRadius: 3,
+                        <Box key={index} sx={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          mb: 2,
+                          p: 2,
+                          border: `1px solid ${theme.secondary}30`,
+                          borderRadius: 2,
+                          backgroundColor: 'white',
+                          '&:hover': {
                             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                            '&:hover': {
-                              transform: 'translateX(4px)',
-                              transition: 'transform 0.2s ease',
-                              boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-                            }
-                          }}>
-                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                              <DescriptionIcon sx={{ color: theme.accent, mt: 0.5 }} />
-                              <Box sx={{ flexGrow: 1 }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                                  <Chip
-                                    label={doc.type.toUpperCase()}
-                                    size="small"
-                                    sx={{
-                                      backgroundColor: theme.accent,
-                                      color: 'white',
-                                      fontWeight: 'bold',
-                                      fontSize: '0.7rem',
-                                    }}
-                                  />
-                                  <Typography variant="body2" sx={{ 
-                                    fontWeight: 'bold',
-                                    color: theme.primary,
-                                    flexGrow: 1
-                                  }}>
-                                    {doc.filename}
-                                  </Typography>
-                                </Box>
-                                <Typography variant="body2" sx={{ 
-                                  color: theme.primary, 
-                                  opacity: 0.8,
-                                  fontStyle: 'italic'
-                                }}>
-                                  {doc.description}
-                                </Typography>
-                                {doc.uploaded_at && (
-                                  <Typography variant="caption" sx={{ 
-                                    color: theme.primary, 
-                                    opacity: 0.6,
-                                    display: 'block',
-                                    mt: 0.5
-                                  }}>
-                                    Uploaded: {new Date(doc.uploaded_at).toLocaleDateString()}
-                                  </Typography>
-                                )}
-                              </Box>
-                            </Box>
-                          </Paper>
-                        </Fade>
+                          }
+                        }}>
+                          <Box sx={{ flexGrow: 1 }}>
+                            <Typography variant="body2" sx={{ fontWeight: 'bold', color: theme.primary }}>
+                              {doc.type}: {doc.description}
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: theme.primary, opacity: 0.7 }}>
+                              {doc.filename}
+                            </Typography>
+                          </Box>
+                          <Box sx={{ display: 'flex', gap: 1 }}>
+                            <IconButton
+                              size="small"
+                              onClick={() => window.open(`http://localhost:8000${doc.url}`, '_blank')}
+                              sx={{ 
+                                color: theme.secondary,
+                                '&:hover': {
+                                  backgroundColor: `${theme.secondary}20`,
+                                }
+                              }}
+                              title="Download Document"
+                            >
+                              <DownloadIcon />
+                            </IconButton>
+                            {user?.user_type !== 'PUBLIC' && (
+                              <IconButton
+                                size="small"
+                                onClick={() => handleDocumentDelete(index)}
+                                sx={{ 
+                                  color: theme.accent,
+                                  '&:hover': {
+                                    backgroundColor: `${theme.accent}20`,
+                                  }
+                                }}
+                                disabled={uploading}
+                                title="Delete Document"
+                              >
+                                <DeleteIcon />
+                              </IconButton>
+                            )}
+                          </Box>
+                        </Box>
                       ))}
                     </Box>
-                  </Box>
-                )}
-
-                {(!animal.documents || animal.documents.length === 0) && (
-                  <Paper sx={{ 
-                    p: 4, 
-                    textAlign: 'center',
-                    backgroundColor: theme.background,
-                    borderRadius: 3,
-                    border: `1px solid ${theme.secondary}30`,
-                  }}>
-                    <DescriptionIcon sx={{ fontSize: 48, color: theme.primary, opacity: 0.5, mb: 1 }} />
-                    <Typography sx={{ color: theme.primary, opacity: 0.7 }}>
-                      No documents uploaded yet
-                    </Typography>
-                  </Paper>
-                )}
+                  ) : (
+                    <Box sx={{ 
+                      textAlign: 'center', 
+                      py: 4,
+                      border: `2px dashed ${theme.secondary}30`,
+                      borderRadius: 3,
+                      backgroundColor: theme.background 
+                    }}>
+                      <DescriptionIcon sx={{ fontSize: 60, color: theme.primary, opacity: 0.3, mb: 2 }} />
+                      <Typography variant="body2" sx={{ 
+                        color: theme.primary, 
+                        opacity: 0.7 
+                      }}>
+                        No documents uploaded yet
+                      </Typography>
+                    </Box>
+                  )}
+                </Paper>
               </CardContent>
             </Card>
           </Zoom>
         </Grid>
       </Grid>
+
+      {/* Full Screen Gallery Dialog */}
+      <Dialog
+        open={galleryOpen}
+        onClose={closeGallery}
+        maxWidth="lg"
+        fullWidth
+        sx={{
+          '& .MuiDialog-paper': {
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            borderRadius: 3,
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          color: 'white'
+        }}>
+          <Typography variant="h6">
+            Photo {selectedPhotoIndex + 1} of {animal.photos ? animal.photos.length : 0}
+          </Typography>
+          <IconButton onClick={closeGallery} sx={{ color: 'white' }}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ textAlign: 'center', p: 2 }}>
+          {animal.photos && animal.photos[selectedPhotoIndex] && (
+            <img
+              src={animal.photos[selectedPhotoIndex]}
+              alt={`${animal.name || 'Animal'} photo ${selectedPhotoIndex + 1}`}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '70vh',
+                objectFit: 'contain',
+                borderRadius: 8
+              }}
+            />
+          )}
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: 'center', pb: 3 }}>
+          <Button 
+            onClick={() => navigatePhoto('prev')}
+            disabled={!animal.photos || animal.photos.length <= 1}
+            sx={{ color: 'white', borderColor: 'white' }}
+            variant="outlined"
+          >
+            Previous
+          </Button>
+          <Button 
+            onClick={() => navigatePhoto('next')}
+            disabled={!animal.photos || animal.photos.length <= 1}
+            sx={{ color: 'white', borderColor: 'white' }}
+            variant="outlined"
+          >
+            Next
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

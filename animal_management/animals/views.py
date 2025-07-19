@@ -229,6 +229,124 @@ class AnimalViewSet(viewsets.ModelViewSet):
         })
 
 
+
+    @action(detail=True, methods=['delete'], url_path='photos/(?P<photo_index>[^/.]+)')
+    def delete_photo(self, request, pk=None, photo_index=None):
+        """Delete a specific photo from an animal by index"""
+        try:
+            animal = self.get_object()
+            photo_index = int(photo_index)
+            
+            # Check if animal has photos and index is valid
+            if not animal.photos or photo_index >= len(animal.photos) or photo_index < 0:
+                return Response(
+                    {'error': 'Invalid photo index'}, 
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            # Get the photo URL to delete
+            photo_url = animal.photos[photo_index]
+            
+            # Remove photo from the list
+            photos_list = list(animal.photos)
+            removed_photo_url = photos_list.pop(photo_index)
+            animal.photos = photos_list
+            animal.save()
+            
+            # Try to delete the actual file from disk
+            try:
+                if removed_photo_url.startswith('/media/'):
+                    # Extract file path from URL
+                    file_path = removed_photo_url.replace('/media/', '')
+                    full_path = os.path.join(settings.MEDIA_ROOT, file_path)
+                    if os.path.exists(full_path):
+                        os.remove(full_path)
+                        print(f"Deleted file: {full_path}")
+                    else:
+                        print(f"File not found: {full_path}")
+            except Exception as e:
+                # Log the error but don't fail the request
+                print(f"Failed to delete photo file: {e}")
+            
+            return Response({
+                'success': True,
+                'message': 'Photo deleted successfully',
+                'remaining_photos': len(animal.photos)
+            }, status=status.HTTP_200_OK)
+            
+        except ValueError:
+            return Response(
+                {'error': 'Invalid photo index format'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        except Exception as e:
+            return Response(
+                {'error': f'Failed to delete photo: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+    @action(detail=True, methods=['delete'], url_path='documents/(?P<document_index>[^/.]+)')
+    def delete_document(self, request, pk=None, document_index=None):
+        """Delete a specific document from an animal by index"""
+        try:
+            animal = self.get_object()
+            document_index = int(document_index)
+            
+            # Check if animal has documents and index is valid
+            if not animal.documents or document_index >= len(animal.documents) or document_index < 0:
+                return Response(
+                    {'error': 'Invalid document index'}, 
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            # Get the document to delete
+            document = animal.documents[document_index]
+            document_url = document.get('url', '')
+            
+            # Remove document from the list
+            documents_list = list(animal.documents)
+            removed_document = documents_list.pop(document_index)
+            animal.documents = documents_list
+            animal.save()
+            
+            # Try to delete the actual file from disk
+            try:
+                if document_url.startswith('/media/'):
+                    # Extract file path from URL
+                    file_path = document_url.replace('/media/', '')
+                    full_path = os.path.join(settings.MEDIA_ROOT, file_path)
+                    if os.path.exists(full_path):
+                        os.remove(full_path)
+                        print(f"Deleted file: {full_path}")
+                    else:
+                        print(f"File not found: {full_path}")
+            except Exception as e:
+                # Log the error but don't fail the request
+                print(f"Failed to delete document file: {e}")
+            
+            return Response({
+                'success': True,
+                'message': 'Document deleted successfully',
+                'remaining_documents': len(animal.documents),
+                'deleted_document': {
+                    'filename': removed_document.get('filename', ''),
+                    'type': removed_document.get('type', ''),
+                    'description': removed_document.get('description', '')
+                }
+            }, status=status.HTTP_200_OK)
+            
+        except ValueError:
+            return Response(
+                {'error': 'Invalid document index format'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        except Exception as e:
+            return Response(
+                {'error': f'Failed to delete document: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+
     @action(detail=False, methods=['get'])
     def ready_for_transfer(self, request):
         """Get animals that are ready for transfer"""

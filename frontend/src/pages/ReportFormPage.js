@@ -12,6 +12,7 @@ import {
   CircularProgress,
   Grid,
   FormControl,
+  IconButton,
   InputLabel,
   Select,
   MenuItem,
@@ -43,6 +44,7 @@ import {
   Favorite as FavoriteIcon,
   Star as StarIcon,
   AutoAwesome as SparkleIcon,
+  Close as CloseIcon
 } from '@mui/icons-material';
 import { keyframes } from '@mui/system';
 import 'leaflet/dist/leaflet.css';
@@ -192,29 +194,62 @@ function ReportFormPage() {
   };
 
   const handlePhotoChange = (e) => {
-    const files = e.target.files;
-    
-    if (files.length > 3) {
-      setError('Maximum 3 photos allowed');
+    const newFiles = Array.from(e.target.files);
+  
+    if (newFiles.length === 0) return;
+  
+    // Convert existing photos FileList to Array if it exists
+    const existingPhotos = photos ? Array.from(photos) : [];
+  
+    // Combine existing photos with new ones
+    const allPhotos = [...existingPhotos, ...newFiles];
+  
+    // Check if total would exceed limit
+    if (allPhotos.length > 3) {
+      setError(`Cannot add ${newFiles.length} photo(s). Maximum 3 photos allowed. You currently have ${existingPhotos.length} photo(s).`);
       return;
     }
-    
-    setPhotos(files);
-    
-    // Generate previews with progress simulation
+  
+    // Clear any previous error
+    setError('');
+  
+    // Update photos state with combined array
+    setPhotos(allPhotos);
+  
+    // Generate previews for ALL photos (existing + new)
     setUploadProgress(0);
-    const newPreviewUrls = [];
-    Array.from(files).forEach((file, index) => {
+    const allPreviewUrls = [];
+  
+    allPhotos.forEach((file, index) => {
       const fileReader = new FileReader();
       fileReader.onload = () => {
-        newPreviewUrls.push(fileReader.result);
-        setUploadProgress((prev) => prev + (100 / files.length));
-        if (newPreviewUrls.length === files.length) {
-          setPreviewUrls(newPreviewUrls);
+        allPreviewUrls.push(fileReader.result);
+        setUploadProgress((prev) => prev + (100 / allPhotos.length));
+      
+        if (allPreviewUrls.length === allPhotos.length) {
+          setPreviewUrls(allPreviewUrls);
         }
       };
       fileReader.readAsDataURL(file);
     });
+  
+    // Clear the file input so the same file can be selected again if needed
+    e.target.value = '';
+  };
+
+  // Also add this function to handle removing individual photos
+  const handleRemovePhoto = (indexToRemove) => {
+    const existingPhotos = photos ? Array.from(photos) : [];
+    const updatedPhotos = existingPhotos.filter((_, index) => index !== indexToRemove);
+    const updatedPreviews = previewUrls.filter((_, index) => index !== indexToRemove);
+  
+    setPhotos(updatedPhotos);
+    setPreviewUrls(updatedPreviews);
+  
+    // Recalculate upload progress
+    if (updatedPhotos.length === 0) {
+      setUploadProgress(0);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -1065,52 +1100,97 @@ function ReportFormPage() {
                         )}
                         
                         {/* Photo Previews */}
-                        {previewUrls.length > 0 && (
-                          <Box>
-                            <Typography variant="h6" sx={{ 
-                              color: customTheme.primary, 
-                              fontWeight: 600,
-                              mb: 2,
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 1
-                            }}>
-                              <CheckIcon sx={{ color: customTheme.success }} />
-                              Photo Previews ({previewUrls.length}/3)
-                            </Typography>
-                            <Grid container spacing={2}>
-                              {previewUrls.map((url, index) => (
-                                <Grid item xs={6} sm={4} md={3} key={index}>
-                                  <Zoom in timeout={300 * (index + 1)}>
-                                    <Paper
-                                      elevation={3}
-                                      sx={{
-                                        borderRadius: 3,
-                                        overflow: 'hidden',
-                                        border: `3px solid ${customTheme.primary}`,
-                                        transition: 'transform 0.3s ease',
-                                        '&:hover': {
-                                          transform: 'scale(1.05)'
-                                        }
-                                      }}
-                                    >
-                                      <Box 
-                                        component="img" 
-                                        src={url} 
-                                        alt={`Preview ${index + 1}`}
-                                        sx={{ 
-                                          width: '100%',
-                                          height: 120, 
-                                          objectFit: 'cover'
-                                        }}
-                                      />
-                                    </Paper>
-                                  </Zoom>
-                                </Grid>
-                              ))}
-                            </Grid>
-                          </Box>
-                        )}
+{previewUrls.length > 0 && (
+  <Box>
+    <Typography variant="h6" sx={{ 
+      color: customTheme.primary, 
+      fontWeight: 600,
+      mb: 2,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 1
+    }}>
+      <CheckIcon sx={{ color: customTheme.success }} />
+      Photo Previews ({previewUrls.length}/3)
+    </Typography>
+    <Grid container spacing={2}>
+      {previewUrls.map((url, index) => (
+        <Grid item xs={6} sm={4} md={3} key={index}>
+          <Zoom in timeout={300 * (index + 1)}>
+            <Paper
+              elevation={4}
+              sx={{
+                position: 'relative',
+                borderRadius: 3,
+                overflow: 'hidden',
+                background: `linear-gradient(135deg, ${alpha(customTheme.success, 0.1)} 0%, ${alpha(customTheme.secondary, 0.1)} 100%)`,
+                border: `2px solid ${customTheme.success}`,
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-5px)',
+                  boxShadow: `0 15px 35px ${alpha(customTheme.success, 0.3)}`
+                }
+              }}
+            >
+              {/* Remove button */}
+              <IconButton
+                onClick={() => handleRemovePhoto(index)}
+                sx={{
+                  position: 'absolute',
+                  top: 8,
+                  right: 8,
+                  backgroundColor: 'rgba(244, 67, 54, 0.8)',
+                  color: 'white',
+                  width: 32,
+                  height: 32,
+                  zIndex: 2,
+                  '&:hover': {
+                    backgroundColor: 'rgba(244, 67, 54, 0.9)',
+                    transform: 'scale(1.1)'
+                  }
+                }}
+                size="small"
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+              
+              {/* Photo preview */}
+              <Box
+                component="img"
+                src={url}
+                alt={`Preview ${index + 1}`}
+                sx={{
+                  width: '100%',
+                  height: 150,
+                  objectFit: 'cover',
+                  display: 'block'
+                }}
+              />
+              
+              {/* Photo number indicator */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: 8,
+                  left: 8,
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                  color: 'white',
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: 1,
+                  fontSize: '0.8rem',
+                  fontWeight: 600
+                }}
+              >
+                {index + 1}
+              </Box>
+            </Paper>
+          </Zoom>
+        </Grid>
+      ))}
+    </Grid>
+  </Box>
+)}
                       </Box>
                     </Slide>
                   </Box>

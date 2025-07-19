@@ -305,7 +305,7 @@ function VolunteerEmergencyReport() {
       });
     
       if (response.data.success) {
-        setSuccess(true);
+    
         alert(`Emergency call sent! ${response.data.coordinators_notified} coordinators notified.`);
       }
     } catch (error) {
@@ -327,7 +327,7 @@ function VolunteerEmergencyReport() {
       });
     
       if (response.data.success) {
-        setSuccess(true);
+    
         setFormData(prev => ({ ...prev, backup_requested: true }));
         alert(`Backup request sent! ${response.data.volunteers_notified} volunteers notified.`);
       }

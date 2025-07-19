@@ -214,8 +214,8 @@ function NavBar() {
             'Explore': [
               { title: 'Adoptable Animals', path: '/animals' },
               { title: 'Report Animal', path: '/report-animal' },
+              { title: 'Track Report', path: '/track-report' },
               { title: 'Resources', path: '/resources' },
-              { title: 'Interactive Learning', path: '/interactive-learning' },
             ]
           }
         };
