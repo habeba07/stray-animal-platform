@@ -346,7 +346,9 @@ function ReportDetailPage() {
                     </Typography>
                     <Box sx={{ pl: 2 }}>
                       <Typography variant="body1" sx={{ mb: 1, color: customTheme.primary }}>
-                        <strong>Type:</strong> {currentReport.animal_details?.animal_type || 'Not specified'}
+                        <strong>Type:</strong> {currentReport.animal_details?.animal_type === 'OTHER' 
+                        ? (currentReport.animal_details?.other_animal_type || currentReport.other_animal_type || 'Other animal')
+                        : (currentReport.animal_details?.animal_type || 'Not specified')}
                       </Typography>
                       <Typography variant="body1" sx={{ mb: 1, color: customTheme.primary }}>
                         <strong>Gender:</strong> {currentReport.animal_details?.gender || 'Not specified'}

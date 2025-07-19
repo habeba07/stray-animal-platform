@@ -653,10 +653,10 @@ function RewardCatalog() {
                             icon={getRewardTypeIcon(reward.reward_type)}
                             label={reward.reward_type}
                             sx={{
-                              backgroundColor: alpha(getRewardTypeColor(reward.reward_type), 0.15),
-                              color: getRewardTypeColor(reward.reward_type),
+                              backgroundColor: alpha(customTheme.primary, 0.15),
+                              color: customTheme.primary,
                               fontWeight: 600,
-                              border: `1px solid ${alpha(getRewardTypeColor(reward.reward_type), 0.3)}`
+                              border: `1px solid ${alpha(customTheme.primary, 0.3)}`
                             }}
                           />
                           {!reward.is_active && (

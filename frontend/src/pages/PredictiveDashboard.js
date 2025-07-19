@@ -1,6 +1,97 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import {
+  Container,
+  Paper,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+  CircularProgress,
+  Alert,
+  Box,
+  Chip,
+  LinearProgress,
+  Divider,
+  Tab,
+  Tabs,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Avatar,
+  Fade,
+  Slide,
+  Zoom,
+  alpha,
+} from '@mui/material';
+import {
+  Analytics as AnalyticsIcon,
+  TrendingUp as TrendingUpIcon,
+  TrendingDown as TrendingDownIcon,
+  Assessment as AssessmentIcon,
+  Dashboard as DashboardIcon,
+  Pets as PetsIcon,
+  Home as HomeIcon,
+  Inventory as InventoryIcon,
+  Warning as WarningIcon,
+  CheckCircle as CheckCircleIcon,
+  Info as InfoIcon,
+  Star as StarIcon,
+  AutoAwesome as SparkleIcon,
+  Timeline as TimelineIcon,
+  DataUsage as DataIcon,
+  Psychology as BrainIcon,
+  Speed as SpeedIcon,
+} from '@mui/icons-material';
+import { keyframes } from '@mui/system';
 import api from '../redux/api';
+
+// Custom theme colors
+const customTheme = {
+  primary: '#8d6e63',       // Warm Brown
+  secondary: '#81c784',     // Soft Green
+  success: '#4caf50',       // Fresh Green
+  grey: '#f3e5ab',          // Warm Cream
+  accent: '#ff8a65',        // Gentle Orange
+  background: '#fff8e1',    // Soft Cream
+};
+
+// Keyframe animations
+const float = keyframes`
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+`;
+
+const sparkle = keyframes`
+  0% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  100% { opacity: 0; transform: scale(0) rotate(360deg); }
+`;
+
+const pulse = keyframes`
+  0% { transform: scale(1); box-shadow: 0 0 0 0 ${alpha(customTheme.accent, 0.4)}; }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px ${alpha(customTheme.accent, 0)}; }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 ${alpha(customTheme.accent, 0)}; }
+`;
+
+const slideInUp = keyframes`
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const gradientShift = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const shimmer = keyframes`
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+`;
 
 function PredictiveDashboard() {
   const { user } = useSelector((state) => state.auth);
@@ -475,592 +566,1120 @@ function PredictiveDashboard() {
   const getPriorityColor = (priority) => {
     const colors = {
       'critical': '#d32f2f',
-      'high': '#f57c00',
-      'medium': '#1976d2',
-      'low': '#388e3c'
+      'high': customTheme.accent,
+      'medium': customTheme.primary,
+      'low': customTheme.success
     };
     return colors[priority] || '#666';
   };
 
   const getTrendIcon = (trend) => {
+    const iconProps = { fontSize: 'inherit' };
     const icons = {
-      'up': '📈',
-      'down': '📉',
-      'stable': '➡️',
-      'increasing': '📈',
-      'decreasing': '📉',
-      'improving': '📈'
+      'up': <TrendingUpIcon {...iconProps} />,
+      'down': <TrendingDownIcon {...iconProps} />,
+      'stable': <TimelineIcon {...iconProps} />,
+      'increasing': <TrendingUpIcon {...iconProps} />,
+      'decreasing': <TrendingDownIcon {...iconProps} />,
+      'improving': <TrendingUpIcon {...iconProps} />
     };
-    return icons[trend] || '📊';
+    return icons[trend] || <AssessmentIcon {...iconProps} />;
   };
 
   const getConfidenceColor = (confidence) => {
-    if (confidence >= 90) return '#4caf50';
-    if (confidence >= 80) return '#8bc34a';
-    if (confidence >= 70) return '#ff9800';
+    if (confidence >= 90) return customTheme.success;
+    if (confidence >= 80) return customTheme.secondary;
+    if (confidence >= 70) return customTheme.accent;
     return '#f44336';
   };
 
-  const styles = {
-    container: {
-      padding: '20px',
-      maxWidth: '1400px',
-      margin: '0 auto',
-      backgroundColor: '#f5f5f5',
-      minHeight: '100vh'
-    },
-    header: {
-      textAlign: 'center',
-      marginBottom: '30px',
-      backgroundColor: 'white',
-      padding: '30px',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-    },
-    title: {
-      fontSize: '2.5rem',
-      color: '#1976d2',
-      marginBottom: '10px',
-      fontWeight: '600'
-    },
-    subtitle: {
-      fontSize: '1.1rem',
-      color: '#666',
-      margin: '0'
-    },
-    controls: {
-      backgroundColor: 'white',
-      padding: '20px',
-      borderRadius: '8px',
-      marginBottom: '20px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: '15px'
-    },
-    tabNavigation: {
-      display: 'flex',
-      gap: '10px',
-      flexWrap: 'wrap'
-    },
-    tabButton: {
-      backgroundColor: '#1976d2',
-      color: 'white',
-      border: 'none',
-      padding: '10px 20px',
-      borderRadius: '4px',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontWeight: '500',
-      transition: 'background-color 0.3s ease'
-    },
-    tabButtonInactive: {
-      backgroundColor: '#e3f2fd',
-      color: '#1976d2'
-    },
-    timeframeSelect: {
-      padding: '8px 12px',
-      borderRadius: '4px',
-      border: '1px solid #ddd',
-      fontSize: '14px'
-    },
-    contentSection: {
-      backgroundColor: 'white',
-      padding: '25px',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      marginBottom: '20px'
-    },
-    sectionTitle: {
-      fontSize: '1.6rem',
-      fontWeight: '600',
-      color: '#2c3e50',
-      marginBottom: '20px',
-      borderBottom: '2px solid #1976d2',
-      paddingBottom: '8px'
-    },
-    metricsGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '20px',
-      marginBottom: '25px'
-    },
-    metricCard: {
-      backgroundColor: '#fafafa',
-      padding: '20px',
-      borderRadius: '8px',
-      border: '1px solid #e0e0e0',
-      textAlign: 'center'
-    },
-    metricValue: {
-      fontSize: '2rem',
-      fontWeight: '700',
-      color: '#1976d2',
-      marginBottom: '5px'
-    },
-    metricLabel: {
-      fontSize: '0.9rem',
-      color: '#666',
-      marginBottom: '10px'
-    },
-    metricProjection: {
-      fontSize: '0.8rem',
-      color: '#888',
-      marginBottom: '8px'
-    },
-    trendIndicator: {
-      fontSize: '1.2rem',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '5px'
-    },
-    confidenceBar: {
-      width: '100%',
-      height: '6px',
-      backgroundColor: '#e0e0e0',
-      borderRadius: '3px',
-      overflow: 'hidden',
-      marginTop: '8px'
-    },
-    confidenceFill: {
-      height: '100%',
-      borderRadius: '3px',
-      transition: 'width 0.3s ease'
-    },
-    forecastChart: {
-      height: '300px',
-      backgroundColor: '#fafafa',
-      borderRadius: '8px',
-      padding: '20px',
-      marginTop: '20px',
-      display: 'flex',
-      alignItems: 'end',
-      justifyContent: 'space-between',
-      overflow: 'hidden'
-    },
-    chartBar: {
-      width: '25px',
-      backgroundColor: '#1976d2',
-      borderRadius: '4px 4px 0 0',
-      margin: '0 1px',
-      transition: 'all 0.3s ease',
-      cursor: 'pointer',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'end',
-      alignItems: 'center'
-    },
-    chartLabel: {
-      fontSize: '0.6rem',
-      color: '#666',
-      marginTop: '4px',
-      textAlign: 'center',
-      transform: 'rotate(-45deg)',
-      transformOrigin: 'center'
-    },
-    alertsContainer: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-      gap: '15px'
-    },
-    alertCard: {
-      padding: '15px',
-      borderRadius: '8px',
-      border: '1px solid #e0e0e0',
-      borderLeft: '4px solid'
-    },
-    alertTitle: {
-      fontSize: '1.1rem',
-      fontWeight: '600',
-      marginBottom: '8px'
-    },
-    alertMessage: {
-      fontSize: '0.9rem',
-      color: '#666',
-      marginBottom: '10px',
-      lineHeight: '1.4'
-    },
-    alertActions: {
-      fontSize: '0.85rem',
-      color: '#1976d2'
-    },
-    predictionGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: '20px'
-    },
-    predictionCard: {
-      backgroundColor: '#fafafa',
-      padding: '20px',
-      borderRadius: '8px',
-      border: '1px solid #e0e0e0'
-    },
-    predictionTitle: {
-      fontSize: '1.2rem',
-      fontWeight: '600',
-      color: '#2c3e50',
-      marginBottom: '15px'
-    },
-    error: {
-      backgroundColor: '#ffebee',
-      border: '1px solid #f44336',
-      color: '#c62828',
-      padding: '15px',
-      borderRadius: '8px',
-      marginBottom: '20px',
-      textAlign: 'center'
-    },
-    loading: {
-      textAlign: 'center',
-      padding: '60px',
-      backgroundColor: 'white',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-    },
-    loadingText: {
-      fontSize: '1.2rem',
-      color: '#666',
-      marginTop: '15px'
-    }
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
   };
 
   if (loading) {
     return (
-      <div style={styles.container}>
-        <div style={styles.loading}>
-          <div style={{fontSize: '3rem', marginBottom: '15px'}}>🔮</div>
-          <h2 style={styles.loadingText}>
+      <Box sx={{ 
+        minHeight: '100vh',
+        background: `
+          radial-gradient(circle at 20% 80%, ${alpha(customTheme.accent, 0.3)} 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, ${alpha(customTheme.secondary, 0.3)} 0%, transparent 50%),
+          linear-gradient(135deg, ${customTheme.background} 0%, ${alpha(customTheme.grey, 0.4)} 100%)
+        `,
+        display: 'flex', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Floating Background Elements */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '10%',
+            left: '10%',
+            animation: `${float} 6s ease-in-out infinite`,
+            animationDelay: '0s'
+          }}
+        >
+          <AnalyticsIcon sx={{ fontSize: 60, color: alpha(customTheme.primary, 0.1), transform: 'rotate(15deg)' }} />
+        </Box>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '60%',
+            right: '15%',
+            animation: `${float} 8s ease-in-out infinite`,
+            animationDelay: '2s'
+          }}
+        >
+          <BrainIcon sx={{ fontSize: 40, color: alpha(customTheme.accent, 0.15), transform: 'rotate(-20deg)' }} />
+        </Box>
+        
+        <Box sx={{ textAlign: 'center', zIndex: 1 }}>
+          <Box sx={{ position: 'relative', mb: 3 }}>
+            <CircularProgress 
+              size={80} 
+              thickness={3}
+              sx={{ 
+                color: customTheme.primary,
+                animation: `${pulse} 2s infinite`
+              }}
+            />
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                animation: `${sparkle} 2s infinite`
+              }}
+            >
+              <StarIcon sx={{ color: customTheme.accent, fontSize: 30 }} />
+            </Box>
+          </Box>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: customTheme.primary, 
+              fontWeight: 700,
+              mb: 1,
+              background: `linear-gradient(45deg, ${customTheme.primary}, ${customTheme.accent})`,
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}
+          >
             {user?.user_type === 'AUTHORITY' ? 'Generating Strategic Forecasts...' : 'Generating AI Predictions...'}
-          </h2>
-        </div>
-      </div>
+          </Typography>
+          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.7) }}>
+            Analyzing patterns and generating insights...
+          </Typography>
+        </Box>
+      </Box>
     );
   }
 
-  // AUTHORITY Strategic Forecasting Dashboard (unchanged)
+  // AUTHORITY Strategic Forecasting Dashboard
   if (user?.user_type === 'AUTHORITY' && strategicForecastData) {
-    // ... (keeping existing authority dashboard code)
-    return <div>Authority Dashboard - Same as before</div>;
+    return (
+      <Box sx={{ 
+        minHeight: '100vh',
+        background: `
+          radial-gradient(circle at 20% 80%, ${alpha(customTheme.accent, 0.2)} 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, ${alpha(customTheme.secondary, 0.2)} 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, ${alpha(customTheme.grey, 0.3)} 0%, transparent 70%),
+          linear-gradient(135deg, ${customTheme.background} 0%, ${alpha(customTheme.grey, 0.4)} 100%)
+        `,
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <Container maxWidth="xl" sx={{ pt: 4, pb: 6, position: 'relative', zIndex: 1 }}>
+          <Typography variant="h3" sx={{ textAlign: 'center', mb: 4, color: customTheme.primary }}>
+            Authority Strategic Forecasting Dashboard
+          </Typography>
+          <Typography variant="body1" sx={{ textAlign: 'center', mb: 6, color: alpha(customTheme.primary, 0.7) }}>
+            Comprehensive strategic analysis and territorial management forecasting
+          </Typography>
+          {/* Rest of authority dashboard implementation would go here */}
+        </Container>
+      </Box>
+    );
   }
 
   // ENHANCED Shelter Operational Predictive Dashboard
   return (
-    <div style={styles.container}>
-      <div style={styles.header}>
-        <h1 style={styles.title}>🔮 Shelter Predictive Analytics</h1>
-        <p style={styles.subtitle}>AI-powered forecasting for optimal shelter operations and resource planning</p>
-      </div>
+    <Box sx={{ 
+      minHeight: '100vh',
+      background: `
+        radial-gradient(circle at 20% 80%, ${alpha(customTheme.accent, 0.2)} 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, ${alpha(customTheme.secondary, 0.2)} 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, ${alpha(customTheme.grey, 0.3)} 0%, transparent 70%),
+        linear-gradient(135deg, ${customTheme.background} 0%, ${alpha(customTheme.grey, 0.4)} 100%)
+      `,
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Animated Background Elements */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '5%',
+          left: '5%',
+          animation: `${float} 10s ease-in-out infinite`,
+          animationDelay: '0s',
+          opacity: 0.6
+        }}
+      >
+        <StarIcon sx={{ fontSize: 30, color: customTheme.accent, filter: 'blur(1px)' }} />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '15%',
+          right: '10%',
+          animation: `${float} 12s ease-in-out infinite`,
+          animationDelay: '2s',
+          opacity: 0.4
+        }}
+      >
+        <AnalyticsIcon sx={{ fontSize: 50, color: customTheme.primary, transform: 'rotate(25deg)' }} />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '20%',
+          left: '8%',
+          animation: `${float} 14s ease-in-out infinite`,
+          animationDelay: '4s',
+          opacity: 0.5
+        }}
+      >
+        <BrainIcon sx={{ fontSize: 35, color: customTheme.secondary, transform: 'rotate(-15deg)' }} />
+      </Box>
 
-      {error && (
-        <div style={styles.error}>
-          ⚠️ {error}
-        </div>
-      )}
-
-      <div style={styles.controls}>
-        <div style={styles.tabNavigation}>
-          {[
-            { id: 'overview', label: '📊 Overview' },
-            { id: 'intake', label: '🐕 Animal Intake' },
-            { id: 'capacity', label: '🏠 Capacity' },
-            { id: 'resources', label: '📦 Resources' },
-            { id: 'alerts', label: '🚨 Smart Alerts' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              style={activeTab === tab.id ? styles.tabButton : {...styles.tabButton, ...styles.tabButtonInactive}}
-              onClick={() => setActiveTab(tab.id)}
+      <Container maxWidth="xl" sx={{ pt: 4, pb: 6, position: 'relative', zIndex: 1 }}>
+        {/* Hero Header Section */}
+        <Fade in timeout={1000}>
+          <Box sx={{ 
+            textAlign: 'center', 
+            mb: 6,
+            position: 'relative'
+          }}>
+            {/* Floating sparkles */}
+            <Box
+              sx={{
+                position: 'absolute',
+                top: -20,
+                left: '30%',
+                animation: `${sparkle} 3s infinite`,
+                animationDelay: '0s'
+              }}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-        
-        <select 
-          style={styles.timeframeSelect}
-          value={timeframe}
-          onChange={(e) => setTimeframe(parseInt(e.target.value))}
+              <StarIcon sx={{ color: customTheme.accent, fontSize: 20 }} />
+            </Box>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: -10,
+                right: '25%',
+                animation: `${sparkle} 3s infinite`,
+                animationDelay: '1s'
+              }}
+            >
+              <SparkleIcon sx={{ color: customTheme.secondary, fontSize: 16 }} />
+            </Box>
+            
+            <Avatar
+              sx={{
+                bgcolor: customTheme.primary,
+                width: 80,
+                height: 80,
+                mx: 'auto',
+                mb: 3,
+                boxShadow: `0 8px 25px ${alpha(customTheme.primary, 0.4)}`,
+                animation: `${pulse} 3s infinite`
+              }}
+            >
+              <BrainIcon sx={{ fontSize: 40 }} />
+            </Avatar>
+            
+            <Typography 
+              variant="h2" 
+              component="h1" 
+              sx={{ 
+                fontWeight: 800,
+                background: `linear-gradient(45deg, ${customTheme.primary} 20%, ${customTheme.accent} 50%, ${customTheme.secondary} 80%)`,
+                backgroundSize: '200% 200%',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                animation: `${gradientShift} 4s ease infinite`,
+                mb: 2,
+                textShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                letterSpacing: '-0.02em'
+              }}
+            >
+              Predictive Analytics Dashboard
+            </Typography>
+            <Typography 
+              variant="h5" 
+              sx={{ 
+                color: alpha(customTheme.primary, 0.8),
+                fontWeight: 400,
+                maxWidth: 700,
+                mx: 'auto',
+                lineHeight: 1.6,
+                mb: 3,
+                animation: `${slideInUp} 1s ease-out 0.3s both`
+              }}
+            >
+              AI-powered forecasting for optimal shelter operations and resource planning
+            </Typography>
+          </Box>
+        </Fade>
+
+        {/* Error Alert */}
+        {error && (
+          <Fade in timeout={800}>
+            <Alert 
+              severity="error" 
+              sx={{ 
+                mb: 4,
+                borderRadius: 3,
+                fontSize: '1.1rem',
+                backgroundColor: alpha('#f44336', 0.1),
+                border: `2px solid ${alpha('#f44336', 0.3)}`,
+                backdropFilter: 'blur(10px)',
+                '& .MuiAlert-icon': {
+                  fontSize: '1.5rem',
+                  color: '#f44336'
+                }
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                {error}
+              </Typography>
+            </Alert>
+          </Fade>
+        )}
+
+        {/* Controls Section */}
+        <Paper
+          elevation={0}
+          sx={{
+            mb: 4,
+            borderRadius: 4,
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: `2px solid ${alpha(customTheme.primary, 0.15)}`,
+            overflow: 'hidden'
+          }}
         >
-          <option value={30}>30 Days</option>
-          <option value={60}>60 Days</option>
-          <option value={90}>90 Days</option>
-        </select>
-      </div>
+          <Box sx={{ p: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+            <Tabs
+              value={activeTab}
+              onChange={handleTabChange}
+              sx={{
+                '& .MuiTab-root': {
+                  color: customTheme.primary,
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  textTransform: 'none',
+                  minHeight: 48,
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    color: customTheme.accent,
+                    transform: 'translateY(-2px)'
+                  },
+                  '&.Mui-selected': {
+                    color: customTheme.accent,
+                    fontWeight: 700
+                  }
+                },
+                '& .MuiTabs-indicator': {
+                  backgroundColor: customTheme.accent,
+                  height: 3,
+                  borderRadius: 2
+                }
+              }}
+            >
+              <Tab icon={<DashboardIcon />} label="Overview" value="overview" />
+              <Tab icon={<PetsIcon />} label="Animal Intake" value="intake" />
+              <Tab icon={<HomeIcon />} label="Capacity" value="capacity" />
+              <Tab icon={<InventoryIcon />} label="Resources" value="resources" />
+              <Tab icon={<WarningIcon />} label="Smart Alerts" value="alerts" />
+            </Tabs>
+            
+            <FormControl size="small" sx={{ minWidth: 120 }}>
+              <InputLabel sx={{ color: customTheme.primary, fontWeight: 600 }}>Timeframe</InputLabel>
+              <Select
+                value={timeframe}
+                label="Timeframe"
+                onChange={(e) => setTimeframe(parseInt(e.target.value))}
+                sx={{
+                  borderRadius: 2,
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: alpha(customTheme.primary, 0.3),
+                    borderWidth: 2
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: customTheme.secondary
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: customTheme.primary
+                  }
+                }}
+              >
+                <MenuItem value={30}>30 Days</MenuItem>
+                <MenuItem value={60}>60 Days</MenuItem>
+                <MenuItem value={90}>90 Days</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </Paper>
 
-      {/* Overview Tab */}
-      {activeTab === 'overview' && dashboardData.overview && (
-        <div style={styles.contentSection}>
-          <h3 style={styles.sectionTitle}>📈 Operational Overview</h3>
-          
-          <div style={styles.metricsGrid}>
-            <div style={styles.metricCard}>
-              <div style={styles.metricValue}>
-                {dashboardData.overview.trend_indicators.animal_intake?.this_week || 0}
-              </div>
-              <div style={styles.metricLabel}>Animals This Week</div>
-              <div style={styles.trendIndicator}>
-                <span>{getTrendIcon(dashboardData.overview.trend_indicators.animal_intake?.trend)}</span>
-                <span>{dashboardData.overview.trend_indicators.animal_intake?.change_percent || 0}%</span>
-              </div>
-            </div>
+        {/* Overview Tab */}
+        {activeTab === 'overview' && dashboardData.overview && (
+          <Fade in timeout={800}>
+            <Card
+              sx={{
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(20px)',
+                border: `2px solid ${alpha(customTheme.primary, 0.15)}`,
+                boxShadow: `0 25px 50px ${alpha(customTheme.primary, 0.1)}`,
+                overflow: 'hidden'
+              }}
+            >
+              <CardContent sx={{ p: 4 }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    color: customTheme.primary,
+                    fontWeight: 700,
+                    mb: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2
+                  }}
+                >
+                  <AnalyticsIcon sx={{ fontSize: '1.2em' }} />
+                  Operational Overview
+                </Typography>
+                
+                <Grid container spacing={3} sx={{ mb: 4 }}>
+                  <Grid item xs={12} md={4}>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        background: `linear-gradient(135deg, ${alpha(customTheme.primary, 0.1)} 0%, ${alpha(customTheme.accent, 0.05)} 100%)`,
+                        border: `2px solid ${alpha(customTheme.primary, 0.2)}`,
+                        textAlign: 'center',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          transform: 'translateY(-8px)',
+                          boxShadow: `0 20px 40px ${alpha(customTheme.primary, 0.2)}`
+                        }
+                      }}
+                    >
+                      <Typography variant="h3" sx={{ color: customTheme.primary, fontWeight: 800, mb: 1 }}>
+                        {dashboardData.overview.trend_indicators.animal_intake?.this_week || 0}
+                      </Typography>
+                      <Typography variant="h6" sx={{ color: alpha(customTheme.primary, 0.8), fontWeight: 600, mb: 2 }}>
+                        Animals This Week
+                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                        {getTrendIcon(dashboardData.overview.trend_indicators.animal_intake?.trend)}
+                        <Typography variant="body1" sx={{ color: customTheme.accent, fontWeight: 600 }}>
+                          {dashboardData.overview.trend_indicators.animal_intake?.change_percent || 0}%
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </Grid>
 
-            <div style={styles.metricCard}>
-              <div style={styles.metricValue}>
-                {formatCurrency(dashboardData.overview.trend_indicators.donations?.this_week || 0)}
-              </div>
-              <div style={styles.metricLabel}>Donations This Week</div>
-              <div style={styles.trendIndicator}>
-                <span>{getTrendIcon(dashboardData.overview.trend_indicators.donations?.trend)}</span>
-                <span>{dashboardData.overview.trend_indicators.donations?.change_percent || 0}%</span>
-              </div>
-            </div>
+                  <Grid item xs={12} md={4}>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        background: `linear-gradient(135deg, ${alpha(customTheme.secondary, 0.1)} 0%, ${alpha(customTheme.success, 0.05)} 100%)`,
+                        border: `2px solid ${alpha(customTheme.secondary, 0.2)}`,
+                        textAlign: 'center',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          transform: 'translateY(-8px)',
+                          boxShadow: `0 20px 40px ${alpha(customTheme.secondary, 0.2)}`
+                        }
+                      }}
+                    >
+                      <Typography variant="h3" sx={{ color: customTheme.secondary, fontWeight: 800, mb: 1 }}>
+                        {formatCurrency(dashboardData.overview.trend_indicators.donations?.this_week || 0)}
+                      </Typography>
+                      <Typography variant="h6" sx={{ color: alpha(customTheme.secondary, 0.8), fontWeight: 600, mb: 2 }}>
+                        Donations This Week
+                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                        {getTrendIcon(dashboardData.overview.trend_indicators.donations?.trend)}
+                        <Typography variant="body1" sx={{ color: customTheme.success, fontWeight: 600 }}>
+                          {dashboardData.overview.trend_indicators.donations?.change_percent || 0}%
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </Grid>
 
-            <div style={styles.metricCard}>
-              <div style={styles.metricValue}>
-                {(dashboardData.overview.prediction_accuracy?.animal_intake || 0).toFixed(1)}%
-              </div>
-              <div style={styles.metricLabel}>AI Prediction Accuracy</div>
-              <div style={styles.trendIndicator}>
-                <span>🎯</span>
-                <span>AI Confidence</span>
-              </div>
-            </div>
-          </div>
+                  <Grid item xs={12} md={4}>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        background: `linear-gradient(135deg, ${alpha(customTheme.accent, 0.1)} 0%, ${alpha(customTheme.grey, 0.1)} 100%)`,
+                        border: `2px solid ${alpha(customTheme.accent, 0.2)}`,
+                        textAlign: 'center',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          transform: 'translateY(-8px)',
+                          boxShadow: `0 20px 40px ${alpha(customTheme.accent, 0.2)}`
+                        }
+                      }}
+                    >
+                      <Typography variant="h3" sx={{ color: customTheme.accent, fontWeight: 800, mb: 1 }}>
+                        {(dashboardData.overview.prediction_accuracy?.animal_intake || 0).toFixed(1)}%
+                      </Typography>
+                      <Typography variant="h6" sx={{ color: alpha(customTheme.accent, 0.8), fontWeight: 600, mb: 2 }}>
+                        AI Prediction Accuracy
+                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                        <DataIcon sx={{ color: customTheme.accent }} />
+                        <Typography variant="body1" sx={{ color: customTheme.accent, fontWeight: 600 }}>
+                          AI Confidence
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </Grid>
+                </Grid>
 
-          <div style={{...styles.contentSection, backgroundColor: '#e3f2fd', marginTop: '20px'}}>
-            <div style={{...styles.predictionTitle, color: '#1976d2'}}>🧠 AI Insights</div>
-            <div style={{fontSize: '0.9rem', color: '#37474f', lineHeight: '1.4'}}>
-              Based on historical patterns and current trends, our AI models predict moderate activity levels 
-              with seasonal adjustments for the selected timeframe. Key factors include donation patterns, 
-              animal intake cycles, and capacity utilization rates.
-            </div>
-          </div>
-        </div>
-      )}
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    borderRadius: 3,
+                    background: `linear-gradient(135deg, ${alpha(customTheme.secondary, 0.08)} 0%, ${alpha(customTheme.secondary, 0.03)} 100%)`,
+                    border: `2px solid ${alpha(customTheme.secondary, 0.2)}`
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+                    <BrainIcon sx={{ color: customTheme.secondary, fontSize: 28 }} />
+                    <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700 }}>
+                      AI Insights
+                    </Typography>
+                  </Box>
+                  <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8), lineHeight: 1.6 }}>
+                    Based on historical patterns and current trends, our AI models predict moderate activity levels 
+                    with seasonal adjustments for the selected timeframe. Key factors include donation patterns, 
+                    animal intake cycles, and capacity utilization rates.
+                  </Typography>
+                </Paper>
+              </CardContent>
+            </Card>
+          </Fade>
+        )}
 
-      {/* Animal Intake Tab */}
-      {activeTab === 'intake' && dashboardData.intake && (
-        <div style={styles.contentSection}>
-          <h3 style={styles.sectionTitle}>🐕 Animal Intake Forecast</h3>
-          
-          {dashboardData.intake.forecast && dashboardData.intake.forecast.predictions && (
-            <>
-              <div style={styles.forecastChart}>
-                {dashboardData.intake.forecast.predictions.slice(0, 30).map((prediction, index) => {
-                  const maxValue = Math.max(...dashboardData.intake.forecast.predictions.slice(0, 30).map(p => p.predicted_intake));
-                  const height = Math.max(10, (prediction.predicted_intake / (maxValue || 1)) * 250);
-                  
-                  return (
-                    <div key={index} style={{textAlign: 'center'}}>
-                      <div
-                        style={{
-                          ...styles.chartBar,
-                          height: `${height}px`,
-                          backgroundColor: prediction.confidence > 80 ? '#4caf50' : prediction.confidence > 60 ? '#ff9800' : '#f44336'
-                        }}
-                        title={`${formatDate(prediction.date)}: ${prediction.predicted_intake} animals (${prediction.confidence}% confidence)`}
-                      />
-                      <div style={styles.chartLabel}>
-                        {formatDate(prediction.date)}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+        {/* Animal Intake Tab */}
+        {activeTab === 'intake' && dashboardData.intake && (
+          <Fade in timeout={800}>
+            <Card
+              sx={{
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(20px)',
+                border: `2px solid ${alpha(customTheme.primary, 0.15)}`,
+                boxShadow: `0 25px 50px ${alpha(customTheme.primary, 0.1)}`,
+                overflow: 'hidden'
+              }}
+            >
+              <CardContent sx={{ p: 4 }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    color: customTheme.primary,
+                    fontWeight: 700,
+                    mb: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2
+                  }}
+                >
+                  <PetsIcon sx={{ fontSize: '1.2em' }} />
+                  Animal Intake Forecast
+                </Typography>
+                
+                {dashboardData.intake.forecast && dashboardData.intake.forecast.predictions && (
+                  <>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        background: `linear-gradient(135deg, ${alpha(customTheme.grey, 0.4)} 0%, ${alpha(customTheme.background, 0.6)} 100%)`,
+                        border: `2px solid ${alpha(customTheme.primary, 0.1)}`,
+                        mb: 4,
+                        height: 350
+                      }}
+                    >
+                      <Typography variant="h6" sx={{ color: customTheme.primary, fontWeight: 600, mb: 3 }}>
+                        30-Day Intake Prediction
+                      </Typography>
+                      <Box sx={{ 
+                        display: 'flex', 
+                        alignItems: 'end', 
+                        justifyContent: 'space-between',
+                        height: 250,
+                        overflow: 'hidden',
+                        px: 2
+                      }}>
+                        {dashboardData.intake.forecast.predictions.slice(0, 30).map((prediction, index) => {
+                          const maxValue = Math.max(...dashboardData.intake.forecast.predictions.slice(0, 30).map(p => p.predicted_intake));
+                          const height = Math.max(10, (prediction.predicted_intake / (maxValue || 1)) * 200);
+                          
+                          return (
+                            <Box key={index} sx={{ textAlign: 'center', flex: 1, maxWidth: 25 }}>
+                              <Box
+                                sx={{
+                                  height: `${height}px`,
+                                  width: '100%',
+                                  maxWidth: 20,
+                                  backgroundColor: getConfidenceColor(prediction.confidence),
+                                  borderRadius: '4px 4px 0 0',
+                                  margin: '0 auto',
+                                  transition: 'all 0.3s ease',
+                                  cursor: 'pointer',
+                                  '&:hover': {
+                                    transform: 'scaleY(1.1)',
+                                    boxShadow: `0 4px 15px ${alpha(getConfidenceColor(prediction.confidence), 0.4)}`
+                                  }
+                                }}
+                                title={`${formatDate(prediction.date)}: ${prediction.predicted_intake} animals (${prediction.confidence}% confidence)`}
+                              />
+                              <Typography 
+                                variant="caption" 
+                                sx={{ 
+                                  color: alpha(customTheme.primary, 0.6),
+                                  fontSize: '0.6rem',
+                                  mt: 0.5,
+                                  display: 'block',
+                                  transform: 'rotate(-45deg)',
+                                  transformOrigin: 'center'
+                                }}
+                              >
+                                {formatDate(prediction.date)}
+                              </Typography>
+                            </Box>
+                          );
+                        })}
+                      </Box>
+                    </Paper>
 
-              <div style={styles.predictionGrid}>
-                <div style={styles.predictionCard}>
-                  <div style={styles.predictionTitle}>📊 Forecast Summary</div>
-                  <p><strong>Average daily intake:</strong> {(dashboardData.intake.forecast.predictions.reduce((sum, p) => sum + p.predicted_intake, 0) / dashboardData.intake.forecast.predictions.length).toFixed(1)} animals</p>
-                  <p><strong>High intake days:</strong> {dashboardData.intake.forecast.predictions.filter(p => p.predicted_intake > 6).length}</p>
-                  <p><strong>Model accuracy:</strong> {dashboardData.intake.forecast.model_accuracy}%</p>
-                  <p><strong>Peak days:</strong> Weekends typically show 30% higher intake</p>
-                </div>
+                    <Grid container spacing={3}>
+                      <Grid item xs={12} md={6}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            background: `linear-gradient(135deg, ${alpha(customTheme.accent, 0.1)} 0%, ${alpha(customTheme.accent, 0.05)} 100%)`,
+                            border: `2px solid ${alpha(customTheme.accent, 0.2)}`
+                          }}
+                        >
+                          <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700, mb: 2 }}>
+                            Forecast Summary
+                          </Typography>
+                          <Box sx={{ '& > *': { mb: 1 } }}>
+                            <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                              <strong>Average daily intake:</strong> {(dashboardData.intake.forecast.predictions.reduce((sum, p) => sum + p.predicted_intake, 0) / dashboardData.intake.forecast.predictions.length).toFixed(1)} animals
+                            </Typography>
+                            <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                              <strong>High intake days:</strong> {dashboardData.intake.forecast.predictions.filter(p => p.predicted_intake > 6).length}
+                            </Typography>
+                            <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                              <strong>Model accuracy:</strong> {dashboardData.intake.forecast.model_accuracy}%
+                            </Typography>
+                            <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                              <strong>Peak days:</strong> Weekends typically show 30% higher intake
+                            </Typography>
+                          </Box>
+                        </Paper>
+                      </Grid>
 
-                <div style={styles.predictionCard}>
-                  <div style={styles.predictionTitle}>🎯 Recommendations</div>
-                  <ul style={{margin: '0', paddingLeft: '20px'}}>
-                    {dashboardData.intake.recommendations?.map((rec, index) => (
-                      <li key={index} style={{marginBottom: '8px', fontSize: '0.9rem'}}>
-                        <strong>{rec.action}:</strong> {rec.reason}
-                      </li>
-                    )) || [
-                      <li key="default" style={{marginBottom: '8px', fontSize: '0.9rem'}}>Monitor intake patterns closely during predicted high-activity periods</li>
-                    ]}
-                  </ul>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      )}
-
-      {/* Capacity Tab */}
-      {activeTab === 'capacity' && dashboardData.capacity && (
-        <div style={styles.contentSection}>
-          <h3 style={styles.sectionTitle}>🏠 Capacity Planning</h3>
-          
-          {dashboardData.capacity.capacity_forecast && dashboardData.capacity.capacity_forecast.predictions && (
-            <>
-              <div style={styles.forecastChart}>
-                {dashboardData.capacity.capacity_forecast.predictions.slice(0, 30).map((prediction, index) => {
-                  const height = Math.max(10, (prediction.capacity_percentage / 100) * 250);
-                  const color = prediction.status === 'critical' ? '#f44336' : 
-                              prediction.status === 'warning' ? '#ff9800' : '#4caf50';
-                  
-                  return (
-                    <div key={index} style={{textAlign: 'center'}}>
-                      <div
-                        style={{
-                          ...styles.chartBar,
-                          height: `${height}px`,
-                          backgroundColor: color
-                        }}
-                        title={`${formatDate(prediction.date)}: ${prediction.capacity_percentage}% capacity (${prediction.predicted_occupancy} animals)`}
-                      />
-                      <div style={styles.chartLabel}>
-                        {formatDate(prediction.date)}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div style={styles.metricsGrid}>
-                <div style={styles.metricCard}>
-                  <div style={styles.metricValue}>
-                    {dashboardData.capacity.capacity_forecast.capacity_alerts?.length || 0}
-                  </div>
-                  <div style={styles.metricLabel}>Capacity Alerts</div>
-                  <div style={{fontSize: '0.8rem', color: '#666', marginTop: '5px'}}>
-                    Days with >90% capacity
-                  </div>
-                </div>
-
-                <div style={styles.metricCard}>
-                  <div style={styles.metricValue}>
-                    {dashboardData.capacity.capacity_forecast.trend_analysis?.average_capacity || 0}%
-                  </div>
-                  <div style={styles.metricLabel}>Average Capacity</div>
-                  <div style={{fontSize: '0.8rem', color: '#666', marginTop: '5px'}}>
-                    Over forecast period
-                  </div>
-                </div>
-
-                <div style={styles.metricCard}>
-                  <div style={styles.metricValue}>
-                    150
-                  </div>
-                  <div style={styles.metricLabel}>Maximum Capacity</div>
-                  <div style={{fontSize: '0.8rem', color: '#666', marginTop: '5px'}}>
-                    Total kennel spaces
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      )}
-
-      {/* Resources Tab */}
-      {activeTab === 'resources' && dashboardData.resources && (
-        <div style={styles.contentSection}>
-          <h3 style={styles.sectionTitle}>📦 Resource Forecasting</h3>
-          
-          {dashboardData.resources.resource_forecast && (
-            <div style={styles.predictionGrid}>
-              <div style={styles.predictionCard}>
-                <div style={styles.predictionTitle}>💰 Budget Forecast</div>
-                <p><strong>Average daily cost:</strong> {formatCurrency(dashboardData.resources.resource_forecast.summary?.avg_daily_cost || 0)}</p>
-                <p><strong>Total predicted cost:</strong> {formatCurrency(dashboardData.resources.resource_forecast.summary?.total_predicted_cost || 0)}</p>
-                <p><strong>Average animals:</strong> {dashboardData.resources.resource_forecast.summary?.avg_daily_animals || 0}</p>
-                <p><strong>Cost per animal/day:</strong> $25 (food, medical, care)</p>
-              </div>
-
-              <div style={styles.predictionCard}>
-                <div style={styles.predictionTitle}>📋 Supply Needs</div>
-                <p><strong>Daily food requirement:</strong> ~11kg average</p>
-                <p><strong>Medical supplies:</strong> Variable based on intake</p>
-                <p><strong>Cleaning supplies:</strong> Standard consumption</p>
-                <p><strong>Bedding/Toys:</strong> As needed per animal</p>
-              </div>
-
-              <div style={styles.predictionCard}>
-                <div style={styles.predictionTitle}>⚠️ Resource Alerts</div>
-                {dashboardData.resources.resource_forecast.resource_alerts?.length > 0 ? (
-                  <ul style={{margin: '0', paddingLeft: '20px'}}>
-                    {dashboardData.resources.resource_forecast.resource_alerts.map((alert, index) => (
-                      <li key={index} style={{marginBottom: '8px', fontSize: '0.9rem'}}>
-                        <strong style={{color: getPriorityColor(alert.priority)}}>{alert.type}:</strong> {alert.message}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p style={{color: '#4caf50'}}>✅ No resource alerts for the forecast period</p>
+                      <Grid item xs={12} md={6}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            background: `linear-gradient(135deg, ${alpha(customTheme.success, 0.1)} 0%, ${alpha(customTheme.success, 0.05)} 100%)`,
+                            border: `2px solid ${alpha(customTheme.success, 0.2)}`
+                          }}
+                        >
+                          <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700, mb: 2 }}>
+                            Recommendations
+                          </Typography>
+                          <Box component="ul" sx={{ margin: 0, paddingLeft: 2, '& li': { mb: 1 } }}>
+                            {dashboardData.intake.recommendations?.map((rec, index) => (
+                              <Typography component="li" key={index} variant="body2" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                                <strong>{rec.action}:</strong> {rec.reason}
+                              </Typography>
+                            )) || (
+                              <Typography component="li" variant="body2" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                                Monitor intake patterns closely during predicted high-activity periods
+                              </Typography>
+                            )}
+                          </Box>
+                        </Paper>
+                      </Grid>
+                    </Grid>
+                  </>
                 )}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+              </CardContent>
+            </Card>
+          </Fade>
+        )}
 
-      {/* Smart Alerts Tab */}
-      {activeTab === 'alerts' && dashboardData.alerts && (
-        <div style={styles.contentSection}>
-          <h3 style={styles.sectionTitle}>🚨 Smart Alerts & Recommendations</h3>
-          
-          {dashboardData.alerts.alerts_by_priority && (
-            <div style={styles.alertsContainer}>
-              {Object.entries(dashboardData.alerts.alerts_by_priority).map(([priority, alerts]) => 
-                alerts.map((alert, index) => (
-                  <div 
-                    key={`${priority}-${index}`}
-                    style={{
-                      ...styles.alertCard,
-                      borderLeftColor: getPriorityColor(priority)
+        {/* Capacity Tab */}
+        {activeTab === 'capacity' && dashboardData.capacity && (
+          <Fade in timeout={800}>
+            <Card
+              sx={{
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(20px)',
+                border: `2px solid ${alpha(customTheme.primary, 0.15)}`,
+                boxShadow: `0 25px 50px ${alpha(customTheme.primary, 0.1)}`,
+                overflow: 'hidden'
+              }}
+            >
+              <CardContent sx={{ p: 4 }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    color: customTheme.primary,
+                    fontWeight: 700,
+                    mb: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2
+                  }}
+                >
+                  <HomeIcon sx={{ fontSize: '1.2em' }} />
+                  Capacity Planning
+                </Typography>
+                
+                {dashboardData.capacity.capacity_forecast && dashboardData.capacity.capacity_forecast.predictions && (
+                  <>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        background: `linear-gradient(135deg, ${alpha(customTheme.grey, 0.4)} 0%, ${alpha(customTheme.background, 0.6)} 100%)`,
+                        border: `2px solid ${alpha(customTheme.primary, 0.1)}`,
+                        mb: 4,
+                        height: 350
+                      }}
+                    >
+                      <Typography variant="h6" sx={{ color: customTheme.primary, fontWeight: 600, mb: 3 }}>
+                        Capacity Utilization Forecast
+                      </Typography>
+                      <Box sx={{ 
+                        display: 'flex', 
+                        alignItems: 'end', 
+                        justifyContent: 'space-between',
+                        height: 250,
+                        overflow: 'hidden',
+                        px: 2
+                      }}>
+                        {dashboardData.capacity.capacity_forecast.predictions.slice(0, 30).map((prediction, index) => {
+                          const height = Math.max(10, (prediction.capacity_percentage / 100) * 200);
+                          const color = prediction.status === 'critical' ? '#f44336' : 
+                                      prediction.status === 'warning' ? customTheme.accent : customTheme.success;
+                          
+                          return (
+                            <Box key={index} sx={{ textAlign: 'center', flex: 1, maxWidth: 25 }}>
+                              <Box
+                                sx={{
+                                  height: `${height}px`,
+                                  width: '100%',
+                                  maxWidth: 20,
+                                  backgroundColor: color,
+                                  borderRadius: '4px 4px 0 0',
+                                  margin: '0 auto',
+                                  transition: 'all 0.3s ease',
+                                  cursor: 'pointer',
+                                  '&:hover': {
+                                    transform: 'scaleY(1.1)',
+                                    boxShadow: `0 4px 15px ${alpha(color, 0.4)}`
+                                  }
+                                }}
+                                title={`${formatDate(prediction.date)}: ${prediction.capacity_percentage}% capacity (${prediction.predicted_occupancy} animals)`}
+                              />
+                              <Typography 
+                                variant="caption" 
+                                sx={{ 
+                                  color: alpha(customTheme.primary, 0.6),
+                                  fontSize: '0.6rem',
+                                  mt: 0.5,
+                                  display: 'block',
+                                  transform: 'rotate(-45deg)',
+                                  transformOrigin: 'center'
+                                }}
+                              >
+                                {formatDate(prediction.date)}
+                              </Typography>
+                            </Box>
+                          );
+                        })}
+                      </Box>
+                    </Paper>
+
+                    <Grid container spacing={3}>
+                      <Grid item xs={12} md={4}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            background: `linear-gradient(135deg, ${alpha(customTheme.primary, 0.1)} 0%, ${alpha(customTheme.primary, 0.05)} 100%)`,
+                            border: `2px solid ${alpha(customTheme.primary, 0.2)}`,
+                            textAlign: 'center'
+                          }}
+                        >
+                          <Typography variant="h3" sx={{ color: customTheme.primary, fontWeight: 800, mb: 1 }}>
+                            {dashboardData.capacity.capacity_forecast.capacity_alerts?.length || 0}
+                          </Typography>
+                          <Typography variant="h6" sx={{ color: alpha(customTheme.primary, 0.8), fontWeight: 600, mb: 1 }}>
+                            Capacity Alerts
+                          </Typography>
+                          <Typography variant="body2" sx={{ color: alpha(customTheme.primary, 0.6) }}>
+                            Days with >90% capacity
+                          </Typography>
+                        </Paper>
+                      </Grid>
+
+                      <Grid item xs={12} md={4}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            background: `linear-gradient(135deg, ${alpha(customTheme.secondary, 0.1)} 0%, ${alpha(customTheme.secondary, 0.05)} 100%)`,
+                            border: `2px solid ${alpha(customTheme.secondary, 0.2)}`,
+                            textAlign: 'center'
+                          }}
+                        >
+                          <Typography variant="h3" sx={{ color: customTheme.secondary, fontWeight: 800, mb: 1 }}>
+                            {dashboardData.capacity.capacity_forecast.trend_analysis?.average_capacity || 0}%
+                          </Typography>
+                          <Typography variant="h6" sx={{ color: alpha(customTheme.secondary, 0.8), fontWeight: 600, mb: 1 }}>
+                            Average Capacity
+                          </Typography>
+                          <Typography variant="body2" sx={{ color: alpha(customTheme.secondary, 0.6) }}>
+                            Over forecast period
+                          </Typography>
+                        </Paper>
+                      </Grid>
+
+                      <Grid item xs={12} md={4}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            background: `linear-gradient(135deg, ${alpha(customTheme.accent, 0.1)} 0%, ${alpha(customTheme.accent, 0.05)} 100%)`,
+                            border: `2px solid ${alpha(customTheme.accent, 0.2)}`,
+                            textAlign: 'center'
+                          }}
+                        >
+                          <Typography variant="h3" sx={{ color: customTheme.accent, fontWeight: 800, mb: 1 }}>
+                            150
+                          </Typography>
+                          <Typography variant="h6" sx={{ color: alpha(customTheme.accent, 0.8), fontWeight: 600, mb: 1 }}>
+                            Maximum Capacity
+                          </Typography>
+                          <Typography variant="body2" sx={{ color: alpha(customTheme.accent, 0.6) }}>
+                            Total kennel spaces
+                          </Typography>
+                        </Paper>
+                      </Grid>
+                    </Grid>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+          </Fade>
+        )}
+
+        {/* Resources Tab */}
+        {activeTab === 'resources' && dashboardData.resources && (
+          <Fade in timeout={800}>
+            <Card
+              sx={{
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(20px)',
+                border: `2px solid ${alpha(customTheme.primary, 0.15)}`,
+                boxShadow: `0 25px 50px ${alpha(customTheme.primary, 0.1)}`,
+                overflow: 'hidden'
+              }}
+            >
+              <CardContent sx={{ p: 4 }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    color: customTheme.primary,
+                    fontWeight: 700,
+                    mb: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2
+                  }}
+                >
+                  <InventoryIcon sx={{ fontSize: '1.2em' }} />
+                  Resource Forecasting
+                </Typography>
+                
+                {dashboardData.resources.resource_forecast && (
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} md={4}>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 3,
+                          borderRadius: 3,
+                          background: `linear-gradient(135deg, ${alpha(customTheme.success, 0.1)} 0%, ${alpha(customTheme.success, 0.05)} 100%)`,
+                          border: `2px solid ${alpha(customTheme.success, 0.2)}`
+                        }}
+                      >
+                        <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700, mb: 2 }}>
+                          Budget Forecast
+                        </Typography>
+                        <Box sx={{ '& > *': { mb: 1 } }}>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Average daily cost:</strong> {formatCurrency(dashboardData.resources.resource_forecast.summary?.avg_daily_cost || 0)}
+                          </Typography>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Total predicted cost:</strong> {formatCurrency(dashboardData.resources.resource_forecast.summary?.total_predicted_cost || 0)}
+                          </Typography>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Average animals:</strong> {dashboardData.resources.resource_forecast.summary?.avg_daily_animals || 0}
+                          </Typography>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Cost per animal/day:</strong> $25 (food, medical, care)
+                          </Typography>
+                        </Box>
+                      </Paper>
+                    </Grid>
+
+                    <Grid item xs={12} md={4}>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 3,
+                          borderRadius: 3,
+                          background: `linear-gradient(135deg, ${alpha(customTheme.accent, 0.1)} 0%, ${alpha(customTheme.accent, 0.05)} 100%)`,
+                          border: `2px solid ${alpha(customTheme.accent, 0.2)}`
+                        }}
+                      >
+                        <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700, mb: 2 }}>
+                          Supply Needs
+                        </Typography>
+                        <Box sx={{ '& > *': { mb: 1 } }}>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Daily food requirement:</strong> ~11kg average
+                          </Typography>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Medical supplies:</strong> Variable based on intake
+                          </Typography>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Cleaning supplies:</strong> Standard consumption
+                          </Typography>
+                          <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                            <strong>Bedding/Toys:</strong> As needed per animal
+                          </Typography>
+                        </Box>
+                      </Paper>
+                    </Grid>
+
+                    <Grid item xs={12} md={4}>
+                      <Paper
+                        elevation={0}
+                        sx={{
+                          p: 3,
+                          borderRadius: 3,
+                          background: `linear-gradient(135deg, ${alpha(customTheme.secondary, 0.1)} 0%, ${alpha(customTheme.secondary, 0.05)} 100%)`,
+                          border: `2px solid ${alpha(customTheme.secondary, 0.2)}`
+                        }}
+                      >
+                        <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700, mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <WarningIcon sx={{ color: customTheme.accent }} />
+                          Resource Alerts
+                        </Typography>
+                        {dashboardData.resources.resource_forecast.resource_alerts?.length > 0 ? (
+                          <Box component="ul" sx={{ margin: 0, paddingLeft: 2, '& li': { mb: 1 } }}>
+                            {dashboardData.resources.resource_forecast.resource_alerts.map((alert, index) => (
+                              <Typography component="li" key={index} variant="body2" sx={{ color: alpha(customTheme.primary, 0.8) }}>
+                                <strong style={{color: getPriorityColor(alert.priority)}}>{alert.type}:</strong> {alert.message}
+                              </Typography>
+                            ))}
+                          </Box>
+                        ) : (
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                            <CheckCircleIcon sx={{ color: customTheme.success }} />
+                            <Typography variant="body1" sx={{ color: customTheme.success, fontWeight: 600 }}>
+                              No resource alerts for the forecast period
+                            </Typography>
+                          </Box>
+                        )}
+                      </Paper>
+                    </Grid>
+                  </Grid>
+                )}
+              </CardContent>
+            </Card>
+          </Fade>
+        )}
+
+        {/* Smart Alerts Tab */}
+        {activeTab === 'alerts' && dashboardData.alerts && (
+          <Fade in timeout={800}>
+            <Card
+              sx={{
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(20px)',
+                border: `2px solid ${alpha(customTheme.primary, 0.15)}`,
+                boxShadow: `0 25px 50px ${alpha(customTheme.primary, 0.1)}`,
+                overflow: 'hidden'
+              }}
+            >
+              <CardContent sx={{ p: 4 }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    color: customTheme.primary,
+                    fontWeight: 700,
+                    mb: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2
+                  }}
+                >
+                  <WarningIcon sx={{ fontSize: '1.2em' }} />
+                  Smart Alerts & Recommendations
+                </Typography>
+                
+                {dashboardData.alerts.alerts_by_priority && (
+                  <Grid container spacing={3}>
+                    {Object.entries(dashboardData.alerts.alerts_by_priority).map(([priority, alerts]) => 
+                      alerts.map((alert, index) => (
+                        <Grid item xs={12} md={6} lg={4} key={`${priority}-${index}`}>
+                          <Paper
+                            elevation={0}
+                            sx={{
+                              p: 3,
+                              borderRadius: 3,
+                              background: `linear-gradient(135deg, ${alpha(getPriorityColor(priority), 0.1)} 0%, ${alpha(getPriorityColor(priority), 0.05)} 100%)`,
+                              border: `2px solid ${alpha(getPriorityColor(priority), 0.3)}`,
+                              transition: 'all 0.3s ease',
+                              '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: `0 12px 30px ${alpha(getPriorityColor(priority), 0.2)}`
+                              }
+                            }}
+                          >
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                              <Chip
+                                label={priority.toUpperCase()}
+                                size="small"
+                                sx={{
+                                  backgroundColor: getPriorityColor(priority),
+                                  color: '#ffffff',
+                                  fontWeight: 700,
+                                  fontSize: '0.7rem'
+                                }}
+                              />
+                            </Box>
+                            <Typography 
+                              variant="h6" 
+                              sx={{ 
+                                color: customTheme.primary, 
+                                fontWeight: 700, 
+                                mb: 2 
+                              }}
+                            >
+                              {alert.title}
+                            </Typography>
+                            <Typography 
+                              variant="body2" 
+                              sx={{ 
+                                color: alpha(customTheme.primary, 0.8), 
+                                mb: 2, 
+                                lineHeight: 1.5 
+                              }}
+                            >
+                              {alert.message}
+                            </Typography>
+                            {alert.recommended_actions && alert.recommended_actions.length > 0 && (
+                              <Box>
+                                <Typography variant="body2" sx={{ fontWeight: 600, color: customTheme.primary, mb: 1 }}>
+                                  Recommended Actions:
+                                </Typography>
+                                <Box component="ul" sx={{ margin: 0, paddingLeft: 2, '& li': { mb: 0.5 } }}>
+                                  {alert.recommended_actions.map((action, idx) => (
+                                    <Typography component="li" key={idx} variant="caption" sx={{ color: alpha(customTheme.primary, 0.7) }}>
+                                      {action}
+                                    </Typography>
+                                  ))}
+                                </Box>
+                              </Box>
+                            )}
+                          </Paper>
+                        </Grid>
+                      ))
+                    )}
+                  </Grid>
+                )}
+
+                {(!dashboardData.alerts.alerts_by_priority || 
+                  Object.values(dashboardData.alerts.alerts_by_priority).every(arr => arr.length === 0)) && (
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      p: 4,
+                      borderRadius: 3,
+                      background: `linear-gradient(135deg, ${alpha(customTheme.success, 0.1)} 0%, ${alpha(customTheme.success, 0.05)} 100%)`,
+                      border: `2px solid ${alpha(customTheme.success, 0.2)}`,
+                      textAlign: 'center'
                     }}
                   >
-                    <div style={{
-                      ...styles.alertTitle,
-                      color: getPriorityColor(priority)
-                    }}>
-                      {priority.toUpperCase()}: {alert.title}
-                    </div>
-                    <div style={styles.alertMessage}>
-                      {alert.message}
-                    </div>
-                    {alert.recommended_actions && alert.recommended_actions.length > 0 && (
-                      <div style={styles.alertActions}>
-                        <strong>Recommended Actions:</strong>
-                        <ul style={{margin: '5px 0', paddingLeft: '20px'}}>
-                          {alert.recommended_actions.map((action, idx) => (
-                            <li key={idx} style={{fontSize: '0.85rem'}}>{action}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ))
-              )}
-            </div>
-          )}
-
-          {(!dashboardData.alerts.alerts_by_priority || 
-            Object.values(dashboardData.alerts.alerts_by_priority).every(arr => arr.length === 0)) && (
-            <div style={{...styles.contentSection, backgroundColor: '#e8f5e8', marginTop: '20px'}}>
-              <div style={{...styles.predictionTitle, color: '#2e7d32'}}>✅ All Clear!</div>
-              <div style={{fontSize: '0.9rem', color: '#37474f', lineHeight: '1.4'}}>
-                No critical alerts at this time. The AI system is monitoring all metrics and will notify you of any concerns.
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+                    <CheckCircleIcon sx={{ fontSize: 60, color: customTheme.success, mb: 2 }} />
+                    <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 700, mb: 2 }}>
+                      All Clear!
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: alpha(customTheme.primary, 0.8), lineHeight: 1.5 }}>
+                      No critical alerts at this time. The AI system is monitoring all metrics and will notify you of any concerns.
+                    </Typography>
+                  </Paper>
+                )}
+              </CardContent>
+            </Card>
+          </Fade>
+        )}
+      </Container>
+    </Box>
   );
 }
 

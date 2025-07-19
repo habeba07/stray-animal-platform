@@ -108,7 +108,6 @@ function NavBar() {
             ],
             'Learn & Connect': [
               { title: 'Resources', path: '/resources' },
-              { title: 'Interactive Learning', path: '/interactive-learning' },
               { title: 'Forum', path: '/forum' },
               { title: 'Impact Dashboard', path: '/impact-dashboard' },
             ]

@@ -9,6 +9,7 @@ import { Container, CssBaseline, ThemeProvider, createTheme } from '@mui/materia
 import DonationList from './components/Donations/DonationList';
 import DonationForm from './components/Donations/DonationForm';
 
+
 // Pages
 import HomePage from './pages/HomePage';
 import VolunteerDashboard from './pages/VolunteerDashboard'; // NEW: Volunteer-specific dashboard
@@ -92,7 +93,7 @@ const theme = createTheme({
   },
 });
 
-// NEW: Role-based homepage component
+// FIXED: Role-based homepage component
 const RoleBasedHomepage = () => {
   const { user } = useSelector((state) => state.auth);
   
@@ -104,7 +105,7 @@ const RoleBasedHomepage = () => {
       return <VolunteerDashboard />;
     case 'SHELTER':
     case 'STAFF':
-      return <DashboardPage />;
+      return <HomePage />; // FIXED: Now uses enhanced HomePage instead of DashboardPage
     case 'AUTHORITY':
       return <ImpactDashboard />;
     default:
@@ -164,7 +165,7 @@ function AppContent() {
           <NavBar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Routes>
-              {/* ⭐ UPDATED: Role-based homepage routing */}
+              {/* UPDATED: Role-based homepage routing */}
               <Route 
                 path="/" 
                 element={
@@ -187,24 +188,34 @@ function AppContent() {
               <Route path="/report-animal" element={<ReportFormPage />} />
               <Route path="/verify-email/:token" element={<EmailVerificationPage />} />
               <Route path="/track-report" element={<TrackReportPage />} />
-              <Route path="/dashboard" element={<UserDashboard />} />
               
-              {/* ⭐ NEW: Direct access routes for role-specific dashboards */}
+              
+              {/* NEW: Direct access routes for role-specific dashboards */}
               <Route path="/volunteer/dashboard" element={
                 <ProtectedRoute requiredUserType="VOLUNTEER">
                   <VolunteerDashboard />
                 </ProtectedRoute>
               } />
-              <Route path="/staff/dashboard" element={
-                <ProtectedRoute requiredUserType="STAFF">
+              
+              {/* FIXED: Dashboard - accessible by all authenticated users, content varies by user type */}
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
                   <DashboardPage />
                 </ProtectedRoute>
               } />
+              
               <Route path="/shelter/dashboard" element={
-                <ProtectedRoute requiredUserType="SHELTER">
-                  <DashboardPage />
-                </ProtectedRoute>
+               <ProtectedRoute requiredUserType="SHELTER">
+                 <DashboardPage />
+               </ProtectedRoute>
               } />
+              
+              {/* FIXED: Gamification Dashboard - only for volunteers and public users */}
+              <Route path="/my-dashboard" element={
+                <ProtectedRoute>
+                  <UserDashboard />
+                </ProtectedRoute>
+               } />
               
               {/* Protected routes - require authentication */}
               <Route path="/reports" element={
@@ -217,12 +228,7 @@ function AppContent() {
                   <ReportDetailPage />
                 </ProtectedRoute>
               } />
-           
-              <Route path="/dashboard" element={
-                <ProtectedRoute>
-                  <DashboardPage />
-                </ProtectedRoute>
-              } />
+         
               
               <Route path="/forum" element={
                 <ProtectedRoute>
@@ -287,7 +293,7 @@ function AppContent() {
                 </ProtectedRoute>
               } />
 
-              {/* ⭐ ENHANCED: Volunteer routes with better organization */}
+              {/* ENHANCED: Volunteer routes with better organization */}
               <Route path="/volunteer/profile" element={
                 <ProtectedRoute>
                   <VolunteerProfileForm />
@@ -452,6 +458,7 @@ function AppContent() {
               <VirtualAdoptionCertificatePage />
             </ProtectedRoute>
           } />
+          
             </Routes>
           </Container>
         </Router>

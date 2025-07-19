@@ -345,23 +345,21 @@ function ReportListPage() {
   const getUrgencyColor = (urgency) => {
     switch (urgency) {
       case 'EMERGENCY':
-        return '#f44336';
-      case 'HIGH':
-        return customTheme.accent;
-      case 'NORMAL':
-        return customTheme.success;
-      case 'LOW':
-        return '#9e9e9e';
-      case 'medium':
-        return customTheme.accent;
-      case 'high':
-        return customTheme.accent;
       case 'emergency':
-        return '#f44336';
+        return '#f44336'; // Red
+      case 'HIGH':
+      case 'high':
+        return '#ff5722'; // Deep orange
+      case 'NORMAL':
+      case 'normal':
+        return customTheme.success; // Green
+      case 'LOW':
       case 'low':
-        return '#9e9e9e';
+        return '#9e9e9e'; // Gray
+      case 'medium':
+        return '#ffc107'; // Amber/Yellow
       default:
-        return customTheme.accent;
+        return '#ffc107'; // Amber default
     }
   };
 
@@ -392,24 +390,8 @@ function ReportListPage() {
   };
 
   const getUrgencyIcon = (urgency) => {
-    switch (urgency) {
-      case 'EMERGENCY':
-      case 'emergency':
-        return <EmergencyIcon sx={{ color: '#f44336' }} />;
-      case 'HIGH':
-      case 'high':
-        return <WarningIcon sx={{ color: customTheme.accent }} />;
-      case 'NORMAL':
-      case 'normal':
-        return <CheckCircleIcon sx={{ color: customTheme.success }} />;
-      case 'LOW':
-      case 'low':
-        return <CheckCircleIcon sx={{ color: '#9e9e9e' }} />;
-      case 'medium':
-        return <WarningIcon sx={{ color: customTheme.accent }} />;
-      default:
-        return <WarningIcon sx={{ color: customTheme.accent }} />;
-    }
+    // Icons removed - not used anymore
+    return null;
   };
 
   const formatDate = (dateString) => {
@@ -1746,12 +1728,11 @@ function ReportListPage() {
                       )}
 
                       <CardContent sx={{ flexGrow: 1, p: 4 }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3 }}>
-                          <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <ReportIcon sx={{ fontSize: 24 }} />
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 4 }}>
+                          <Typography variant="h5" sx={{ color: customTheme.primary, fontWeight: 800, flex: 1 }}>
                             Report #{report.id}
                           </Typography>
-                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, minWidth: 110 }}>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 120, alignItems: 'flex-end' }}>
                             <Chip 
                               label={report.status} 
                               sx={{
@@ -1759,35 +1740,36 @@ function ReportListPage() {
                                 color: '#ffffff',
                                 fontWeight: 700,
                                 fontSize: '0.85rem',
-                                minWidth: 90,
+                                minWidth: 100,
                                 justifyContent: 'center'
                               }}
                             />
-                            {/* Enhanced Priority chip */}
+                            {/* Enhanced Priority chip without icon */}
                             {report.urgency_level && report.urgency_level !== 'NORMAL' && (
                               <Chip 
                                 label={report.urgency_level}
-                                icon={getUrgencyIcon(report.urgency_level)}
                                 sx={{ 
                                   backgroundColor: getUrgencyColor(report.urgency_level),
                                   color: '#ffffff',
                                   fontWeight: 700,
                                   fontSize: '0.85rem',
-                                  minWidth: 90,
-                                  justifyContent: 'center',
-                                  '& .MuiChip-icon': { color: '#ffffff' }
+                                  minWidth: 100,
+                                  justifyContent: 'center'
                                 }}
                               />
                             )}
                           </Box>
                         </Box>
                         
-                        {report.animal && (
-                          <Typography sx={{ mb: 2, color: alpha(customTheme.primary, 0.8), fontWeight: 600 }}>
-                            <strong>Animal:</strong> {report.animal.animal_type} 
-                            {report.animal.color && ` - ${report.animal.color}`}
-                          </Typography>
-                        )}
+                        
+                        {/* Display animal info with support for custom "other" type */}
+                        <Typography sx={{ mb: 2, color: alpha(customTheme.primary, 0.8), fontWeight: 600 }}>
+                          <strong>Animal:</strong>{' '}
+                          {report.animal_details?.animal_type === 'OTHER' 
+                            ? (report.animal_details?.other_animal_type || report.other_animal_type || 'Other animal')
+                            : (report.animal_details?.animal_type || 'Not specified')}
+                          {report.animal_details?.color && ` - ${report.animal_details.color}`}
+                        </Typography>
                         
                         <Typography sx={{ mb: 2, color: alpha(customTheme.primary, 0.8), display: 'flex', alignItems: 'center', gap: 1, fontWeight: 600 }}>
                           <LocationOnIcon sx={{ fontSize: 18 }} />
